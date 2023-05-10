@@ -1,17 +1,13 @@
 import React from "react";
 import './main.global.css';
+import { Layout } from "./components/Layout";
 
 function AppComponent() {
   return (
-    <div>
-      <p>App</p>
-    </div>
-      // <Layout>
-      //   <Header />
-      //   <Content>
-      //     <CardsList />
-      //   </Content>
-      // </Layout>
+    <Layout>
+      Content
+    {/* <Header /> */}
+    </Layout>
   );
 };
 
