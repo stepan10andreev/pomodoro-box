@@ -11,7 +11,8 @@ export enum EColor {
   green = 'green',
   red = 'red',
   white = 'white',
-  grey99 = 'grey99'
+  grey99 = 'grey99',
+  grayC4 = 'grayC4',
 }
 
 interface ITextProps {

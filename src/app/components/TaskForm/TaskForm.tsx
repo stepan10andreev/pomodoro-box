@@ -11,7 +11,7 @@ export function TaskForm() {
   return (
     <form className={styles.form}>
       <input className={styles.input} type="text" placeholder='Название задачи'/>
-      <button className={styles.button}><Text size={16} color={EColor.white}>Добавить</Text></button>
+      <button className={styles.button}><Text size={16} weight={500} color={EColor.white}>Добавить</Text></button>
     </form>
   );
 }

@@ -87,6 +87,11 @@
   color: var(--grey99);
 }
 
+.grayC4 {
+  color: var(--greyC4);
+}
+
+
 /* .upperCase {
   text-transform: uppercase;
 } */

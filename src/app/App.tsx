@@ -7,8 +7,9 @@ import { AppInstruction } from "./components/AppInstruction";
 import { TaskForm } from "./components/TaskForm";
 import { TaskItem } from "./components/TaskList/TaskItem";
 import { LeftContentWrapper } from "./components/Content/LeftContentWrapper";
-import { TimerСontainer } from "./components/Timer";
-import { TimerTask } from "./components/Timer/TimerTask";
+import { TimerContainer } from "./components/TimerContainer";
+import { TimerTask } from "./components/TimerContainer/TimerTask";
+import { Timer } from "./components/TimerContainer/Timer";
 
 function AppComponent() {
   return (
@@ -20,9 +21,10 @@ function AppComponent() {
           <TaskForm />
           <TaskItem />
         </LeftContentWrapper>
-        <TimerСontainer>
+        <TimerContainer>
           <TimerTask />
-        </TimerСontainer>
+          <Timer />
+        </TimerContainer>
       </Content>
     </Layout>
   );
