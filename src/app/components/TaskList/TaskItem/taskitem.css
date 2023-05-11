@@ -1,7 +1,10 @@
 .taskItem {
+  padding: 15px 0;
   display: flex;
   align-items: center;
   max-width: 370px;
+  border-top: 1px solid var(--grayE4);
+  border-bottom: 1px solid var(--grayE4);
 }
 
 .countTomatoes {

@@ -16,6 +16,7 @@
   flex-direction: column;
   gap: 15px;
   border: 1px solid var(--greyC4);
+  background-color: var(--white);
 }
 /*
 .menuItemsList::after {
@@ -41,7 +42,7 @@
 
  .menuItemsList::after {
   border-bottom: 10px solid white;
-    top: -17px;
+    top: -18px;
  }
 
 .button {
