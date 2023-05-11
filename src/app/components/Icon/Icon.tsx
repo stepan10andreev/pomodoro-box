@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './icon.css';
-import { AddBtnIcon, ClockIcon, EqualizerIcon, FocusIcon, LogoIcon, StopIcon } from './Icons';
+import { AddBtnIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, StopIcon } from './Icons';
 import { TomatoIcon } from './Icons/TomatoIcon';
 
 
@@ -13,7 +13,11 @@ let iconList = {
   TomatoIcon: <TomatoIcon />,
   FocusIcon: <FocusIcon />,
   ClockIcon: <ClockIcon />,
-  StopIcon: <StopIcon />
+  StopIcon: <StopIcon />,
+  IncreaseMenuIcon: <IncreaseMenuIcon />,
+  DecreaseMenuIcon: <DecreaseMenuIcon />,
+  EditMenuIcon: <EditMenuIcon />,
+  DeleteMenuIcon: <DeleteMenuIcon />
 };
 
 export enum EIcons {
@@ -24,6 +28,10 @@ export enum EIcons {
   focus = `FocusIcon`,
   clock = `ClockIcon`,
   stop = `StopIcon`,
+  increase = 'IncreaseMenuIcon',
+  decrease = 'DecreaseMenuIcon',
+  edit = 'EditMenuIcon',
+  delete = 'DeleteMenuIcon'
 }
 
 interface IIconProps {

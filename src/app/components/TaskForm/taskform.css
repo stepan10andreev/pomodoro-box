@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.button {
+  padding: 19px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  max-width: 175px;
+  background-color: var(--green);
+}
+
+.input {
+  padding: 19px 15px;
+  max-width: 370px;
+  background-color: var(--grayF4);
+}
+
+.input::placeholder {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--grey99);
+}

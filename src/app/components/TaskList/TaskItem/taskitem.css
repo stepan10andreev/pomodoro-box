@@ -1,0 +1,17 @@
+.taskItem {
+  display: flex;
+  align-items: center;
+  max-width: 370px;
+}
+
+.countTomatoes {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #C4C4C4;
+  border-radius: 20px;
+}

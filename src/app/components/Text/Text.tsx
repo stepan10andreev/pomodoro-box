@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './text.css';
 import classNames from 'classnames';
 
-type TSizes = 150 | 72 | 64 | 24_33 | 24_24 | 24_17 | 16 | 12;
+type TSizes = 150 | 72 | 64 | 2433 | 24 | 2417 | 16 | 12;
 
 type TWeights = 200 | 300 | 400 | 500 | 700;
 
@@ -11,7 +11,7 @@ export enum EColor {
   green = 'green',
   red = 'red',
   white = 'white',
-  grey9 = 'grey9'
+  grey99 = 'grey99'
 }
 
 interface ITextProps {
