@@ -2,9 +2,13 @@
   --black:          #333333;
   --green:          #a7b54f;
   --green-dark:     #899440;
+  --red:            #DC3E22;
+  --pink:           #EE735D;
+  --pink-light:     #EA8979;;
   --white:          hsl(0, 0%, 100%);
   --grayF5:         hsl(0, 0%, 96%);
   --greyC4:         hsl(0, 0%, 77%);
+  --grey99:         hsl(0, 0%, 60%);
   --font-family:    "SFUIDisplay";
 }
 

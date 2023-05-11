@@ -13,6 +13,7 @@
   "author": "stepan10andreev@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@types/classnames": "^2.3.1",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "cross-env": "^7.0.3",
@@ -36,6 +37,7 @@
     "webpack-dev-server": "^4.13.3"
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

@@ -1,0 +1,57 @@
+import React from 'react';
+import styles from './text.css';
+import classNames from 'classnames';
+
+type TSizes = 150 | 72 | 64 | 24_33 | 24_24 | 24_17 | 16 | 12;
+
+type TWeights = 200 | 300 | 400 | 500 | 700;
+
+export enum EColor {
+  black = 'black',
+  green = 'green',
+  red = 'red',
+  white = 'white',
+  grey9 = 'grey9'
+}
+
+interface ITextProps {
+  As?: 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'div';
+  children?: React.ReactNode;
+  size: TSizes;
+  weight?: TWeights;
+  mobileSize?: TSizes;
+  tabletSize?: TSizes;
+  desktopSize?: TSizes;
+  color?: EColor;
+  bold?: boolean;
+}
+
+export function Text(props: ITextProps) {
+  const {
+    As = 'span',
+    color = EColor.black,
+    // bold = false,
+    weight = 400,
+    children,
+    size,
+    mobileSize,
+    desktopSize,
+    tabletSize
+  } = props;
+
+  const classes = classNames(
+    styles[`s${size}`],
+    styles[color],
+    styles[`w${weight}`],
+    // { [styles.bold]: bold},
+    { [styles[`m${mobileSize}`]]: mobileSize },
+    { [styles[`t${tabletSize}`]]: tabletSize },
+    { [styles[`d${desktopSize}`]]: desktopSize },
+  );
+
+  return (
+    <As className={classes}>
+      {children}
+    </As>
+  );
+}
