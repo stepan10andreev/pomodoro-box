@@ -12,6 +12,19 @@
   justify-items: center;
   max-width: 175px;
   background-color: var(--green);
+  transition: 0.3s;
+}
+
+.button:focus-visible {
+  background-color: var(--green-dark);
+}
+
+.button:hover {
+  background-color: var(--green-dark);
+}
+
+.button:active {
+  background-color: var(--green-active);
 }
 
 .input {

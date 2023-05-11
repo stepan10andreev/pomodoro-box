@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './buttonmenu.css';
 import { Dropdown } from '../../../Dropdown';
-import { MenuIcon } from '../../../Icon/Icons';
 import { MenuItemList } from './MenuItemList';
+import { EIcons, Icon } from '../../../Icon';
+import { MenuIcon } from '../../../Icon/Icons';
 
 export function ButtonMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
@@ -12,6 +13,7 @@ export function ButtonMenu() {
       <Dropdown
         button={
           <button className={styles.menuButton} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            {/* <Icon name={EIcons.menu}/> */}
             <MenuIcon />
           </button>
         }

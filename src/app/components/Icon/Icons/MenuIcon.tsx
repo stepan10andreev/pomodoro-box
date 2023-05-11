@@ -7,6 +7,5 @@ export function MenuIcon() {
       <circle cx="13" cy="3" r="3" fill="#C4C4C4"/>
       <circle cx="23" cy="3" r="3" fill="#C4C4C4"/>
     </svg>
-
   );
 }

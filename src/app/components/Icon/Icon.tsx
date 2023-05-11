@@ -1,16 +1,17 @@
 import React from 'react';
 import styles from './icon.css';
-import { AddBtnIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, StopIcon } from './Icons';
+import { AddBtnIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, MenuIcon, StopIcon } from './Icons';
 import { TomatoIcon } from './Icons/TomatoIcon';
 
 
-type TSizes = 130 | 115 | 50 | 40 | 24 | 14;
+type TSizes = 130 | 115 | 50 | 40 | 30 | 24 | 18 | 14;
 
 let iconList = {
   LogoIcon: <LogoIcon />,
   AddBtnIcon: <AddBtnIcon />,
   EqualizerIcon: <EqualizerIcon />,
   TomatoIcon: <TomatoIcon />,
+  MenuIcon: <MenuIcon />,
   FocusIcon: <FocusIcon />,
   ClockIcon: <ClockIcon />,
   StopIcon: <StopIcon />,
@@ -25,6 +26,7 @@ export enum EIcons {
   addBtn = `AddBtnIcon`,
   equalizer = `EqualizerIcon`,
   tomato = `TomatoIcon`,
+  menu = 'MenuIcon',
   focus = `FocusIcon`,
   clock = `ClockIcon`,
   stop = `StopIcon`,

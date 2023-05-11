@@ -10,7 +10,7 @@ export function MenuItemList() {
 
         <li className={styles.menuItem}>
           <button className={styles.button}>
-            <Icon name={EIcons.increase}/>
+            <Icon name={EIcons.increase} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Увеличить
             </Text>
@@ -19,7 +19,7 @@ export function MenuItemList() {
 
         <li className={styles.menuItem}>
           <button className={styles.button}>
-            <Icon name={EIcons.decrease}/>
+            <Icon name={EIcons.decrease} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Уменьшить
             </Text>
@@ -28,7 +28,7 @@ export function MenuItemList() {
 
         <li className={styles.menuItem}>
           <button className={styles.button}>
-            <Icon name={EIcons.edit}/>
+            <Icon name={EIcons.edit} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Редактировать
             </Text>
@@ -37,7 +37,7 @@ export function MenuItemList() {
 
         <li className={styles.menuItem}>
           <button className={styles.button}>
-            <Icon name={EIcons.delete}/>
+            <Icon name={EIcons.delete} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Удалить
             </Text>
