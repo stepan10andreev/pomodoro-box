@@ -3,14 +3,19 @@ import styles from './taskitem.css';
 import { Text } from '../../Text'
 import { ButtonMenu } from './ButtonMenu';
 
-export function TaskItem() {
+interface ITaskItem {
+  taskTitle: string;
+  countTomato: number;
+}
+export function TaskItem({ taskTitle, countTomato }: ITaskItem) {
   return (
     <li className={styles.taskItem}>
       <div className={styles.countTomatoes}>
-        1
+        {countTomato}
       </div>
-      <Text size={16} weight={300}>Сверстать сайт</Text>
+      <Text size={16} weight={300}>{taskTitle}</Text>
       <ButtonMenu />
     </li>
   );
 }
+

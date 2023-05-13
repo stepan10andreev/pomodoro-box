@@ -30,7 +30,11 @@
 .input {
   padding: 19px 15px;
   max-width: 370px;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 17px;
   background-color: var(--grayF4);
+  color: var(--black);;
 }
 
 .input::placeholder {

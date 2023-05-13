@@ -10,23 +10,30 @@ import { LeftContentWrapper } from "./components/Content/LeftContentWrapper";
 import { TimerContainer } from "./components/TimerContainer";
 import { TimerTask } from "./components/TimerContainer/TimerTask";
 import { Timer } from "./components/TimerContainer/Timer";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { TaskList } from "./components/TaskList";
+
+
 
 function AppComponent() {
   return (
-    <Layout>
-      <Header />
-      <Content>
-        <LeftContentWrapper>
-          <AppInstruction />
-          <TaskForm />
-          <TaskItem />
-        </LeftContentWrapper>
-        <TimerContainer>
-          <TimerTask />
-          <Timer />
-        </TimerContainer>
-      </Content>
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Header />
+        <Content>
+          <LeftContentWrapper>
+            <AppInstruction />
+            <TaskForm />
+            <TaskList/>
+          </LeftContentWrapper>
+          <TimerContainer>
+            <TimerTask />
+            <Timer />
+          </TimerContainer>
+        </Content>
+      </Layout>
+    </Provider>
   );
 };
 

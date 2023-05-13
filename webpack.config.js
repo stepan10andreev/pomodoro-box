@@ -34,7 +34,8 @@ module.exports = {
         // все файлы этих форматов будут обрабатьваться ts-loader
         // необходим tsconfig для ts-loader
         test: /\.[tj]sx?$/,
-        use: ['ts-loader']
+        use: ['ts-loader'],
+        exclude: /node_modules/,
       },
       // вариант с единым файлом CSS на выходе, не МОДУЛИ! тогда нужен MiniCssExtractPlugin
       // {
@@ -191,4 +192,5 @@ module.exports = {
 //         ]
 //     },
 // };
+
 
