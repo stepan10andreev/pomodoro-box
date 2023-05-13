@@ -2,14 +2,16 @@ import React from 'react';
 import styles from './menuitemlist.css';
 import { EIcons, Icon } from '../../../../Icon';
 import { EColor, Text } from '../../../../Text';
+import { useDispatch } from 'react-redux';
 
 export function MenuItemList() {
+  const dispatch = useDispatch();
+  // onClick={() => dispatch(incrementTomatoCount(tasId))}
   return (
-    // <div className={styles.dropdown}>
       <ul className={styles.menuItemsList}>
 
         <li className={styles.menuItem}>
-          <button className={styles.button}>
+          <button className={styles.button} >
             <Icon name={EIcons.increase} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Увеличить
@@ -45,6 +47,5 @@ export function MenuItemList() {
         </li>
 
       </ul>
-    // </div>
   );
 }

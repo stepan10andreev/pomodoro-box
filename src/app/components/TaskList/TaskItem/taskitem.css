@@ -18,3 +18,13 @@
   border: 1px solid #C4C4C4;
   border-radius: 20px;
 }
+
+
+.input {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 17px;
+  color: var(--black);
+  border: none;
+  outline: none;
+}

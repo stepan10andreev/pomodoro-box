@@ -12,7 +12,7 @@ export function ButtonMenu() {
     <div className={styles.menu}>
       <Dropdown
         button={
-          <button className={styles.menuButton} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+          <button className={styles.menuButton} onClick={() => {setIsDropdownOpen(!isDropdownOpen), console.log('yes')}}>
             {/* <Icon name={EIcons.menu}/> */}
             <MenuIcon />
           </button>

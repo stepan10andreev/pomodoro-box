@@ -25,14 +25,71 @@ const postTask = createSlice({
             countTomato: 1
           }
         }
-      }
-    }
+      },
+    },
+
+    incrementTomatoCount: {
+      reducer (state, action: PayloadAction<string>) {
+        const task = state.find((task) => task.taskId === action.payload)
+        if (task) {
+          task.countTomato += 1;
+        }
+      },
+      prepare (taskId: string) {
+        return {
+          payload: taskId
+        }
+      },
+    },
+
+    decrementTomatoCount: {
+      reducer (state, action: PayloadAction<string>) {
+        const task = state.find((task) => task.taskId === action.payload)
+        if (task) {
+          task.countTomato -= 1;
+        }
+      },
+      prepare (taskId: string) {
+        return {
+          payload: taskId
+        }
+      },
+    },
+
+    editTaskTitle: {
+      reducer (state, action: PayloadAction<{taskTitle: string, taskId: string}>) {
+        const { taskTitle, taskId } = action.payload
+        const task = state.find((task) => task.taskId === taskId)
+        if (task) {
+          task.taskTitle = taskTitle;
+        }
+      },
+      prepare (taskTitle: string, taskId:string) {
+        return {
+          payload: {
+            taskTitle,
+            taskId,
+          }
+        }
+      },
+    },
+
+    deleteTask: {
+      reducer (state, action: PayloadAction<string>) {
+        state.filter((task) => task.taskId !== action.payload)
+      },
+      prepare (taskId: string) {
+        return {
+          payload: taskId
+        }
+      },
+    },
   }
 })
 
 // createSlice автоматически создается функция «создатель действия» с тем же именем
 // Экспортируем этого создателя действия и используем его в наших компонентах пользовательского интерфейса для отправки действия,
-export const { taskAdded } = postTask.actions;
+export const { taskAdded, incrementTomatoCount, decrementTomatoCount } = postTask.actions;
 
 // // экспортируем редьюсер
 export default postTask.reducer;

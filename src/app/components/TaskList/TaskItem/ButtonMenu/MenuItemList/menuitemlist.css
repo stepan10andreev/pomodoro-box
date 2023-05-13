@@ -17,6 +17,7 @@
   /* gap: 15px; */
   border: 1px solid var(--grayC4);
   background-color: var(--white);
+  z-index: 100;
 }
 /*
 .menuItemsList::after {
