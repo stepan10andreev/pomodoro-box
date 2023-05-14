@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 
-interface Itask {
+export interface Itask {
 // taskID явояется строкой а не числом!
   taskId: string;
   taskTitle: string;
