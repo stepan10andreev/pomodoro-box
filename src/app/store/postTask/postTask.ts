@@ -60,7 +60,6 @@ const postTask = createSlice({
       reducer (state, action: PayloadAction<{taskTitle: string, taskId: string}>) {
         const { taskTitle, taskId } = action.payload
         const task = state.find((task) => task.taskId === taskId)
-        console.log(task)
         if (task) {
           task.taskTitle = taskTitle;
         }

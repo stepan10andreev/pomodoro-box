@@ -5,7 +5,11 @@ import { MenuItemList } from './MenuItemList';
 import { EIcons, Icon } from '../../../Icon';
 import { MenuIcon } from '../../../Icon/Icons';
 
-export function ButtonMenu() {
+interface IButtonMenu {
+  onClick: () => void;
+}
+
+export function ButtonMenu({ onClick }: IButtonMenu) {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   return (
@@ -18,7 +22,7 @@ export function ButtonMenu() {
           </button>
         }
       >
-        <MenuItemList />
+        <MenuItemList onClick={onClick}/>
       </Dropdown>
     </div>
 

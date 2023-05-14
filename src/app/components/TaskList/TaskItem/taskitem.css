@@ -24,7 +24,15 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 17px;
+  width: 70%;
   color: var(--black);
   border: none;
   outline: none;
+}
+
+.input:focus {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+  border-radius: 1px;
+  background-color: var(--grayE4);
 }

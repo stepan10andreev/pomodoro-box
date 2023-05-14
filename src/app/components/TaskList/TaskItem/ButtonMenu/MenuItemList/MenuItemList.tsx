@@ -4,7 +4,11 @@ import { EIcons, Icon } from '../../../../Icon';
 import { EColor, Text } from '../../../../Text';
 import { useDispatch } from 'react-redux';
 
-export function MenuItemList() {
+interface IMenuItemList {
+  onClick: () => void;
+}
+
+export function MenuItemList({ onClick }: IMenuItemList) {
   const dispatch = useDispatch();
   // onClick={() => dispatch(incrementTomatoCount(tasId))}
   return (
@@ -29,7 +33,7 @@ export function MenuItemList() {
         </li>
 
         <li className={styles.menuItem}>
-          <button className={styles.button}>
+          <button className={styles.button} onClick={onClick}>
             <Icon name={EIcons.edit} size={18}/>
             <Text size={16} weight={300} color={EColor.grey99}>
               Редактировать
