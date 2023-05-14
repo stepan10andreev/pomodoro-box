@@ -77,7 +77,7 @@ const postTask = createSlice({
 
     deleteTask: {
       reducer (state, action: PayloadAction<string>) {
-        state.filter((task) => task.taskId !== action.payload)
+        return state.filter((task) => task.taskId !== action.payload)
       },
       prepare (taskId: string) {
         return {

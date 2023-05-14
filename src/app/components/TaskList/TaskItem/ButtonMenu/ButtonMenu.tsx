@@ -6,10 +6,11 @@ import { EIcons, Icon } from '../../../Icon';
 import { MenuIcon } from '../../../Icon/Icons';
 
 interface IButtonMenu {
-  onClick: () => void;
+  onClickActiveInput: () => void;
+  taskId: string;
 }
 
-export function ButtonMenu({ onClick }: IButtonMenu) {
+export function ButtonMenu({ onClickActiveInput, taskId }: IButtonMenu) {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   return (
@@ -22,7 +23,7 @@ export function ButtonMenu({ onClick }: IButtonMenu) {
           </button>
         }
       >
-        <MenuItemList onClick={onClick}/>
+        <MenuItemList onClickActiveInput={onClickActiveInput} taskId={taskId}/>
       </Dropdown>
     </div>
 
