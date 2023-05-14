@@ -7,9 +7,10 @@ export function TimerTask() {
   const tasks = useAppSelector((state) => state.tasks)
   const currentTask = tasks[0]
 
-  useEffect(() => {
-    console.log(currentTask)
-  })
+  // useEffect(() => {
+  //   console.log(currentTask)
+  // }, [currentTask])
+
   return (
     <div className={styles.timerTask}>
       <Text As={'div'} size={16} weight={700} color={EColor.white}>{currentTask ? currentTask.taskTitle : 'Название текущей задачи'}</Text>
