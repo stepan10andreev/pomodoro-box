@@ -14,6 +14,7 @@ export function TaskList() {
           taskTitle={task.taskTitle}
           countTomato={task.countTomato}
           key={task.taskId}
+          taskId={task.taskId}
         />))}
       </ul>
     );

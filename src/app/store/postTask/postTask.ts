@@ -60,9 +60,11 @@ const postTask = createSlice({
       reducer (state, action: PayloadAction<{taskTitle: string, taskId: string}>) {
         const { taskTitle, taskId } = action.payload
         const task = state.find((task) => task.taskId === taskId)
+        console.log(task)
         if (task) {
           task.taskTitle = taskTitle;
         }
+
       },
       prepare (taskTitle: string, taskId:string) {
         return {
@@ -89,7 +91,7 @@ const postTask = createSlice({
 
 // createSlice автоматически создается функция «создатель действия» с тем же именем
 // Экспортируем этого создателя действия и используем его в наших компонентах пользовательского интерфейса для отправки действия,
-export const { taskAdded, incrementTomatoCount, decrementTomatoCount } = postTask.actions;
+export const { taskAdded, incrementTomatoCount, decrementTomatoCount, editTaskTitle, deleteTask } = postTask.actions;
 
 // // экспортируем редьюсер
 export default postTask.reducer;
