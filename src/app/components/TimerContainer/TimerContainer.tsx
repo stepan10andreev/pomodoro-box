@@ -1,14 +1,17 @@
 import React from 'react';
 import styles from './timerContainer.css';
+import { TimerTask } from './TimerTask';
+import { Timer } from './Timer/Timer';
 
-interface ITimerContainerProps {
-  children?: React.ReactNode;
-}
+// interface ITimerContainerProps {
+//   children?: React.ReactNode;
+// }
 
-export function TimerContainer({ children }: ITimerContainerProps) {
+export function TimerContainer() {
   return (
     <div className={styles.timerContainer}>
-      {children}
+      <TimerTask />
+      <Timer />
     </div>
   );
 }

@@ -27,10 +27,7 @@ function AppComponent() {
             <TaskForm />
             <TaskList/>
           </LeftContentWrapper>
-          <TimerContainer>
-            <TimerTask />
-            <Timer />
-          </TimerContainer>
+          <TimerContainer />
         </Content>
       </Layout>
     </Provider>

@@ -4,11 +4,22 @@ import { EColor, Text } from '../../Text';
 import { TimerButtonsWrapper } from './TimerButtonsWrapper';
 import { EIcons, Icon } from '../../Icon';
 import { getPadTime } from '../../../utils/getPadTime';
+import { useAppSelector } from '../../Hooks/useAppDispatch';
+import { useDispatch } from 'react-redux';
+import { decrementTomatoCount, deleteTask } from '../../../store/postTask/postTask';
 
 
 export function Timer() {
+  const tasks = useAppSelector((state) => state.tasks)
+  const currentTask = tasks[0];
+  // let countTomato;
+
+  const dispatch = useDispatch();
+
   const [timer, setTimer] = useState<number>(5);
   const [isCountDowning, setIsCountDowning] = useState(false);
+  const [isPausing, setIsPausing] = useState(false);
+  const [tomatoCount, setTomatoCount] = useState(1);
   // используем утилиту для того чтобы добавить 0 если секунды или минуты меньше 10
   // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычислениежд
   const minutesValue = Math.floor(timer / 60);
@@ -16,15 +27,18 @@ export function Timer() {
   const seconds = getPadTime(timer - minutesValue * 60);
 
   useEffect(() => {
+    // if (currentTask) setTomatoCount(currentTask.countTomato)
     const interval = setInterval(() =>{
       isCountDowning &&
         setTimer((timer) => (timer >= 1 ? timer - 1 : 0))
     }, 1000)
+    if (currentTask && (currentTask.countTomato === 0)) dispatch(deleteTask(currentTask.taskId))
     if (timer === 0) setIsCountDowning(false)
+    if (!currentTask) setTimer(5)
     return (() => {
       clearInterval(interval)
     })
-  }, [timer, isCountDowning])
+  }, [currentTask, timer, isCountDowning])
 
   const handleStart = () => {
     if (timer === 0) setTimer(5)
@@ -33,16 +47,22 @@ export function Timer() {
 
   const handleStop = () => {
     setIsCountDowning(false)
+    setIsPausing(false)
     setTimer(5)
   };
 
   const handlePause = () => {
     setIsCountDowning(false)
+    setIsPausing(true)
   };
 
-  // const handleReady = () => {
-
-  // };
+  const handleReady = () => {
+    setIsCountDowning(false)
+    setIsPausing(false)
+    setTimer(5)
+    // setTomatoCount((tomatoCount) => (tomatoCount >= 1 ? tomatoCount - 1 : 0))
+    dispatch(decrementTomatoCount(currentTask.taskId))
+  };
 
   return (
     <div className={styles.timer}>
@@ -62,7 +82,7 @@ export function Timer() {
       </div>
       <div className={styles.title}>
         <Text size={16} color={EColor.grey99}>Задача 1 - </Text>
-        <Text size={16}>Сверстать сайт</Text>
+        <Text size={16}>{currentTask ? currentTask.taskTitle : 'Текущая задача не добавлена'}</Text>
       </div>
       <div className={styles.timerButtonsWrapper}>
         {isCountDowning ? (
@@ -70,12 +90,19 @@ export function Timer() {
             <Text size={16} weight={500} color={EColor.white}>Пауза</Text>
           </button>
         ) : (
-          <button onClick={handleStart} className={styles.startButton}>
-            <Text size={16} weight={500} color={EColor.white}>Старт</Text>
+          <button onClick={handleStart} className={styles.startButton} disabled={currentTask ? false : true}>
+            <Text size={16} weight={500} color={EColor.white}>{isPausing && currentTask ? 'Продолжить' : 'Старт'}</Text>
           </button>
         )}
-
-        <button onClick={handleStop} className={styles.stopButton}><Text size={16} weight={500} color={EColor.grayC4}>Стоп</Text></button>
+        {isPausing && currentTask ? (
+          <button onClick={handleReady} className={styles.stopButton}>
+            <Text size={16} weight={500} color={EColor.red}>Сделано</Text>
+          </button>
+        ) : (
+          <button onClick={handleStop} className={styles.stopButton} disabled={currentTask ? false : true}>
+            <Text size={16} weight={500} color={EColor.red}>Стоп</Text>
+          </button>
+        )}
       </div>
       {/* <TimerButtonsWrapper /> */}
     </div>

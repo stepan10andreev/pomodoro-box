@@ -1,3 +1,8 @@
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .timer {
   padding: 70px 178px 100px;
   display: flex;
@@ -59,28 +64,48 @@
   transition: 0.3s;
 }
 
-
 .stopButton {
   padding: 19px 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
-  border: 2px solid var(--grayC4);
+  border: 2px solid var(--red);
   background-color: transparent;
+  transition: 0.3s;
 }
 
+.stopButton > span {
+  transition: 0.3s;
+}
 
-.startButton:focus-visible {
+.startButton:enabled:focus-visible {
   background-color: var(--green-dark);
 }
 
-.startButton:hover {
+.startButton:enabled:hover {
   background-color: var(--green-dark);
 }
 
-.startButton:active {
+.startButton:enabled:active {
   background-color: var(--green-active);
 }
 
+.stopButton:enabled:focus-visible {
+  background-color: var(--red);
+}
+
+.stopButton:enabled:hover {
+  background-color: var(--red);
+}
+
+.stopButton:enabled:active {
+  background-color: var(--red);
+}
+
+.stopButton:enabled:focus-visible > span,
+.stopButton:enabled:hover > span,
+.stopButton:enabled:active > span {
+  color: var(--white);
+}
 
