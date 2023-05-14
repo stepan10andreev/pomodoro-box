@@ -9,7 +9,7 @@ interface Itask {
 
 const initialState: Itask[] = []
 
-const postTask = createSlice({
+const taskSlice = createSlice({
   name: 'task',
   initialState,
   reducers: {
@@ -90,10 +90,10 @@ const postTask = createSlice({
 
 // createSlice автоматически создается функция «создатель действия» с тем же именем
 // Экспортируем этого создателя действия и используем его в наших компонентах пользовательского интерфейса для отправки действия,
-export const { taskAdded, incrementTomatoCount, decrementTomatoCount, editTaskTitle, deleteTask } = postTask.actions;
+export const { taskAdded, incrementTomatoCount, decrementTomatoCount, editTaskTitle, deleteTask } = taskSlice.actions;
 
 // // экспортируем редьюсер
-export default postTask.reducer;
+export default taskSlice.reducer;
 
 // // экспортируем экшены (для метода dispatch в разным компонентах)
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions

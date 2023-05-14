@@ -4,8 +4,7 @@ import { useAppSelector } from '../Hooks/useAppDispatch';
 import { TaskItem } from './TaskItem';
 
 export function TaskList() {
-  const tasks = useAppSelector((state)=> state.posts)
-  console.log(tasks)
+  const tasks = useAppSelector((state)=> state.tasks)
   if (tasks.length > 0) {
     return (
       <ul>

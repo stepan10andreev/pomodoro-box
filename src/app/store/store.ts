@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import postsReducer from './postTask/postTask';
+import tasksReducer from './postTask/postTask';
 
 // // const store
 export const store = configureStore({
   reducer: {
-    posts: postsReducer
+    tasks: tasksReducer
   }
 })
 
