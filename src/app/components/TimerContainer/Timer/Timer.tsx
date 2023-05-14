@@ -12,14 +12,14 @@ import { decrementTomatoCount, deleteTask } from '../../../store/postTask/postTa
 export function Timer() {
   const tasks = useAppSelector((state) => state.tasks)
   const currentTask = tasks[0];
-  // let countTomato;
 
   const dispatch = useDispatch();
 
-  const [timer, setTimer] = useState<number>(5);
+  const [timer, setTimer] = useState(5);
   const [isCountDowning, setIsCountDowning] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
-  const [tomatoCount, setTomatoCount] = useState(1);
+  // const [tomatoCount, setTomatoCount] = useState(1);
+
   // используем утилиту для того чтобы добавить 0 если секунды или минуты меньше 10
   // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычислениежд
   const minutesValue = Math.floor(timer / 60);
