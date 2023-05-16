@@ -1,30 +1,10 @@
 /* DayStatistics */
 
 
-.tomatoStatistics {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  background-color: var(--grayF4);
-}
 
-.wrapper1 {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
 
-.tomatoStatistics svg {
-  width: 81px;
-  height: 81px;
-}
 
-.tomatoCount {
-  padding: 9px 78px;
-  background-color: var(--red);
-}
+
 
 
 
