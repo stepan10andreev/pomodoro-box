@@ -155,7 +155,7 @@ module.exports = {
     ],
   devServer: {
     // contentBase: './dist',
-    // historyApiFallback: true,
+    historyApiFallback: true,
     port: 3000,
     open: true,
     // будет работать только в режиме dev: релоад страницы когда происходят изменения

@@ -10,14 +10,13 @@ export function TimerTask() {
   const tasks = useAppSelector((state) => state.tasks);
   const currentTask = tasks[0];
 
-  const [taskObject, setTaskObject] = useState<Itask>({
-    taskId: '',
-    taskTitle: '',
-    countTomato: 0,
-  })
+  // const [taskObject, setTaskObject] = useState<Itask>({
+  //   taskId: '',
+  //   taskTitle: '',
+  //   countTomato: 0,
+  // })
   const [initialTomatoNumber, setInitialTomatoNumber] = useState(0);
-  const [actualTomato, setActualTomato] = useState(0)
-
+  // const [actualTomato, setActualTomato] = useState(0)
 
   useEffect(() => {
     if (currentTask && currentTask.countTomato > initialTomatoNumber) setInitialTomatoNumber(currentTask.countTomato)
@@ -37,10 +36,4 @@ export function TimerTask() {
       <Text  As={'div'} size={16} weight={700} color={EColor.white}>Помидор {(currentTask) ? (initialTomatoNumber - (currentTask.countTomato - 1)) : 1}</Text>
     </div>
   );
-  // return (
-  //   <div className={styles.timerTask}>
-  //     <Text As={'div'} size={16} weight={700} color={EColor.white}>{initialTomatoNumber - (actualTomato - 1)}</Text>
-  //     <Text  As={'div'} size={16} weight={700} color={EColor.white}>Помидор </Text>
-  //   </div>
-  // );
 }

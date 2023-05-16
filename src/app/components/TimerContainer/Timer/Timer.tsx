@@ -30,39 +30,55 @@ export function Timer() {
     // if (currentTask) setTomatoCount(currentTask.countTomato)
     const interval = setInterval(() =>{
       isCountDowning &&
-        setTimer((timer) => (timer >= 1 ? timer - 1 : 0))
+        setTimer((timer) => (timer >= 1 ? timer - 1 : 0));
     }, 1000)
-    if (currentTask && (currentTask.countTomato === 0)) dispatch(deleteTask(currentTask.taskId))
-    if (timer === 0) setIsCountDowning(false)
+
+    if (currentTask && (currentTask.countTomato === 0)) dispatch(deleteTask(currentTask.taskId));
+    // if (timer === 0) {
+    //   setIsCountDowning(false);
+    //   dispatch(decrementTomatoCount(currentTask?.taskId));
+    // }
     if (!currentTask) setTimer(5)
     return (() => {
-      clearInterval(interval)
+      clearInterval(interval);
     })
-  }, [currentTask, timer, isCountDowning])
+  }, [currentTask, isCountDowning])
+
+  // здесь условие если помидоров больше нуля то делаем перерывб иначе просто обунялем
+  useEffect(() => {
+    if (timer === 0) {
+      setIsCountDowning(false);
+      dispatch(decrementTomatoCount(currentTask?.taskId));
+    }
+  }, [timer])
 
   const handleStart = () => {
-    if (timer === 0) setTimer(5)
-    setIsCountDowning(true)
+    if (timer === 0) setTimer(5);
+    setIsCountDowning(true);
   };
 
   const handleStop = () => {
-    setIsCountDowning(false)
-    setIsPausing(false)
-    setTimer(5)
+    setIsCountDowning(false);
+    setIsPausing(false);
+    setTimer(5);
   };
 
   const handlePause = () => {
-    setIsCountDowning(false)
-    setIsPausing(true)
+    setIsCountDowning(false);
+    setIsPausing(true);
   };
 
   const handleReady = () => {
-    setIsCountDowning(false)
-    setIsPausing(false)
-    setTimer(5)
+    setIsCountDowning(false);
+    setIsPausing(false);
+    setTimer(5);
     // setTomatoCount((tomatoCount) => (tomatoCount >= 1 ? tomatoCount - 1 : 0))
-    dispatch(decrementTomatoCount(currentTask.taskId))
+    dispatch(decrementTomatoCount(currentTask.taskId));
   };
+
+  const handleAddTime = () => {
+    setTimer((timer) => timer + 60);
+  }
 
   return (
     <div className={styles.timer}>
@@ -76,7 +92,7 @@ export function Timer() {
         <Text As={'div'} size={150} weight={200}>
           {seconds}
         </Text>
-        <button className={styles.addTimeBtn}>
+        <button onClick={handleAddTime} className={styles.addTimeBtn}>
           <Icon name={EIcons.addBtn} size={50}/>
         </button>
       </div>
