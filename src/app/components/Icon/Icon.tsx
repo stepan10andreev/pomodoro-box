@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './icon.css';
-import { AddBtnIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, MenuIcon, StopIcon } from './Icons';
+import { AddBtnIcon, ArrowDownIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, MenuIcon, StopIcon } from './Icons';
 import { TomatoIcon } from './Icons/TomatoIcon';
 
 
-type TSizes = 130 | 115 | 50 | 40 | 30 | 24 | 18 | 14;
+type TSizes = 130 | 115 | 81 | 50 | 40 | 30 | 24 | 18 | 14;
 
 let iconList = {
   LogoIcon: <LogoIcon />,
@@ -18,7 +18,8 @@ let iconList = {
   IncreaseMenuIcon: <IncreaseMenuIcon />,
   DecreaseMenuIcon: <DecreaseMenuIcon />,
   EditMenuIcon: <EditMenuIcon />,
-  DeleteMenuIcon: <DeleteMenuIcon />
+  DeleteMenuIcon: <DeleteMenuIcon />,
+  ArrowDownIcon: <ArrowDownIcon />
 };
 
 export enum EIcons {
@@ -33,7 +34,8 @@ export enum EIcons {
   increase = 'IncreaseMenuIcon',
   decrease = 'DecreaseMenuIcon',
   edit = 'EditMenuIcon',
-  delete = 'DeleteMenuIcon'
+  delete = 'DeleteMenuIcon',
+  arrowDown = 'ArrowDownIcon'
 }
 
 interface IIconProps {

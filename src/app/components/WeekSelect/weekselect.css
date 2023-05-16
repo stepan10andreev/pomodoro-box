@@ -1,0 +1,9 @@
+.weekSelect {
+  padding: 19px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 370px;
+  width: 100%;
+  background-color: var(--grayF4);
+}

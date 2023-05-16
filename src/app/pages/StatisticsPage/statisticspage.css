@@ -1,5 +1,46 @@
 /* DayStatistics */
 .dayStatistics {
+  background-color: var(--grayF4);
+}
 
+
+.tomatoStatistics {
+  background-color: var(--grayF4);
+}
+
+
+.tomatoStatistics svg {
+  width: 81px;
+  height: 81px;
+}
+
+.tomatoCount {
+  background-color: var(--red);
+}
+
+.menuWeekList {
+  display: flex;
+  flex-direction: column;
+  max-width: 370px;
+}
+
+
+.weekSelect {
+  padding: 19px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 370px;
+  width: 100%;
+  background-color: var(--grayF4);
+}
+
+
+.menuWeekItem {
+  padding: 19px 15px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--grayDE);
+  border-bottom: 1px solid var(--grayDE);
   background-color: var(--grayF4);
 }

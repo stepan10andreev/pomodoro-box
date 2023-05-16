@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './text.css';
 import classNames from 'classnames';
 
-type TSizes = 150 | 72 | 64 | 2433 | 24 | 2417 | 16 | 1633 | 12;
+type TSizes = 150 | 72 | 64 | 2433 | 24 | 2417 | 16 | 1633 | 1628 | 12;
 
 type TWeights = 200 | 300 | 400 | 500 | 700;
 
