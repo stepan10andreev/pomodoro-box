@@ -8,6 +8,7 @@ import { ButtonMenu } from '../../components/TaskList/TaskItem/ButtonMenu';
 import { WeekSelect } from '../../components/WeekSelect';
 import { DayStatistics } from '../../components/DayStatistics';
 import { TomatoStatistics } from '../../components/TomatoStatistics';
+import { StatisticBarChart } from '../../components/StatisticBarChart';
 
 
 export function StatisticsPage() {
@@ -26,11 +27,12 @@ export function StatisticsPage() {
           <TomatoStatistics />
         </div>
 
-        <div>
-
-        </div>
+        <StatisticBarChart />
 
       </div>
     </Content>
   );
 }
+
+
+
