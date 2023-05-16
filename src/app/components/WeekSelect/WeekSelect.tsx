@@ -7,15 +7,17 @@ import { MenuWeekList } from './MenuWeekList';
 
 export function WeekSelect() {
   return (
-    <Dropdown
-      button={
-        <button className={styles.weekSelect}>
-          <Text size={16}>Эта неделя</Text>
-          <Icon name={EIcons.arrowDown}/>
-        </button>
-      }
-    >
-      <MenuWeekList />
-    </Dropdown>
+    <div className={styles.weekSelect}>
+      <Dropdown
+        button={
+          <button className={styles.button}>
+            <Text size={16}>Эта неделя</Text>
+            <Icon name={EIcons.arrowDown}/>
+          </button>
+        }
+      >
+        <MenuWeekList />
+      </Dropdown>
+    </div>
   );
 }

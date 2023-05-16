@@ -1,13 +1,20 @@
 /* DayStatistics */
-.dayStatistics {
-  background-color: var(--grayF4);
-}
 
 
 .tomatoStatistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
   background-color: var(--grayF4);
 }
 
+.wrapper1 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
 .tomatoStatistics svg {
   width: 81px;
@@ -15,32 +22,20 @@
 }
 
 .tomatoCount {
+  padding: 9px 78px;
   background-color: var(--red);
 }
 
-.menuWeekList {
-  display: flex;
-  flex-direction: column;
-  max-width: 370px;
-}
 
 
-.weekSelect {
-  padding: 19px 15px;
+.header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  max-width: 370px;
-  width: 100%;
-  background-color: var(--grayF4);
 }
 
 
-.menuWeekItem {
-  padding: 19px 15px;
+.wrapper {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--grayDE);
-  border-bottom: 1px solid var(--grayDE);
-  background-color: var(--grayF4);
+  width: 100%;
 }

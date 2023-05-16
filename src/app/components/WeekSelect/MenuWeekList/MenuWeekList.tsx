@@ -6,10 +6,14 @@ export function MenuWeekList() {
   return (
     <ul className={styles.menuWeekList}>
       <li className={styles.menuWeekItem}>
-        <Text size={16}>Прошедшая неделя</Text>
+        <button>
+          <Text size={16}>Прошедшая неделя</Text>
+        </button>
       </li>
       <li className={styles.menuWeekItem}>
-        <Text size={16}>2 недели назад</Text>
+        <button>
+          <Text size={16}>2 недели назад</Text>
+        </button>
       </li>
   </ul>
   );
