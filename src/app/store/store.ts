@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tasksReducer from './postTask/postTask';
+import buttonsStateReducer from './buttonStates/buttonStates';
 
 // // const store
 export const store = configureStore({
   reducer: {
-    tasks: tasksReducer
+    tasks: tasksReducer,
+    buttonstates: buttonsStateReducer,
   }
 })
 
@@ -20,6 +22,11 @@ export const store = configureStore({
 // // Если это объект редьюсеров слайсов, например {users : usersReducer, posts : postsReducer}, configureStore автоматически создаст корневой редьюсер,
 // // передав этот объект утилите ReduxcombineReducers .
 export type RootState = ReturnType<typeof store.getState>
+// export type RootState = {
+//   tasks: object[];
+//   buttonstates: object;
+//   // me: MeState;
+// }
 
 // // // экспорт типа dispatch такжде для создания хука для использования thunk
 // // export type AppDispatch = typeof store.dispatch

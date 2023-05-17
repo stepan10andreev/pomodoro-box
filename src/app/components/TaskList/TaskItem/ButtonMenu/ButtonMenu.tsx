@@ -17,7 +17,7 @@ export function ButtonMenu({ onClickActiveInput, taskId }: IButtonMenu) {
     <div className={styles.menu}>
       <Dropdown
         button={
-          <button className={styles.menuButton} onClick={() => {setIsDropdownOpen(!isDropdownOpen), console.log('yes')}}>
+          <button className={styles.menuButton} onClick={() => {setIsDropdownOpen(!isDropdownOpen)}}>
             {/* <Icon name={EIcons.menu}/> */}
             <MenuIcon />
           </button>

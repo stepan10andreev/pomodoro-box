@@ -109,3 +109,8 @@ button:disabled {
   color: var(--white);
 }
 
+
+.stopClicked > div {
+  color: var(--red);
+  transition: 0.3s;
+}

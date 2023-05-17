@@ -6,3 +6,7 @@
   padding: 19px 40px;
   background-color: var(--grayC4);
 }
+
+.bgRed {
+  background-color: var(--red);
+}

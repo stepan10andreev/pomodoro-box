@@ -10,28 +10,23 @@ export function TimerTask() {
   const tasks = useAppSelector((state) => state.tasks);
   const currentTask = tasks[0];
 
-  // const [taskObject, setTaskObject] = useState<Itask>({
-  //   taskId: '',
-  //   taskTitle: '',
-  //   countTomato: 0,
-  // })
+  const stopBtnState = useAppSelector((state) => state.buttonstates.isStopButtonHovered);
+  const readyBtnState = useAppSelector((state) => state.buttonstates.isReadyButtonHovered);
+
+
   const [initialTomatoNumber, setInitialTomatoNumber] = useState(0);
-  // const [actualTomato, setActualTomato] = useState(0)
 
   useEffect(() => {
-    if (currentTask && currentTask.countTomato > initialTomatoNumber) setInitialTomatoNumber(currentTask.countTomato)
+    if (currentTask?.countTomato > initialTomatoNumber) setInitialTomatoNumber(currentTask.countTomato)
+    if (currentTask?.countTomato < initialTomatoNumber) setInitialTomatoNumber(currentTask.countTomato)
   }, [tasks])
 
-  // useEffect(() => {
-  //   if (currentTask && currentTask.countTomato < initialTomatoNumber) setInitialTomatoNumber(currentTask.countTomato)
-  // }, [currentTask ? currentTask.countTomato : null])
-
   useEffect(() => {
-    if (currentTask) setInitialTomatoNumber(currentTask.countTomato)
-  }, [currentTask ? currentTask.taskId : null])
+    setInitialTomatoNumber(currentTask?.countTomato)
+  }, [currentTask?.taskId])
 
   return (
-    <div className={styles.timerTask}>
+    <div className={styles.timerTask + ' ' + (stopBtnState || readyBtnState ? styles.bgRed : '')}>
       <Text As={'div'} size={16} weight={700} color={EColor.white}>{currentTask ? currentTask.taskTitle : 'Название текущей задачи'}</Text>
       <Text  As={'div'} size={16} weight={700} color={EColor.white}>Помидор {(currentTask) ? (initialTomatoNumber - (currentTask.countTomato - 1)) : 1}</Text>
     </div>
