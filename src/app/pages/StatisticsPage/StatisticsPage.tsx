@@ -32,7 +32,10 @@ export function StatisticsPage() {
         <StatisticBarChart />
       </div>
 
-      <StatisticsIndicator statName={'Фокус'} indicatorValue={'35%'} indicatorIcons={{focus: true}}/>
+      <StatisticsIndicator statName={'Фокус'} indicatorValue={35} indicatorIcons={{focus: true}}/>
+      <StatisticsIndicator statName={'Время на паузе'} indicatorValue={9} indicatorIcons={{pause: true}}/>
+      <StatisticsIndicator statName={'Остановки'} indicatorValue={3} indicatorIcons={{stop: true}}/>
+
       </div>
     </Content>
   );

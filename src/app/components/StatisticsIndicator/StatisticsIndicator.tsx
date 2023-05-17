@@ -12,19 +12,29 @@ export interface IindicatorIcons {
 
 interface IStatisticsIndicator {
   statName: string;
-  indicatorValue: string;
+  indicatorValue: number;
   indicatorIcons: IindicatorIcons
 }
+
+
 export function StatisticsIndicator({ statName, indicatorValue, indicatorIcons }: IStatisticsIndicator) {
+  // const
   return (
-      <div className={styles.statisticsIndicators}>
+      <div className={styles.statisticsIndicators + ' ' +
+        (indicatorIcons.focus ? styles.backgroundFF :
+        indicatorIcons.pause ? styles.backgroundDF :
+        indicatorIcons.stop ? styles.backgroundC5 :
+        '')
+      }>
         <div className={styles.wrapper}>
           <Text As={'div'} weight={700} size={2433}>{statName}</Text>
-          <Text As={'div'} size={64}>{indicatorValue}</Text>
+          {indicatorIcons.focus && <Text As={'div'} size={64}>{indicatorValue}%</Text>}
+          {indicatorIcons.pause && <Text As={'div'} size={64}>{indicatorValue}м</Text>}
+          {indicatorIcons.stop && <Text As={'div'} size={64}>{indicatorValue}</Text>}
         </div>
         {indicatorIcons.focus && (<Icon name={EIcons.focus} />)}
         {indicatorIcons.pause && (<Icon name={EIcons.clock} />)}
-        {indicatorIcons.stop && (<Icon name={EIcons.focus} />)}
+        {indicatorIcons.stop && (<Icon name={EIcons.stop} />)}
       </div>
   );
 }

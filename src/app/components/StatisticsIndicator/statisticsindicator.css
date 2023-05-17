@@ -12,5 +12,24 @@
   align-items: center;
   justify-content: space-between;
   justify-items: center;
+  /* background: rgba(255, 221, 169, 1); */
+}
+
+.backgroundFF {
   background: rgba(255, 221, 169, 1);
+}
+
+
+.backgroundDF {
+  background: rgba(223, 220, 254, 1);
+}
+
+.backgroundC5 {
+  background: rgba(197, 241, 255, 1);
+
+}
+
+
+.cell {
+  border: 3px solid red
 }
