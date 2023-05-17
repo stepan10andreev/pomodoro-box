@@ -19,7 +19,8 @@ let iconList = {
   DecreaseMenuIcon: <DecreaseMenuIcon />,
   EditMenuIcon: <EditMenuIcon />,
   DeleteMenuIcon: <DeleteMenuIcon />,
-  ArrowDownIcon: <ArrowDownIcon />
+  ArrowDownIcon: <ArrowDownIcon />,
+  // IconName: null,
 };
 
 export enum EIcons {
@@ -35,7 +36,8 @@ export enum EIcons {
   decrease = 'DecreaseMenuIcon',
   edit = 'EditMenuIcon',
   delete = 'DeleteMenuIcon',
-  arrowDown = 'ArrowDownIcon'
+  arrowDown = 'ArrowDownIcon',
+  // iconName = 'IconName',
 }
 
 interface IIconProps {

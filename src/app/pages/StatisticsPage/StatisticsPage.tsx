@@ -9,6 +9,7 @@ import { WeekSelect } from '../../components/WeekSelect';
 import { DayStatistics } from '../../components/DayStatistics';
 import { TomatoStatistics } from '../../components/TomatoStatistics';
 import { StatisticBarChart } from '../../components/StatisticBarChart';
+import { StatisticsIndicator } from '../../components/StatisticsIndicator';
 
 
 export function StatisticsPage() {
@@ -31,6 +32,7 @@ export function StatisticsPage() {
         <StatisticBarChart />
       </div>
 
+      <StatisticsIndicator statName={'Фокус'} indicatorValue={'35%'} indicatorIcons={{focus: true}}/>
       </div>
     </Content>
   );
