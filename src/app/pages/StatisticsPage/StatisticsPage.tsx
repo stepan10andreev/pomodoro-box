@@ -10,6 +10,9 @@ import { DayStatistics } from '../../components/DayStatistics';
 import { TomatoStatistics } from '../../components/TomatoStatistics';
 import { StatisticBarChart } from '../../components/StatisticBarChart';
 import { StatisticsIndicator } from '../../components/StatisticsIndicator';
+import { StatisticsTopWrapper } from '../../components/Content/StatisticsTopWrapper';
+import { StatisticsMiddleWrapper } from '../../components/Content/StatisticsMiddleWrapper';
+import { StatisticsBottomWrapper } from '../../components/Content/StatisticsBottomWrapper';
 
 
 export function StatisticsPage() {
@@ -17,24 +20,24 @@ export function StatisticsPage() {
     <Content>
       <div className={styles.wrapper}>
 
-        <div className={styles.header}>
+        <StatisticsTopWrapper>
           <Text As={'h1'} weight={700} size={2433}>Ваша активность</Text>
           <WeekSelect />
-        </div>
+        </StatisticsTopWrapper>
 
-      <div className={styles.middle}>
-        <div className={styles.leftMiddleWrapper}>
-          <DayStatistics />
+        <StatisticsMiddleWrapper>
+          <div className={styles.leftMiddleWrapper}>
+            <DayStatistics />
+            <TomatoStatistics />
+          </div>
+          <StatisticBarChart />
+        </StatisticsMiddleWrapper>
 
-          <TomatoStatistics />
-        </div>
-
-        <StatisticBarChart />
-      </div>
-
-      <StatisticsIndicator statName={'Фокус'} indicatorValue={35} indicatorIcons={{focus: true}}/>
-      <StatisticsIndicator statName={'Время на паузе'} indicatorValue={9} indicatorIcons={{pause: true}}/>
-      <StatisticsIndicator statName={'Остановки'} indicatorValue={3} indicatorIcons={{stop: true}}/>
+        <StatisticsBottomWrapper>
+          <StatisticsIndicator statName={'Фокус'} indicatorValue={35} indicatorIcons={{focus: true}}/>
+          <StatisticsIndicator statName={'Время на паузе'} indicatorValue={9} indicatorIcons={{pause: true}}/>
+          <StatisticsIndicator statName={'Остановки'} indicatorValue={3} indicatorIcons={{stop: true}}/>
+        </StatisticsBottomWrapper>
 
       </div>
     </Content>

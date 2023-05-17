@@ -1,31 +1,9 @@
-/* DayStatistics */
-
-
-
-
-
-
-
-
-
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-
 .wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 30px;
 }
-
-.middle {
-  display: flex;
-  justify-content: space-between;
-  max-height: 470px;
-}
-
 
 .leftMiddleWrapper {
   display: flex;
@@ -36,9 +14,6 @@
   width: 100%;
 }
 
-.middle >  canvas {
-  max-width: 952px;
-  /* max-height: 420px; */
-  background-color: var(--grayF4);
-}
+
+
 
