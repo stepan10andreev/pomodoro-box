@@ -15,19 +15,21 @@ export function StatisticsPage() {
   return (
     <Content>
       <div className={styles.wrapper}>
+
         <div className={styles.header}>
           <Text As={'h1'} weight={700} size={2433}>Ваша активность</Text>
           <WeekSelect />
         </div>
 
-
-        <div>
+      <div className={styles.middle}>
+        <div className={styles.leftMiddleWrapper}>
           <DayStatistics />
 
           <TomatoStatistics />
         </div>
 
         <StatisticBarChart />
+      </div>
 
       </div>
     </Content>

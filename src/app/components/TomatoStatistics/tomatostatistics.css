@@ -14,12 +14,21 @@
 }
 
 .tomatoCount {
-  padding: 9px 78px;
+  display: flex;
+  padding: 9px 0px;
   background-color: var(--red);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
 }
 
 .wrapper {
   display: flex;
+  padding: 24px 0;
+  align-items: center;
+  justify-content: center;
   align-items: center;
   gap: 15px;
+  width: 100%;
 }

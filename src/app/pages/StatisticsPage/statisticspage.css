@@ -19,3 +19,25 @@
   flex-direction: column;
   width: 100%;
 }
+
+.middle {
+  display: flex;
+  justify-content: space-between;
+  max-height: 470px;
+}
+
+
+.leftMiddleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  max-width: 296px;
+  width: 100%;
+}
+
+.middle >  canvas {
+  max-width: 952px;
+  /* max-height: 420px; */
+  background-color: var(--grayF4);
+}

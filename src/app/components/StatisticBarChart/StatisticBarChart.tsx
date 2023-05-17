@@ -24,11 +24,12 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
+      display: false,
       position: 'top' as const,
     },
     title: {
-      display: true,
-      text: 'Chart.js Bar Chart',
+      display: false,
+      text: 'Статистика по дням',
     },
   },
   scales: {
@@ -40,7 +41,7 @@ export const options = {
         color: '#333333',
         stepSize: 25,
         includeBounds: false,
-        // maxTicksLimit: 6,
+        maxTicksLimit: 5,
         padding: 30,
         font: {
           size: 12
@@ -87,7 +88,7 @@ export const data = {
       hoverBackgroundColor: 'rgba(220, 62, 34, 1)',
       barPercentage: 0.5,
       barThickness: 'flex' as const,
-      // minBarLength: 5,
+      minBarLength: 5,
     }
   ],
 };
