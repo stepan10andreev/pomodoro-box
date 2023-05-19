@@ -6,7 +6,7 @@ import { getPadTime } from '../../../utils/getPadTime';
 import { useAppSelector } from '../../Hooks/useAppDispatch';
 import { useDispatch } from 'react-redux';
 import { decrementTomatoCount, deleteTask } from '../../../store/postTask/postTask';
-import { changeReadyBtnHoverState, changeStopBtnHoverState } from '../../../store/buttonStates/buttonStates';
+import { changeChangedByMenuState, changeChangedByTimerState, changeReadyBtnHoverState, changeStopBtnHoverState } from '../../../store/buttonStates/buttonStates';
 
 
 export function Timer() {
@@ -33,7 +33,7 @@ export function Timer() {
         setTimer((timer) => (timer >= 1 ? timer - 1 : 0));
     }, 1000)
 
-    if (currentTask && (currentTask.countTomato === 0)) dispatch(deleteTask(currentTask.taskId));
+    if (currentTask?.countTomato === 0) dispatch(deleteTask(currentTask.taskId));
     if (!currentTask) setTimer(5);
     return (() => {
       clearInterval(interval);
@@ -45,6 +45,7 @@ export function Timer() {
     if (timer === 0 && !isBreaking) {
       setIsCountDowning(false);
       dispatch(decrementTomatoCount(currentTask?.taskId));
+      dispatch(changeChangedByMenuState(false))
       console.log('Перерыв')
       setIsBreaking(true);
       setTimer(3);
@@ -69,8 +70,9 @@ export function Timer() {
     }
     setIsCountDowning(true);
     setIsHoveredStop(false);
-    dispatch(changeStopBtnHoverState(false))
-    dispatch(changeReadyBtnHoverState(false))
+    dispatch(changeStopBtnHoverState(false));
+    dispatch(changeReadyBtnHoverState(false));
+    dispatch(changeChangedByTimerState(true))
   };
 
   const handleStop = () => {
@@ -78,9 +80,6 @@ export function Timer() {
       setIsBreaking(false);
       setTimer(5);
     }
-    // if (!isBreaking) {
-    //   setTimer(5)
-    // }
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(5);
@@ -96,6 +95,7 @@ export function Timer() {
     setIsPausing(false);
     setTimer(5);
     dispatch(decrementTomatoCount(currentTask.taskId));
+    dispatch(changeChangedByMenuState(false))
   };
 
   const handleAddTime = () => {
@@ -154,21 +154,39 @@ export function Timer() {
       <div className={styles.timerButtonsWrapper}>
 
         {isCountDowning ? (
-          <button onClick={handlePause} className={styles.startButton}>
+          <button
+            onClick={handlePause}
+            className={styles.startButton}
+          >
             <Text size={16} weight={500} color={EColor.white}>Пауза</Text>
           </button>
         ) : (
-          <button onClick={handleStart} className={styles.startButton} disabled={currentTask ? false : true}>
+          <button
+            onClick={handleStart}
+            className={styles.startButton}
+            disabled={currentTask ? false : true}
+          >
             <Text size={16} weight={500} color={EColor.white}>{isPausing && currentTask ? 'Продолжить' : 'Старт'}</Text>
           </button>
         )}
 
         {isPausing && !isBreaking && currentTask ? (
-          <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleReady} className={styles.stopButton}>
+          <button
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onClick={handleReady}
+            className={styles.stopButton}
+          >
             <Text size={16} weight={500} color={EColor.red}>Сделано</Text>
           </button>
         ) : (
-          <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={handleStop} className={styles.stopButton} disabled={currentTask && isCountDowning ? false : true}>
+          <button
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onClick={handleStop}
+            className={styles.stopButton}
+            disabled={currentTask && isCountDowning ? false : true}
+          >
             <Text size={16} weight={500} color={EColor.red}>{isBreaking ? 'Пропустить' : 'Стоп'}</Text>
           </button>
         )}
