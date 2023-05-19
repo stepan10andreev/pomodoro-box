@@ -1,20 +1,66 @@
 import React from 'react';
 import styles from './menuweeklist.css';
 import { EColor, Text } from '../../Text';
+import { useDispatch, useSelector } from 'react-redux';
+import { chooseWeek } from '../../../store/weeks/weeks';
+import { useAppSelector } from '../../Hooks/useAppDispatch';
+import { changeWeekSelectMenuClickedState } from '../../../store/buttonStates/buttonStates';
 
 export function MenuWeekList() {
+  const dispatch = useDispatch();
+
+  const currentWeek = useAppSelector((state) => state.weeks.currentWeek);
+  const lastWeek = useAppSelector((state) => state.weeks.lastWeek);
+  const twoWeeksAgo = useAppSelector((state) => state.weeks.twoWeeksAgo);
+
   return (
     <ul className={styles.menuWeekList}>
-      <li className={styles.menuWeekItem}>
-        <button>
-          <Text size={16}>Прошедшая неделя</Text>
-        </button>
-      </li>
-      <li className={styles.menuWeekItem}>
-        <button>
-          <Text size={16}>2 недели назад</Text>
-        </button>
-      </li>
+      {lastWeek && (
+        <>
+          <li className={styles.menuWeekItem}>
+            <button onClick={() => {dispatch(chooseWeek('twoWeeksAgo')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+              <Text size={16}>2 недели назад</Text>
+            </button>
+          </li>
+          <li className={styles.menuWeekItem}>
+            <button onClick={() => {dispatch(chooseWeek('currentWeek')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+              <Text size={16}>Эта неделя</Text>
+            </button>
+          </li>
+        </>
+        )
+      }
+      {currentWeek && (
+        <>
+          <li className={styles.menuWeekItem}>
+            <button onClick={() => {dispatch(chooseWeek('lastWeek')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+              <Text size={16}>Прошедшая неделя</Text>
+            </button>
+          </li>
+          <li className={styles.menuWeekItem}>
+            <button onClick={() => {dispatch(chooseWeek('twoWeeksAgo')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+              <Text size={16}>2 недели назад</Text>
+            </button>
+          </li>
+        </>
+        )
+      }
+
+      {twoWeeksAgo && (
+        <>
+          <li className={styles.menuWeekItem}>
+            <button onClick={() => {dispatch(chooseWeek('currentWeek')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+              <Text size={16}>Эта неделя</Text>
+            </button>
+          </li>
+          <li className={styles.menuWeekItem}>
+              <button onClick={() => {dispatch(chooseWeek('lastWeek')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+                <Text size={16}>Прошедшая неделя</Text>
+              </button>
+          </li>
+        </>
+        )
+      }
   </ul>
   );
 }

@@ -1,19 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface IButtonStates {
-  isStopButtonClicked: boolean;
+interface IButtonStates {
   isStopButtonHovered: boolean;
-  isReadyButtonClicked: boolean;
   isReadyButtonHovered: boolean;
+  isWeekSelectMenuClicked: boolean;
   isChangedTomatoCountByMenu: boolean;
   isChangedTomatoCountByTimer: boolean;
 }
 
 const initialState: IButtonStates = {
-  isStopButtonClicked: false,
   isStopButtonHovered: false,
-  isReadyButtonClicked: false,
   isReadyButtonHovered: false,
+  isWeekSelectMenuClicked: false,
   isChangedTomatoCountByMenu: false,
   isChangedTomatoCountByTimer: false,
 }
@@ -35,6 +33,16 @@ const buttonStatesSlice = createSlice({
     changeReadyBtnHoverState: {
       reducer (state, action: PayloadAction<boolean>) {
         state.isStopButtonHovered = action.payload;
+      },
+      prepare (btnState: boolean) {
+        return {
+          payload: btnState,
+        }
+      }
+    },
+    changeWeekSelectMenuClickedState: {
+      reducer (state, action: PayloadAction<boolean>) {
+        state.isWeekSelectMenuClicked = action.payload;
       },
       prepare (btnState: boolean) {
         return {
@@ -65,6 +73,6 @@ const buttonStatesSlice = createSlice({
   }
 })
 
-export const { changeStopBtnHoverState, changeReadyBtnHoverState, changeChangedByMenuState, changeChangedByTimerState } = buttonStatesSlice.actions;
+export const { changeStopBtnHoverState, changeReadyBtnHoverState, changeChangedByMenuState, changeChangedByTimerState, changeWeekSelectMenuClickedState } = buttonStatesSlice.actions;
 
 export default buttonStatesSlice.reducer;

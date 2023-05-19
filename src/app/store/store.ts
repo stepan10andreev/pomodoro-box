@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tasksReducer from './postTask/postTask';
 import buttonsStateReducer from './buttonStates/buttonStates';
+import weeksReducer from './weeks/weeks';
 
 // // const store
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
     buttonstates: buttonsStateReducer,
+    weeks: weeksReducer,
   }
 })
 
@@ -25,10 +27,10 @@ export type RootState = ReturnType<typeof store.getState>
 // export type RootState = {
 //   tasks: object[];
 //   buttonstates: object;
-//   // me: MeState;
+//   weeks: object;
 // }
 
 // // // экспорт типа dispatch такжде для создания хука для использования thunk
-// // export type AppDispatch = typeof store.dispatch
+// export type AppDispatch = typeof store.dispatch
 // export default store
 
