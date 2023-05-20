@@ -11,3 +11,16 @@ export function useWeeks () {
     isTwoWeekAgo
   }
 }
+
+// // вариант через обьект с методами
+// export const week = {
+//   isCurrentWeek() {
+//     return useAppSelector((state) => state.weeks.currentWeek);
+//   },
+//   isLastWeek() {
+//     return useAppSelector((state) => state.weeks.lastWeek);
+//   },
+//   isTwoWeekAgo() {
+//     return useAppSelector((state) => state.weeks.twoWeekAgo);
+//   },
+// }

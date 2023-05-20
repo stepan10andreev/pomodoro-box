@@ -15,6 +15,8 @@ export function WeekSelect() {
   const isSelectClicked = useAppSelector((state) => state.buttonstates.isWeekSelectMenuClicked)
   const dispatch = useDispatch();
 
+
+  //Диспатч не нужен setClicked можноп ередать внутрь MenuWeekList и там его обновлять!!!!
   return (
     <div className={isSelectClicked ? styles.weekSelectOpen : styles.weekSelect}>
       <Dropdown
