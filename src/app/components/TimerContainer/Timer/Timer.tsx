@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
 import styles from './timer.css';
 import { EColor, Text } from '../../Text';
 import { EIcons, Icon } from '../../Icon';
@@ -7,7 +7,21 @@ import { useAppSelector } from '../../Hooks/useAppDispatch';
 import { useDispatch } from 'react-redux';
 import { decrementTomatoCount, deleteTask } from '../../../store/postTask/postTask';
 import { changeChangedByMenuState, changeChangedByTimerState, changeReadyBtnHoverState, changeStopBtnHoverState } from '../../../store/buttonStates/buttonStates';
+import { getWeekDay } from '../../../utils/gerWeekDay';
+import { IDays } from '../../StatisticBarChart/statisticsData';
 
+// const NOW = new Date();
+// const NOW_DAY = NOW.getDate();
+
+const defaultDayObj = {
+  day: '',
+  workTime: 0,
+  doneTime: 0,
+  pauseTime: 0,
+  focus: 0,
+  countStops: 0,
+  countTomato: 0,
+}
 
 export function Timer() {
   const tasks = useAppSelector((state) => state.tasks)
@@ -15,11 +29,21 @@ export function Timer() {
 
   const dispatch = useDispatch();
 
+  // console.log(NOW_DAY)
+  const [todayDay, setTodayDay] = useState<number | null>(null);
+  // const [breaks, setBreaks] = useState(0);
+  // const [workTime, setWorkTime] = useState(0);
+  // const [pauseTime, setPauseTime] = useState(0);
+  // const [countTomato, setCountTomato] = useState(0);
+
+  const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
+
   const [timer, setTimer] = useState(5);
   const [isCountDowning, setIsCountDowning] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
   const [isBreaking, setIsBreaking] = useState(false);
   const [isHoveredStop, setIsHoveredStop] = useState(false);
+
 
   // используем утилиту для того чтобы добавить 0 если секунды или минуты меньше 10
   // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычислениежд
@@ -44,15 +68,14 @@ export function Timer() {
   useEffect(() => {
     if (timer === 0 && !isBreaking) {
       setIsCountDowning(false);
+      setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}));
       dispatch(decrementTomatoCount(currentTask?.taskId));
       dispatch(changeChangedByMenuState(false))
-      console.log('Перерыв')
       setIsBreaking(true);
       setTimer(3);
     }
     if (timer === 0 && isBreaking) {
       setIsCountDowning(false);
-      console.log("Перерыв прошел");
       setIsBreaking(false);
       setTimer(5);
     }
@@ -64,6 +87,43 @@ export function Timer() {
     setIsBreaking(false);
   }, [currentTask?.taskId])
 
+  useEffect(() => {
+    isCountDowning && setDayObject(prevState => ({...prevState, workTime: prevState['workTime'] + 1}));
+  }, [timer])
+
+  useEffect(() => {
+    const interval = setInterval(() =>{
+      isPausing &&
+        setDayObject(prevState => ({...prevState, pauseTime: prevState['pauseTime'] + 1}))
+    }, 1000)
+    return (() => {
+      clearInterval(interval);
+    })
+  }, [isPausing])
+
+  // window.addEventListener('load', function (event) {
+  //   console.log('loading')
+  // })
+  useEffect(() => {
+    const NOW = new Date();
+    const NOW_DAY = NOW.getDate();
+    console.log(NOW_DAY)
+    setTodayDay(NOW_DAY);
+    return () => console.log(todayDay);
+  }, [])
+
+  // useEffect(() => {
+  //   // if (todayDay === null) {
+  //     setTodayDay(NOW_DAY);
+  //     // console.log('установили дату')
+  //   // }
+  //   // if (todayDay != null) {
+  //   //   console.log('устан')
+  //   // }
+  //   // if (todayDay === NOW_DAY) console.log('день тот же')
+  //   // if (todayDay != NOW_DAY) console.log("День сменился")
+  // }, [])
+
   const handleStart = () => {
     if (isPausing) {
       setIsPausing(!isPausing)
@@ -73,13 +133,17 @@ export function Timer() {
     dispatch(changeStopBtnHoverState(false));
     dispatch(changeReadyBtnHoverState(false));
     dispatch(changeChangedByTimerState(true))
+    // console.log(todayDay)
   };
 
   const handleStop = () => {
     if (isBreaking) {
       setIsBreaking(false);
-      setTimer(5);
+      setTimer(5); //// можно ли убрать?
     }
+    !isBreaking ?
+      setDayObject(prevState => ({...prevState, countStops: prevState['countStops'] + 1})) :
+      setDayObject(prevState => ({...prevState, countStops: prevState['countStops']}));
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(5);
@@ -94,6 +158,8 @@ export function Timer() {
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(5);
+    // setCountTomato(countTomato => countTomato + 1)
+    setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}))
     dispatch(decrementTomatoCount(currentTask.taskId));
     dispatch(changeChangedByMenuState(false))
   };
@@ -130,6 +196,7 @@ export function Timer() {
 
   return (
     <div className={styles.timer}>
+      <div>{todayDay}</div>
 
       <div className={styles.wrapper + ' ' + (isHoveredStop ? styles.stopClicked : '')}>
         <Text As={'div'} size={150} weight={200}>

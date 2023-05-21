@@ -17,7 +17,6 @@ export const options = {
       position: 'right' as const,
       ticks: {
         callback: (value: any, index: any, values: any) => {
-          console.log(values)
           if (value <= 1.5) return 'время'
           if (value < 3600) {
             return `${value / 60} мин`;

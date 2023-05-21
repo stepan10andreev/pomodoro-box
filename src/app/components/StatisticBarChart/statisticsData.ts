@@ -1,4 +1,4 @@
-interface IDays {
+export interface IDays {
   day: string;
   workTime: number;
   doneTime: number;
@@ -44,3 +44,11 @@ export const statisticsData: IStatisticsData = {
     { day: 'Sunday', workTime: 5, doneTime: 5, pauseTime: 5, focus: 5, countStops: 5, countTomato: 5 },
   ]
 }
+
+
+//
+// console.log(statisticsData)
+// // если понедельник сегодня и данные в сгккуте есть
+// statisticsData.twoWeeksAgo = statisticsData.lastWeek.map((day) => day)
+// statisticsData.lastWeek = statisticsData.currentWeek.map((day) => day)
+// console.log(statisticsData)
