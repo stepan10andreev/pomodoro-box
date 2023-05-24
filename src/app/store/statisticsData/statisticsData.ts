@@ -12,6 +12,7 @@ export interface IDays {
   pauseTime: number;
   countStops: number;
   countTomato: number;
+  focusProcent: number;
 }
 
 interface IStatisticsData {
@@ -128,7 +129,7 @@ const statisticsSlice = createSlice({
 
         return getStatisticsDataState(newState, statsObject)
       },
-      prepare ({day, workTime, doneTime, pauseTime, countStops, countTomato}: IDays) {
+      prepare ({day, workTime, doneTime, pauseTime, countStops, countTomato, focusProcent}: IDays) {
         return {
           payload: {
             day,
@@ -137,6 +138,7 @@ const statisticsSlice = createSlice({
             pauseTime,
             countStops,
             countTomato,
+            focusProcent,
           }
         }
       },

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, MouseEvent, useState, useEffect } from 'react';
 import styles from './statisticbarchart.css';
-import { Bar } from 'react-chartjs-2';
+import { Bar, getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,6 +14,7 @@ import {
 import { options } from './chartBarOptions';
 import { useWeeks } from '../Hooks/useWeeks';
 import { statisticsData } from './statisticsData';
+import { useAppSelector } from '../Hooks/useAppDispatch';
 
 ChartJS.register(
   CategoryScale,
@@ -162,7 +163,11 @@ const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 // };
 
 export function StatisticBarChart() {
+  const [ indexClickedBar, setIndexClickedBar] = useState<number | null>(null);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
+  // const statisticsData = useAppSelector(state => state.statisticsData)
+
+  const chartRef = useRef(null);
 
   const data = {
     labels,
@@ -172,7 +177,7 @@ export function StatisticBarChart() {
         data: isCurrentWeek ? statisticsData.currentWeek.map((day) => day.workTime) :
               isLastWeek ? statisticsData.lastWeek.map((day) => day.workTime) :
               isTwoWeekAgo ? statisticsData.lastWeek.map((day) => day.workTime) : [0, 0, 0 ,0 ,0 ,0, 0],
-        backgroundColor: 'rgba(234, 137, 121, 1)',
+        backgroundColor: getBackgroundBar(indexClickedBar),
         hoverBackgroundColor: 'rgba(220, 62, 34, 1)',
         barPercentage: 0.5,
         barThickness: 'flex' as const,
@@ -181,12 +186,40 @@ export function StatisticBarChart() {
     ],
   };
 
+  const onClick = (event: MouseEvent<HTMLCanvasElement>) => {
+    if (chartRef.current && getElementAtEvent(chartRef.current, event).length > 0) {
+      const indexBar = getElementAtEvent(chartRef.current, event)[0].index
+      setIndexClickedBar(indexBar)
+      console.log(data)
+    }
+  }
+
   return (
-    <Bar options={options} data={data} />
+    <Bar
+      options={options}
+      data={data}
+      onClick={onClick}
+      ref={chartRef}
+    />
   );
 }
 
 
 
+function getBackgroundBar(i: number | null) {
+  const activeBg = 'rgba(220, 62, 34, 1)';
+  const initialArray = [
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+    'rgba(234, 137, 121, 1)',
+  ]
+  if (i === null) return initialArray
+  initialArray[i] = activeBg
+  return initialArray
+}
 
 

@@ -13,7 +13,8 @@ const initialState: IDays = {
   doneTime:  0,
   pauseTime: 0,
   countStops: 0,
-  countTomato: 0
+  countTomato: 0,
+  focusProcent: 0
 }
 
 const dayStatisticsSlice = createSlice({

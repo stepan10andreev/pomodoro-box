@@ -13,9 +13,11 @@ import { StatisticsIndicator } from '../../components/StatisticsIndicator';
 import { StatisticsTopWrapper } from '../../components/Content/StatisticsTopWrapper';
 import { StatisticsMiddleWrapper } from '../../components/Content/StatisticsMiddleWrapper';
 import { StatisticsBottomWrapper } from '../../components/Content/StatisticsBottomWrapper';
+import { StatisticsIndicatorContainer } from '../../components/StatisticsIndicator/StatisticsIndicatorContainer';
 
 
 export function StatisticsPage() {
+
   return (
     <Content>
       <div className={styles.wrapper}>
@@ -34,9 +36,7 @@ export function StatisticsPage() {
         </StatisticsMiddleWrapper>
 
         <StatisticsBottomWrapper>
-          <StatisticsIndicator statName={'Фокус'} indicatorValue={35} indicatorIcons={{focus: true}}/>
-          <StatisticsIndicator statName={'Время на паузе'} indicatorValue={9} indicatorIcons={{pause: true}}/>
-          <StatisticsIndicator statName={'Остановки'} indicatorValue={3} indicatorIcons={{stop: true}}/>
+          <StatisticsIndicatorContainer />
         </StatisticsBottomWrapper>
 
       </div>
