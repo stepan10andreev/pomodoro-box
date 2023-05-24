@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setTodayDate } from '../../store/entryDateState/entryDateState';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { addDayStatistic } from '../../store/statisticsData/statisticsData';
+import { resetDayStatistics } from '../../store/statisticsData/dayStatistics';
 
 
 export function Header() {
@@ -31,7 +32,8 @@ export function Header() {
     <header className={styles.header}>
       <Logo />
       <StatisticsLink />
-      <button onClick={() => dispatch(addDayStatistic(dayStatistics))}>check</button>
+      {/* <button onClick={() => dispatch(addDayStatistic(dayStatistics))}>Check addDayStatistic</button>
+      <button onClick={() => dispatch(resetDayStatistics())}>Check resetDayStatistics</button> */}
     </header>
   );
 }

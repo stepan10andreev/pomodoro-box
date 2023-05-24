@@ -39,7 +39,7 @@ const dayStatisticsSlice = createSlice({
     },
     resetDayStatistics: {
       reducer (state) {
-        state = {...initialState}
+        return state = {...initialState}
       },
       prepare () {
         return {

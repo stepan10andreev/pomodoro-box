@@ -114,7 +114,7 @@ const statisticsSlice = createSlice({
 
         const statsObject = {
           ...action.payload,
-          focusProcent: action.payload.doneTime / action.payload.workTime * 100
+          focusProcent: Math.abs(Math.round(action.payload.doneTime / action.payload.workTime * 100))
         }
         // вынести в отдельную функцию
         let lastEntryDate
