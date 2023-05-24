@@ -15,6 +15,8 @@ import { options } from './chartBarOptions';
 import { useWeeks } from '../Hooks/useWeeks';
 import { statisticsData } from './statisticsData';
 import { useAppSelector } from '../Hooks/useAppDispatch';
+import { useDispatch } from 'react-redux';
+import { setClickedBarNum } from '../../store/numberClickedBar/numberClickedBar';
 
 ChartJS.register(
   CategoryScale,
@@ -166,7 +168,7 @@ export function StatisticBarChart() {
   const [ indexClickedBar, setIndexClickedBar] = useState<number | null>(null);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   // const statisticsData = useAppSelector(state => state.statisticsData)
-
+  const dispatch = useDispatch()
   const chartRef = useRef(null);
 
   const data = {
@@ -190,7 +192,7 @@ export function StatisticBarChart() {
     if (chartRef.current && getElementAtEvent(chartRef.current, event).length > 0) {
       const indexBar = getElementAtEvent(chartRef.current, event)[0].index
       setIndexClickedBar(indexBar)
-      console.log(data)
+      dispatch(setClickedBarNum(indexBar))
     }
   }
 
