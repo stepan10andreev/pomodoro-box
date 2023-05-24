@@ -49,7 +49,6 @@ export function TaskItem({ taskTitle, countTomato, taskId }: ITaskItem) {
       <div className={styles.countTomatoes}>
         {countTomato}
       </div>
-      {/* <Text size={16} weight={300}>{taskTitle}</Text> */}
       <input ref={ref} className={styles.input} type="text" value={taskTitle} onChange={onChangeTaskTitle} onBlur={onBlur} disabled={isInputDisabled}/>
       <ButtonMenu onClickActiveInput={activeInput} taskId={taskId}/>
     </li>

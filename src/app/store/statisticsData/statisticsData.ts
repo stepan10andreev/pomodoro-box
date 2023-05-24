@@ -10,7 +10,6 @@ export interface IDays {
   workTime: number;
   doneTime: number;
   pauseTime: number;
-  focusProcent: number;
   countStops: number;
   countTomato: number;
 }
@@ -21,7 +20,8 @@ interface IStatisticsData {
   lastWeek: IDays[],
   twoWeeksAgo:  IDays[]
 }
-const inState = [
+
+const initialWeek = [
   { day: 'ПН', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
   { day: 'ВТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
   { day: 'СР', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
@@ -73,6 +73,8 @@ function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate
   const todayWeekNumber = getNumberWeek(NOW);
   const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
   const difference = todayWeekNumber - lastWeekNumber;
+  console.log(todayWeekNumber)
+  console.log(lastWeekNumber)
   console.log(difference)
   if (difference === 0) {
     console.log('Эта неделя')
@@ -80,9 +82,9 @@ function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate
   } else if (difference < 0) {
     return {
       ...state,
-      twoWeeksAgo: inState,
-      lastWeek: inState,
-      currentWeek: inState
+      twoWeeksAgo: initialWeek,
+      lastWeek: initialWeek,
+      currentWeek: initialWeek
     };
   } else if (difference === 1) {
     console.log('Прошла неделя')
@@ -90,14 +92,15 @@ function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate
       ...state,
       twoWeeksAgo: state.lastWeek,
       lastWeek: state.currentWeek,
-      currentWeek: inState
+      currentWeek: initialWeek
     };
   } else if (difference >= 2) {
     console.log('Прошло 2 недели')
     return {
       ...state,
       twoWeeksAgo: state.currentWeek,
-      currentWeek: inState
+      lastWeek: initialWeek,
+      currentWeek: initialWeek
     };
   } else return state;
 }
@@ -108,6 +111,12 @@ const statisticsSlice = createSlice({
   reducers: {
     addDayStatistic: {
       reducer (state, action: PayloadAction<IDays>) {
+
+        const statsObject = {
+          ...action.payload,
+          focusProcent: action.payload.doneTime / action.payload.workTime * 100
+        }
+        // вынести в отдельную функцию
         let lastEntryDate
         const localStorageData = localStorage.getItem('persist:root')
         if (localStorageData) {
@@ -117,16 +126,15 @@ const statisticsSlice = createSlice({
         }
         let newState = shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate)
 
-        return getStatisticsDataState(newState, action.payload)
+        return getStatisticsDataState(newState, statsObject)
       },
-      prepare ({day, workTime, doneTime, pauseTime, focusProcent, countStops, countTomato}: IDays) {
+      prepare ({day, workTime, doneTime, pauseTime, countStops, countTomato}: IDays) {
         return {
           payload: {
             day,
             workTime,
             doneTime,
             pauseTime,
-            focusProcent,
             countStops,
             countTomato,
           }

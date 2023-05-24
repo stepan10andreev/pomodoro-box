@@ -9,10 +9,9 @@ interface IPayloadDayStatistic {
 
 const initialState: IDays = {
   day: 'ЧТ',
-  workTime: 999999999,
-  doneTime: 111111111,
+  workTime: 0,
+  doneTime:  0,
   pauseTime: 0,
-  focusProcent: 0,
   countStops: 0,
   countTomato: 0
 }

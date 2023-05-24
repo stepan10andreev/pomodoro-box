@@ -6,11 +6,8 @@ import { getWeekDay } from '../../utils/getWeekDay';
 import { useDispatch } from 'react-redux';
 import { setTodayDate } from '../../store/entryDateState/entryDateState';
 import { useAppSelector } from '../Hooks/useAppDispatch';
+import { addDayStatistic } from '../../store/statisticsData/statisticsData';
 
-const NOW = new Date();
-const x = new Date('2023-05-25')
-const diff = NOW.getTime() - x.getTime();
-console.log(new Date(diff))
 
 export function Header() {
   const dispatch = useDispatch();
@@ -19,6 +16,7 @@ export function Header() {
   // const lastEntryMonth = useAppSelector(state => state.entryDate.month);
   // const lastEntryYear = useAppSelector(state => state.entryDate.year);
   // const dayStatistics = useAppSelector(state => state.dayStatistics)
+  const dayStatistics = useAppSelector(state => state.dayStatistics);
 
   useEffect(() => {
     if (isLastEntry) return;
@@ -33,6 +31,7 @@ export function Header() {
     <header className={styles.header}>
       <Logo />
       <StatisticsLink />
+      <button onClick={() => dispatch(addDayStatistic(dayStatistics))}>check</button>
     </header>
   );
 }

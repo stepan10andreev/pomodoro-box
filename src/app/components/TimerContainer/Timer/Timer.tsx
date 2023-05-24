@@ -11,14 +11,15 @@ import { getWeekDay } from '../../../utils/getWeekDay';
 import { IDays } from '../../StatisticBarChart/statisticsData';
 import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsData/dayStatistics';
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
+import { setTodayDate } from '../../../store/entryDateState/entryDateState';
 
 const defaultDayObj = {
   day: 'ЧТ',
-  workTime: 0,
-  doneTime: 0,
-  pauseTime: 0,
-  focusProcent: 0,
-  countStops: 0,
+  workTime: 4444,
+  doneTime: 4444,
+  pauseTime: 3333,
+  focusProcent: 1111,
+  countStops: 2,
   countTomato: 0
 }
 
@@ -87,6 +88,7 @@ export function Timer() {
 
   useEffect(() => {
     isCountDowning && dispatch(setDayStatistics('workTime'));
+    isCountDowning && !isBreaking && dispatch(setDayStatistics('doneTime'))
     // setDayObject(prevState => ({...prevState, workTime: prevState['workTime'] + 1}));
   }, [timer])
 
@@ -107,8 +109,10 @@ export function Timer() {
       if (NOW.getDate() != lastEntry.day || NOW.getMonth() != lastEntry.month || NOW.getFullYear() != lastEntry.year) {
         console.log('День сменился')
         dispatch(addDayStatistic(defaultDayObj));
-        // dispatch(resetDayStatistics());
-        console.log(allStats)
+        dispatch(resetDayStatistics());
+        // console.log(allStats)
+        // диспатч нового дня
+        dispatch(setTodayDate(getWeekDay(NOW), NOW.getDate(), NOW.getTime(), NOW.getMonth(), NOW.getFullYear()))
       }
     }
   }, [])
