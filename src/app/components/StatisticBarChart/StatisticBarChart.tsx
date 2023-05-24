@@ -1,4 +1,4 @@
-import React, { useRef, MouseEvent, useState, useEffect } from 'react';
+import React, { useRef, MouseEvent, useState, useEffect, MouseEventHandler } from 'react';
 import styles from './statisticbarchart.css';
 import { Bar, getDatasetAtEvent, getElementAtEvent, getElementsAtEvent } from 'react-chartjs-2';
 import {
@@ -16,7 +16,8 @@ import { useWeeks } from '../Hooks/useWeeks';
 import { statisticsData } from './statisticsData';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { useDispatch } from 'react-redux';
-import { setClickedBarNum } from '../../store/numberClickedBar/numberClickedBar';
+import { resetClickedBarNum, setClickedBarNum } from '../../store/numberClickedBar/numberClickedBar';
+import { useOnClickOutside } from '../Hooks/useOnClickOutside';
 
 ChartJS.register(
   CategoryScale,
@@ -169,7 +170,10 @@ export function StatisticBarChart() {
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   // const statisticsData = useAppSelector(state => state.statisticsData)
   const dispatch = useDispatch()
+  const ref = useRef(null)
   const chartRef = useRef(null);
+
+  useOnClickOutside(ref, () => dispatch(resetClickedBarNum()))
 
   const data = {
     labels,
@@ -188,21 +192,25 @@ export function StatisticBarChart() {
     ],
   };
 
+
   const onClick = (event: MouseEvent<HTMLCanvasElement>) => {
     if (chartRef.current && getElementAtEvent(chartRef.current, event).length > 0) {
-      const indexBar = getElementAtEvent(chartRef.current, event)[0].index
-      setIndexClickedBar(indexBar)
-      dispatch(setClickedBarNum(indexBar))
+      const indexBar = getElementAtEvent(chartRef.current, event)[0].index;
+      // console.log(indexBar)
+      setIndexClickedBar(indexBar);
+      dispatch(setClickedBarNum(indexBar));
     }
   }
 
   return (
-    <Bar
-      options={options}
-      data={data}
-      onClick={onClick}
-      ref={chartRef}
-    />
+    <div className={styles.bar} ref={ref}>
+      <Bar
+        options={options}
+        data={data}
+        onClick={onClick}
+        ref={chartRef}
+      />
+    </div>
   );
 }
 

@@ -7,27 +7,29 @@ import { useWeeks } from '../Hooks/useWeeks';
 
 export function TomatoStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
-  // const clickedBar = useAppSelector(state => state.barState)
+  const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar)
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
-  const clickedBar = 1
+
   return (
     <div className={styles.tomatoStatistics}>
       <div className={styles.wrapper}>
         {/* <Icon name={EIcons.tomato}/> */}
         <Icon name={EIcons.logo}/>
         <Text size={2433} color={EColor.grey99} weight={700}>
-          x
-          {isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0}
-          {isLastWeek ? statData.currentWeek[clickedBar].countTomato : 0}
-          {isTwoWeekAgo ? statData.currentWeek[clickedBar].countTomato : 0}
+          x {
+            (clickedBar && isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0) ||
+            (clickedBar && isLastWeek ? statData.lastWeek[clickedBar].countTomato : 0) ||
+            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0)
+          }
         </Text>
       </div>
       <div className={styles.tomatoCount}>
         <Text size={2433} color={EColor.white} weight={700}>
-          {isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0}
-          {isLastWeek ? statData.currentWeek[clickedBar].countTomato : 0}
-          {isTwoWeekAgo ? statData.currentWeek[clickedBar].countTomato : 0}
-          помидора
+          {
+            (clickedBar && isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0) ||
+            (clickedBar && isLastWeek ? statData.lastWeek[clickedBar].countTomato : 0) ||
+            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0)
+          } помидора
         </Text>
       </div>
     </div>
