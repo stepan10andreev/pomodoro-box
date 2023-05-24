@@ -12,6 +12,7 @@ import { IDays } from '../../StatisticBarChart/statisticsData';
 import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsData/dayStatistics';
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 import { setTodayDate } from '../../../store/entryDateState/entryDateState';
+import { addTomatoForLongBreak, resetTomatoForLongBreak } from '../../../store/longBreakState/longBreakState';
 
 const defaultDayObj = {
   day: 'ЧТ',
@@ -30,6 +31,7 @@ export function Timer() {
   const lastEntry = useAppSelector(state => state.entryDate);
   const dayStatistics = useAppSelector(state => state.dayStatistics);
   const allStats = useAppSelector(state => state.statisticsData);
+  const tomatoForLongBreak = useAppSelector(state => state.tomatoLongBreak.tomatoForLongBreak);
   const currentTask = tasks[0];
   // console.log(allStats)
   const dispatch = useDispatch();
@@ -57,6 +59,11 @@ export function Timer() {
 
     if (currentTask?.countTomato === 0) dispatch(deleteTask(currentTask.taskId));
     if (!currentTask) setTimer(5);
+    if (tomatoForLongBreak === 4) {
+      setIsBreaking(true);
+      setTimer(15)
+      dispatch(resetTomatoForLongBreak())
+    }
     return (() => {
       clearInterval(interval);
     })
@@ -70,6 +77,7 @@ export function Timer() {
       dispatch(setDayStatistics('countTomato'))
       dispatch(decrementTomatoCount(currentTask?.taskId));
       dispatch(changeChangedByMenuState(false))
+      dispatch(addTomatoForLongBreak())
       setIsBreaking(true);
       setTimer(3);
     }
@@ -94,7 +102,7 @@ export function Timer() {
 
   useEffect(() => {
     const interval = setInterval(() =>{
-      isPausing &&
+      isPausing && !isBreaking &&
         dispatch(setDayStatistics('pauseTime'));
         // setDayObject(prevState => ({...prevState, pauseTime: prevState['pauseTime'] + 1}))
     }, 1000)
@@ -155,7 +163,9 @@ export function Timer() {
     // setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}))
     dispatch(setDayStatistics('countTomato'));
     dispatch(decrementTomatoCount(currentTask.taskId));
-    dispatch(changeChangedByMenuState(false))
+    dispatch(changeChangedByMenuState(false));
+    dispatch(addTomatoForLongBreak());
+
   };
 
   const handleAddTime = () => {

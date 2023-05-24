@@ -5,6 +5,7 @@ import weeksReducer from './weeks/weeks';
 import todayReducer from './entryDateState/entryDateState';
 import statisticsReducer from './statisticsData/statisticsData';
 import dayStatisticsReducer from './statisticsData/dayStatistics';
+import longBreakReducer from './longBreakState/longBreakState';
 
 import {
   persistReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   entryDate: todayReducer,
   statisticsData: statisticsReducer,
   dayStatistics: dayStatisticsReducer,
+  tomatoLongBreak: longBreakReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

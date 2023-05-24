@@ -17,8 +17,8 @@ export function MenuWeekList() {
     <ul className={styles.menuWeekList}>
       {lastWeek && (
         <>
-          <li className={styles.menuWeekItem}>
-            <button onClick={() => {dispatch(chooseWeek('twoWeeksAgo')), dispatch(changeWeekSelectMenuClickedState(false))}}>
+          <li>
+            <button className={styles.menuWeekItem} onClick={() => {dispatch(chooseWeek('twoWeeksAgo')), dispatch(changeWeekSelectMenuClickedState(false))}}>
               <Text size={16}>2 недели назад</Text>
             </button>
           </li>

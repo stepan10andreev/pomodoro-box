@@ -17,19 +17,19 @@ export function Dropdown({ button, children, isOpen, onClose = NOOP, onOpen = NO
 
   const ref = useRef<HTMLDivElement>(null);
 
-  useOnClickOutside(ref, () => setIsDropdownOpen(!isDropdownOpen));
+  useOnClickOutside(ref, () => setIsDropdownOpen(false));
 
   React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
   React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
 
 
   return (
-    <div className={styles.container}  >
+    <div className={styles.container} ref={ref}>
       <div onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
         { button }
       </div>
       {isDropdownOpen && (
-        <div className={styles.listContainer} ref={ref}>
+        <div className={styles.listContainer}>
           <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
             { children }
           </div>
