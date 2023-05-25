@@ -1,5 +1,5 @@
 
-function getNumberWeek(date: Date) {
+export function getNumberWeek(date: Date) {
   var date = new Date(date.getTime());
 
   date.setHours(0, 0, 0, 0);

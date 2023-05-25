@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { useAppSelector } from "../../components/Hooks/useAppDispatch";
+import entryDateState from "../entryDateState/entryDateState";
+import { getNumberWeek } from "../../utils/getNumberWeek";
 
 export interface IDays {
   [K: string]: string | number;
@@ -50,9 +52,16 @@ const initialState: IStatisticsData = {
   ]
 }
 
-function addStatisticsDependingOnDay (state: IStatisticsData, statObj: IDays ) {
+function getStatisticsDataState(fullStats: IStatisticsData, dayStats: IDays) {
+  return {
+    ...fullStats,
+    currentWeek: fullStats.currentWeek.map((item) => item.day === dayStats.day ? dayStats : item)
+  };
+}
+
+function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate: number) {
   const NOW = new Date();
-  const lastEntryDate = useAppSelector(state => state.entryDate.msDate);
+  // const lastEntryDate = useAppSelector(state => state.entryDate.msDate);
   const todayWeekNumber = getNumberWeek(NOW);
   const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
   const difference = todayWeekNumber - lastWeekNumber;
@@ -64,26 +73,33 @@ function addStatisticsDependingOnDay (state: IStatisticsData, statObj: IDays ) {
   // })
 
   if (difference === 0) {
-    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+    console.log('Эта неделя')
+    // return state;
+    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
   }
 
   if (difference < 0) {
     for (let week in state) {
       state[week] = initialState.currentWeek.map((day) => day);
     }
+    return state;
   }
 
   if (difference === 1) {
     state.twoWeeksAgo = state.lastWeek.map((day) => day);
     state.lastWeek = state.currentWeek.map((day) => day);
     state.currentWeek = initialState.currentWeek.map((day) => day);
-    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+    console.log('Прошла неделя')
+    return state;
+    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
   }
 
   if (difference >= 2) {
     state.twoWeeksAgo = state.currentWeek.map((day) => day);
     state.currentWeek = initialState.currentWeek.map((day) => day);
-    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+    console.log('Прошло 2 недели')
+    return state;
+    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
   }
 }
 
@@ -93,9 +109,16 @@ const statisticsSlice = createSlice({
   reducers: {
     addDayStatistic: {
       reducer (state, action: PayloadAction<IDays>) {
-        state.currentWeek.map((day) => day.day === action.payload.day ? day = {...action.payload} : day)
-        // const isSelectClicked = useAppSelector((state) => state.entryDate.day)
-        // console.log(isSelectClicked)
+        let lastEntryDate
+        const localStorageData = localStorage.getItem('persist:root')
+        if (localStorageData) {
+          let entryDate = JSON.parse(localStorageData).entryDate;
+          lastEntryDate = JSON.parse(entryDate).msDate
+          console.log(lastEntryDate)
+        }
+        // shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate)
+
+        return getStatisticsDataState(state, action.payload)
       },
       prepare ({day, workTime, doneTime, pauseTime, focusProcent, countStops, countTomato}: IDays) {
         return {
@@ -125,3 +148,5 @@ export default statisticsSlice.reducer;
 // export const { increment, decrement, incrementByAmount } = counterSlice.actions
 // // экспортируем по умолчанию редьюсер
 // export default counterSlice.reducer
+
+

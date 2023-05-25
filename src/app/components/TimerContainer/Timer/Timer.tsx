@@ -12,22 +12,25 @@ import { IDays } from '../../StatisticBarChart/statisticsData';
 import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsData/dayStatistics';
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 
-// const defaultDayObj = {
-//   day: '',
-//   workTime: 0,
-//   doneTime: 0,
-//   pauseTime: 0,
-//   focusProcent: 0,
-//   countStops: 0,
-//   countTomato: 0,
-// }
+const defaultDayObj = {
+  day: 'ЧТ',
+  workTime: 0,
+  doneTime: 0,
+  pauseTime: 0,
+  focusProcent: 0,
+  countStops: 0,
+  countTomato: 0
+}
 
 export function Timer() {
+
+
   const tasks = useAppSelector((state) => state.tasks);
   const lastEntry = useAppSelector(state => state.entryDate);
   const dayStatistics = useAppSelector(state => state.dayStatistics);
+  const allStats = useAppSelector(state => state.statisticsData);
   const currentTask = tasks[0];
-
+  // console.log(allStats)
   const dispatch = useDispatch();
 
   // const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
@@ -103,8 +106,9 @@ export function Timer() {
       const NOW = new Date();
       if (NOW.getDate() != lastEntry.day || NOW.getMonth() != lastEntry.month || NOW.getFullYear() != lastEntry.year) {
         console.log('День сменился')
-        dispatch(addDayStatistic(dayStatistics));
-        dispatch(resetDayStatistics());
+        dispatch(addDayStatistic(defaultDayObj));
+        // dispatch(resetDayStatistics());
+        console.log(allStats)
       }
     }
   }, [])
