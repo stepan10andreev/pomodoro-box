@@ -2,10 +2,12 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IClickedBar {
   clickedBar: number | null;
+  futureClickedBar: boolean;
 }
 
 const initialState: IClickedBar = {
-  clickedBar: null
+  clickedBar: null,
+  futureClickedBar: false,
 }
 
 // const initialState: null | number = null;
@@ -24,6 +26,16 @@ const numberClickedBarSlice = createSlice({
         }
       }
     },
+    setFutureClickedBar: {
+      reducer (state, action: PayloadAction<boolean>) {
+        state.futureClickedBar = action.payload;
+      },
+      prepare (futureState: boolean) {
+        return {
+          payload: futureState,
+        }
+      }
+    },
     resetClickedBarNum: {
       reducer (state, action: PayloadAction<string>) {
         state.clickedBar = null;
@@ -37,6 +49,6 @@ const numberClickedBarSlice = createSlice({
   }
 })
 
-export const { setClickedBarNum, resetClickedBarNum } = numberClickedBarSlice.actions;
+export const { setClickedBarNum, resetClickedBarNum, setFutureClickedBar } = numberClickedBarSlice.actions;
 
 export default numberClickedBarSlice.reducer;

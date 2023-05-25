@@ -10,7 +10,7 @@ import { getWeekDayNameByIndex } from '../../utils/getWeekDay';
 export function DayStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
-  const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar);
+  const {clickedBar, futureClickedBar} = useAppSelector(state => state.numberClickedBar);
 
   return (
     <div className={styles.dayStatistics}>
@@ -21,17 +21,24 @@ export function DayStatistics() {
         }
       </Text>
       <div>
-        <Text size={1628} >Вы работали над задачами в течение </Text>
-        <Text size={1628} color={EColor.red}>
-          {
-            (clickedBar != null  && isCurrentWeek ? getTimeFromMs(statData.currentWeek[clickedBar].workTime) : 0) ||
-            (clickedBar != null  && isLastWeek ? getTimeFromMs(statData.lastWeek[clickedBar].workTime) : 0) ||
-            (clickedBar != null  && isTwoWeekAgo ? getTimeFromMs(statData.twoWeeksAgo[clickedBar].workTime) : 0) ||
-            (clickedBar === null && isCurrentWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.currentWeek, 'workTime')) : 0) ||
-            (clickedBar === null && isLastWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.lastWeek, 'workTime')) : 0) ||
-            (clickedBar === null && isTwoWeekAgo ? getTimeFromMs(getSumWeeksStatParameters(statData.twoWeeksAgo, 'workTime')) : 0)
-          }
-        </Text>
+        {futureClickedBar ? (
+          <Text size={1628} >Нет данных</Text>
+          ) : (
+            <>
+              <Text size={1628} >Вы работали над задачами в течение </Text>
+              <Text size={1628} color={EColor.red}>
+                {
+                  (clickedBar != null  && isCurrentWeek ? getTimeFromMs(statData.currentWeek[clickedBar].workTime) : 0) ||
+                  (clickedBar != null  && isLastWeek ? getTimeFromMs(statData.lastWeek[clickedBar].workTime) : 0) ||
+                  (clickedBar != null  && isTwoWeekAgo ? getTimeFromMs(statData.twoWeeksAgo[clickedBar].workTime) : 444) ||
+                  (clickedBar === null && isCurrentWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.currentWeek, 'workTime')) : 0) ||
+                  (clickedBar === null && isLastWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.lastWeek, 'workTime')) : 0) ||
+                  (clickedBar === null && isTwoWeekAgo ? getTimeFromMs(getSumWeeksStatParameters(statData.twoWeeksAgo, 'workTime')) : 0)
+                }
+              </Text>
+            </>
+          )}
+
       </div>
     </div>
   );

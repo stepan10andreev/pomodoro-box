@@ -7,12 +7,6 @@
   background-color: var(--grayF4);
 }
 
-
-.tomatoStatistics svg {
-  width: 81px;
-  height: 81px;
-}
-
 .tomatoCount {
   display: flex;
   padding: 9px 0px;
@@ -31,4 +25,18 @@
   align-items: center;
   gap: 15px;
   width: 100%;
+}
+
+.wrapper svg {
+  width: 81px;
+  height: 81px;
+}
+
+.wrapperTomato {
+  padding: 32px 0;
+}
+
+.wrapperTomato > svg {
+  width: 115px;
+  height: 115px;
 }
