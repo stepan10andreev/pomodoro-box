@@ -4,6 +4,7 @@ import { Icon, EIcons } from '../Icon';
 import { EColor, Text } from '../Text';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { useWeeks } from '../Hooks/useWeeks';
+import { getSumWeeksStatParameters } from '../../utils/getFullWeeksStatParameters';
 
 export function TomatoStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
@@ -19,7 +20,10 @@ export function TomatoStatistics() {
           x {
             (clickedBar && isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0) ||
             (clickedBar && isLastWeek ? statData.lastWeek[clickedBar].countTomato : 0) ||
-            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0)
+            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0) ||
+            (clickedBar === null && isCurrentWeek ? getSumWeeksStatParameters(statData.currentWeek, 'countTomato') : 0) ||
+            (clickedBar === null && isLastWeek ? getSumWeeksStatParameters(statData.lastWeek, 'countTomato') : 0) ||
+            (clickedBar === null && isTwoWeekAgo ? getSumWeeksStatParameters(statData.twoWeeksAgo, 'countTomato') : 0)
           }
         </Text>
       </div>
@@ -28,7 +32,10 @@ export function TomatoStatistics() {
           {
             (clickedBar && isCurrentWeek ? statData.currentWeek[clickedBar].countTomato : 0) ||
             (clickedBar && isLastWeek ? statData.lastWeek[clickedBar].countTomato : 0) ||
-            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0)
+            (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].countTomato : 0) ||
+            (clickedBar === null && isCurrentWeek ? getSumWeeksStatParameters(statData.currentWeek, 'countTomato') : 0) ||
+            (clickedBar === null && isLastWeek ? getSumWeeksStatParameters(statData.lastWeek, 'countTomato') : 0) ||
+            (clickedBar === null && isTwoWeekAgo ? getSumWeeksStatParameters(statData.twoWeeksAgo, 'countTomato') : 0)
           } помидора
         </Text>
       </div>

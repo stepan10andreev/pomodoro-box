@@ -1,6 +1,6 @@
 export interface IDays {
   day: string;
-  workTime: number;
+  workTime: number | null;
   doneTime: number;
   pauseTime: number;
   focusProcent: number;
@@ -22,7 +22,7 @@ export const statisticsData: IStatisticsData = {
     { day: 'СР', workTime: 1500, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
     { day: 'ЧТ', workTime: 6000, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
     { day: 'ПТ', workTime: 7500, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
-    { day: 'СБ', workTime: 2300, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
+    { day: 'СБ', workTime: 0, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
     { day: 'ВС', workTime: 3000, doneTime: 5, pauseTime: 5, focusProcent: 5, countStops: 5, countTomato: 5 },
   ],
   lastWeek: [

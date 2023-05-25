@@ -5,8 +5,14 @@ export function getWeekDay(date: Date) {
 }
 
 
+// export function getWeekDayNameByIndex(index: number) {
+//   let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+
+//   return days[index];
+// }
+
 export function getWeekDayNameByIndex(index: number) {
-  let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+  let days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
 
   return days[index];
 }

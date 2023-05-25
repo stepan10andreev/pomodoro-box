@@ -18,6 +18,7 @@ import { useAppSelector } from '../Hooks/useAppDispatch';
 import { useDispatch } from 'react-redux';
 import { resetClickedBarNum, setClickedBarNum } from '../../store/numberClickedBar/numberClickedBar';
 import { useOnClickOutside } from '../Hooks/useOnClickOutside';
+import { getBarBackground } from '../../utils/getBarBackground';
 
 ChartJS.register(
   CategoryScale,
@@ -169,8 +170,8 @@ export function StatisticBarChart() {
   const [ indexClickedBar, setIndexClickedBar] = useState<number | null>(null);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   // const statisticsData = useAppSelector(state => state.statisticsData)
-  const dispatch = useDispatch()
-  const ref = useRef(null)
+  const dispatch = useDispatch();
+  const ref = useRef(null);
   const chartRef = useRef(null);
 
   useOnClickOutside(ref, () => dispatch(resetClickedBarNum()))
@@ -183,7 +184,7 @@ export function StatisticBarChart() {
         data: isCurrentWeek ? statisticsData.currentWeek.map((day) => day.workTime) :
               isLastWeek ? statisticsData.lastWeek.map((day) => day.workTime) :
               isTwoWeekAgo ? statisticsData.lastWeek.map((day) => day.workTime) : [0, 0, 0 ,0 ,0 ,0, 0],
-        backgroundColor: getBackgroundBar(indexClickedBar),
+        backgroundColor: getBarBackground(indexClickedBar),
         hoverBackgroundColor: 'rgba(220, 62, 34, 1)',
         barPercentage: 0.5,
         barThickness: 'flex' as const,
@@ -215,21 +216,5 @@ export function StatisticBarChart() {
 }
 
 
-
-function getBackgroundBar(i: number | null) {
-  const activeBg = 'rgba(220, 62, 34, 1)';
-  const initialArray = [
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-    'rgba(234, 137, 121, 1)',
-  ]
-  if (i === null) return initialArray
-  initialArray[i] = activeBg
-  return initialArray
-}
 
 

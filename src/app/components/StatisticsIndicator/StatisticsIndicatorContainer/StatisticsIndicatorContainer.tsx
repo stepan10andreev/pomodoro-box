@@ -3,11 +3,12 @@ import styles from './statisticsindicatorcontainer.css';
 import { StatisticsIndicator } from '../StatisticsIndicator';
 import { useWeeks } from '../../Hooks/useWeeks';
 import { useAppSelector } from '../../Hooks/useAppDispatch';
+import { getTimeFromMs } from '../../../utils/getTimeFromMs';
 
 export function StatisticsIndicatorContainer() {
   const statData = useAppSelector(state => state.statisticsData);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
-  const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar)
+  const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar);
 
 
   return (
@@ -24,9 +25,9 @@ export function StatisticsIndicatorContainer() {
       <StatisticsIndicator
         statName={'Время на паузе'}
         indicatorValue={
-          (clickedBar && isCurrentWeek ? statData.currentWeek[clickedBar].pauseTime : 0) ||
-            (clickedBar && isLastWeek ? statData.lastWeek[clickedBar].pauseTime : 0) ||
-              (clickedBar && isTwoWeekAgo ? statData.twoWeeksAgo[clickedBar].pauseTime : 0)
+          (clickedBar != null && clickedBar >= 0 && isCurrentWeek ? getTimeFromMs(statData.currentWeek[clickedBar].pauseTime, true) : 0) ||
+            (clickedBar != null && clickedBar >= 0 && isLastWeek ? getTimeFromMs(statData.lastWeek[clickedBar].pauseTime, true) : 0) ||
+              (clickedBar != null && clickedBar >= 0 && isTwoWeekAgo ? getTimeFromMs(statData.twoWeeksAgo[clickedBar].pauseTime, true) : 0)
         }
         indicatorIcons={{pause: true}}
       />

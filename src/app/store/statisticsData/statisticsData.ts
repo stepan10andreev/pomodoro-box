@@ -15,7 +15,7 @@ export interface IDays {
   focusProcent: number;
 }
 
-interface IStatisticsData {
+export interface IStatisticsData {
   [K: string]: IDays[],
   currentWeek: IDays[],
   lastWeek: IDays[],

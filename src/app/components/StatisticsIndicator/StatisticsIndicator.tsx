@@ -12,7 +12,7 @@ export interface IindicatorIcons {
 
 interface IStatisticsIndicator {
   statName: string;
-  indicatorValue: number;
+  indicatorValue: number | string;
   indicatorIcons: IindicatorIcons
 }
 
@@ -29,7 +29,7 @@ export function StatisticsIndicator({ statName, indicatorValue, indicatorIcons }
         <div className={styles.wrapper}>
           <Text As={'div'} weight={700} size={2433}>{statName}</Text>
           {indicatorIcons.focus && <Text As={'div'} size={64}>{indicatorValue}%</Text>}
-          {indicatorIcons.pause && <Text As={'div'} size={64}>{indicatorValue}м</Text>}
+          {indicatorIcons.pause && <Text As={'div'} size={64}>{indicatorValue}</Text>}
           {indicatorIcons.stop && <Text As={'div'} size={64}>{indicatorValue}</Text>}
         </div>
         {indicatorIcons.focus && (<Icon name={EIcons.focus} />)}
