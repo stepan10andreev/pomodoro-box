@@ -10,26 +10,27 @@ import { changeChangedByMenuState, changeChangedByTimerState, changeReadyBtnHove
 import { getWeekDay } from '../../../utils/getWeekDay';
 import { IDays } from '../../StatisticBarChart/statisticsData';
 import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsData/dayStatistics';
+import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 
-const defaultDayObj = {
-  day: '',
-  workTime: 0,
-  doneTime: 0,
-  pauseTime: 0,
-  focusProcent: 0,
-  countStops: 0,
-  countTomato: 0,
-}
+// const defaultDayObj = {
+//   day: '',
+//   workTime: 0,
+//   doneTime: 0,
+//   pauseTime: 0,
+//   focusProcent: 0,
+//   countStops: 0,
+//   countTomato: 0,
+// }
 
 export function Timer() {
   const tasks = useAppSelector((state) => state.tasks);
-  const todayIs = useAppSelector(state => state.entryDate);
-
+  const lastEntry = useAppSelector(state => state.entryDate);
+  const dayStatistics = useAppSelector(state => state.dayStatistics);
   const currentTask = tasks[0];
 
   const dispatch = useDispatch();
 
-  const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
+  // const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
 
   const [timer, setTimer] = useState(5);
   const [isCountDowning, setIsCountDowning] = useState(false);
@@ -98,14 +99,12 @@ export function Timer() {
   }, [isPausing])
 
   useEffect(() => {
-    if (todayIs.day) {
+    if (lastEntry.dayName) {
       const NOW = new Date();
-      const NOW_DAY = NOW.getDate();
-      if (todayIs.numberDay != NOW_DAY) {
-        console.log('День сменился');
-        // setDayObject(defaultDayObj);
+      if (NOW.getDate() != lastEntry.day || NOW.getMonth() != lastEntry.month || NOW.getFullYear() != lastEntry.year) {
+        console.log('День сменился')
+        dispatch(addDayStatistic(dayStatistics));
         dispatch(resetDayStatistics());
-        // push objstat in store
       }
     }
   }, [])

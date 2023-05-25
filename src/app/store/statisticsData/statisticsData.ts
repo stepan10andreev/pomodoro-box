@@ -50,44 +50,42 @@ const initialState: IStatisticsData = {
   ]
 }
 
-// function addStatisticsDependingOnDay (stateX: IStatisticsData, weekStatArray: IDays[], statObj: IDays ) {
-//   const NOW = new Date();
-//   const lastEntryDate = useAppSelector(state => state.entryDate.msDate);
-//   // const lastEntryDay = useAppSelector(state => state.today.day);
-//   // const diff = NOW.getTime() - lastEntryDate;
-//   const todayWeekNumber = getNumberWeek(NOW);
-//   const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
-//   const difference = todayWeekNumber - lastWeekNumber;
-//   // добавляем в текущую неделю в любом случае
-//   weekStatArray.map((item) => {
-//     if (item.day === statObj.day) {
-//       item = statObj
-//     }
-//   })
+function addStatisticsDependingOnDay (state: IStatisticsData, statObj: IDays ) {
+  const NOW = new Date();
+  const lastEntryDate = useAppSelector(state => state.entryDate.msDate);
+  const todayWeekNumber = getNumberWeek(NOW);
+  const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
+  const difference = todayWeekNumber - lastWeekNumber;
+  // добавляем в текущую неделю в любом случае
+  // weekStatArray.map((item) => {
+  //   if (item.day === statObj.day) {
+  //     item = statObj
+  //   }
+  // })
 
-//   if (difference === 0) {
-//     stateX.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-//   }
+  if (difference === 0) {
+    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+  }
 
-//   if (difference < 0) {
-//     for (let week in stateX) {
-//       stateX[week] = initialState.currentWeek.map((day) => day);
-//     }
-//   }
+  if (difference < 0) {
+    for (let week in state) {
+      state[week] = initialState.currentWeek.map((day) => day);
+    }
+  }
 
-//   if (difference === 1) {
-//     stateX.twoWeeksAgo = stateX.lastWeek.map((day) => day);
-//     stateX.lastWeek = stateX.currentWeek.map((day) => day);
-//     stateX.currentWeek = initialState.currentWeek.map((day) => day);
-//     stateX.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-//   }
+  if (difference === 1) {
+    state.twoWeeksAgo = state.lastWeek.map((day) => day);
+    state.lastWeek = state.currentWeek.map((day) => day);
+    state.currentWeek = initialState.currentWeek.map((day) => day);
+    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+  }
 
-//   if (difference >= 2) {
-//     stateX.twoWeeksAgo = stateX.currentWeek.map((day) => day);
-//     stateX.currentWeek = initialState.currentWeek.map((day) => day);
-//     stateX.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-//   }
-// }
+  if (difference >= 2) {
+    state.twoWeeksAgo = state.currentWeek.map((day) => day);
+    state.currentWeek = initialState.currentWeek.map((day) => day);
+    state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
+  }
+}
 
 const statisticsSlice = createSlice({
   name: 'statisticsData',
@@ -95,11 +93,11 @@ const statisticsSlice = createSlice({
   reducers: {
     addDayStatistic: {
       reducer (state, action: PayloadAction<IDays>) {
-        state.currentWeek
-        const isSelectClicked = useAppSelector((state) => state.entryDate.numberDay)
-        console.log(isSelectClicked)
+        state.currentWeek.map((day) => day.day === action.payload.day ? day = {...action.payload} : day)
+        // const isSelectClicked = useAppSelector((state) => state.entryDate.day)
+        // console.log(isSelectClicked)
       },
-      prepare (day: string, workTime: number, doneTime: number, pauseTime: number, focusProcent: number, countStops: number, countTomato:number) {
+      prepare ({day, workTime, doneTime, pauseTime, focusProcent, countStops, countTomato}: IDays) {
         return {
           payload: {
             day,
