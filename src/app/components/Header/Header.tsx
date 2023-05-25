@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import styles from './header.css';
 import { Logo } from './Logo';
 import { StatisticsLink } from './StatisticsLink';
-import { getWeekDay } from '../../utils/gerWeekDay';
+import { getWeekDay } from '../../utils/getWeekDay';
 import { useDispatch } from 'react-redux';
-import { setTodayDate } from '../../store/todayState/todayState';
+import { setTodayDate } from '../../store/entryDateState/entryDateState';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 
 
 
 export function Header() {
   const dispatch = useDispatch();
-  const isToday = useAppSelector(state => state.today.day);
+  const lastEntry = useAppSelector(state => state.entryDate.day);
 
   useEffect(() => {
-    if (isToday) return
+    if (lastEntry) return
     const NOW = new Date();
-    dispatch(setTodayDate(getWeekDay(NOW), NOW.getTime()))
+    dispatch(setTodayDate(getWeekDay(NOW), NOW.getDate(), NOW.getTime()))
     console.log('here')
   }, [])
 

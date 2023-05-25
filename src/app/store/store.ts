@@ -2,7 +2,10 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import tasksReducer from './postTask/postTask';
 import buttonsStateReducer from './buttonStates/buttonStates';
 import weeksReducer from './weeks/weeks';
-import todayReducer from './todayState/todayState';
+import todayReducer from './entryDateState/entryDateState';
+import statisticsReducer from './statisticsData/statisticsData';
+import dayStatisticsReducer from './statisticsData/dayStatistics';
+
 import {
   persistReducer,
   persistStore,
@@ -19,15 +22,17 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  blacklist: ['buttonstates']
+  blacklist: ['buttonStates']
   // serialize: true,
 }
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
-  buttonstates: buttonsStateReducer,
+  buttonStates: buttonsStateReducer,
   weeks: weeksReducer,
-  today: todayReducer,
+  entryDate: todayReducer,
+  statisticsData: statisticsReducer,
+  dayStatistics: dayStatisticsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

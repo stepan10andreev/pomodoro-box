@@ -10,11 +10,11 @@ import { useDispatch } from 'react-redux';
 export function TimerTask() {
   const tasks = useAppSelector((state) => state.tasks);
   const currentTask = tasks[0];
-  const decrementByMenu = useAppSelector((state) => state.buttonstates.isChangedTomatoCountByMenu);
-  const decrementByTimer = useAppSelector((state) => state.buttonstates.isChangedTomatoCountByTimer);
+  const decrementByMenu = useAppSelector((state) => state.buttonStates.isChangedTomatoCountByMenu);
+  const decrementByTimer = useAppSelector((state) => state.buttonStates.isChangedTomatoCountByTimer);
 
-  const stopHoverState = useAppSelector((state) => state.buttonstates.isStopButtonHovered);
-  const readyHoverState = useAppSelector((state) => state.buttonstates.isReadyButtonHovered);
+  const stopHoverState = useAppSelector((state) => state.buttonStates.isStopButtonHovered);
+  const readyHoverState = useAppSelector((state) => state.buttonStates.isReadyButtonHovered);
 
   const [initialTomatoNumber, setInitialTomatoNumber] = useState(1);
   const [currentCountTomato, setCurrentCountTomato] = useState(1);

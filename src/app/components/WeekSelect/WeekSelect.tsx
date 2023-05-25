@@ -12,7 +12,7 @@ import { useAppSelector } from '../Hooks/useAppDispatch';
 export function WeekSelect() {
   const [isClicked, setIsClicked] = useState(false);
   const { isCurrentWeek, isLastWeek} = useWeeks();
-  const isSelectClicked = useAppSelector((state) => state.buttonstates.isWeekSelectMenuClicked)
+  const isSelectClicked = useAppSelector((state) => state.buttonStates.isWeekSelectMenuClicked)
   const dispatch = useDispatch();
 
 
