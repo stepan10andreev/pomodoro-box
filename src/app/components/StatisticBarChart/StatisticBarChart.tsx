@@ -169,6 +169,8 @@ const labels = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 export function StatisticBarChart() {
   const [ indexClickedBar, setIndexClickedBar] = useState<number | null>(null);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
+  const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar)
+
   // const statisticsData = useAppSelector(state => state.statisticsData)
   const dispatch = useDispatch();
   const ref = useRef(null);
@@ -184,7 +186,7 @@ export function StatisticBarChart() {
         data: isCurrentWeek ? statisticsData.currentWeek.map((day) => day.workTime) :
               isLastWeek ? statisticsData.lastWeek.map((day) => day.workTime) :
               isTwoWeekAgo ? statisticsData.lastWeek.map((day) => day.workTime) : [0, 0, 0 ,0 ,0 ,0, 0],
-        backgroundColor: getBarBackground(indexClickedBar),
+        backgroundColor: clickedBar != null ? getBarBackground(indexClickedBar) : getBarBackground(null),
         hoverBackgroundColor: 'rgba(220, 62, 34, 1)',
         barPercentage: 0.5,
         barThickness: 'flex' as const,
