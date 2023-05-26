@@ -21,6 +21,15 @@ interface IStatisticsData {
   lastWeek: IDays[],
   twoWeeksAgo:  IDays[]
 }
+const inState = [
+  { day: 'ПН', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'ВТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'СР', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'ЧТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'ПТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'СБ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+  { day: 'ВС', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
+]
 
 const initialState: IStatisticsData = {
   currentWeek: [
@@ -61,46 +70,36 @@ function getStatisticsDataState(fullStats: IStatisticsData, dayStats: IDays) {
 
 function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate: number) {
   const NOW = new Date();
-  // const lastEntryDate = useAppSelector(state => state.entryDate.msDate);
   const todayWeekNumber = getNumberWeek(NOW);
   const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
   const difference = todayWeekNumber - lastWeekNumber;
-  // добавляем в текущую неделю в любом случае
-  // weekStatArray.map((item) => {
-  //   if (item.day === statObj.day) {
-  //     item = statObj
-  //   }
-  // })
-
+  console.log(difference)
   if (difference === 0) {
     console.log('Эта неделя')
-    // return state;
-    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-  }
-
-  if (difference < 0) {
-    for (let week in state) {
-      state[week] = initialState.currentWeek.map((day) => day);
-    }
     return state;
-  }
-
-  if (difference === 1) {
-    state.twoWeeksAgo = state.lastWeek.map((day) => day);
-    state.lastWeek = state.currentWeek.map((day) => day);
-    state.currentWeek = initialState.currentWeek.map((day) => day);
+  } else if (difference < 0) {
+    return {
+      ...state,
+      twoWeeksAgo: inState,
+      lastWeek: inState,
+      currentWeek: inState
+    };
+  } else if (difference === 1) {
     console.log('Прошла неделя')
-    return state;
-    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-  }
-
-  if (difference >= 2) {
-    state.twoWeeksAgo = state.currentWeek.map((day) => day);
-    state.currentWeek = initialState.currentWeek.map((day) => day);
+    return {
+      ...state,
+      twoWeeksAgo: state.lastWeek,
+      lastWeek: state.currentWeek,
+      currentWeek: inState
+    };
+  } else if (difference >= 2) {
     console.log('Прошло 2 недели')
-    return state;
-    // state.currentWeek.map((dayObj) => dayObj.day === statObj.day ? dayObj === statObj : dayObj)
-  }
+    return {
+      ...state,
+      twoWeeksAgo: state.currentWeek,
+      currentWeek: inState
+    };
+  } else return state;
 }
 
 const statisticsSlice = createSlice({
@@ -116,9 +115,9 @@ const statisticsSlice = createSlice({
           lastEntryDate = JSON.parse(entryDate).msDate
           console.log(lastEntryDate)
         }
-        // shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate)
+        let newState = shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate)
 
-        return getStatisticsDataState(state, action.payload)
+        return getStatisticsDataState(newState, action.payload)
       },
       prepare ({day, workTime, doneTime, pauseTime, focusProcent, countStops, countTomato}: IDays) {
         return {
