@@ -30,7 +30,7 @@ export function DayStatistics() {
                 {
                   (clickedBar != null  && isCurrentWeek ? getTimeFromMs(statData.currentWeek[clickedBar].workTime) : 0) ||
                   (clickedBar != null  && isLastWeek ? getTimeFromMs(statData.lastWeek[clickedBar].workTime) : 0) ||
-                  (clickedBar != null  && isTwoWeekAgo ? getTimeFromMs(statData.twoWeeksAgo[clickedBar].workTime) : 444) ||
+                  (clickedBar != null  && isTwoWeekAgo ? getTimeFromMs(statData.twoWeeksAgo[clickedBar].workTime) : 0) ||
                   (clickedBar === null && isCurrentWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.currentWeek, 'workTime')) : 0) ||
                   (clickedBar === null && isLastWeek ? getTimeFromMs(getSumWeeksStatParameters(statData.lastWeek, 'workTime')) : 0) ||
                   (clickedBar === null && isTwoWeekAgo ? getTimeFromMs(getSumWeeksStatParameters(statData.twoWeeksAgo, 'workTime')) : 0)

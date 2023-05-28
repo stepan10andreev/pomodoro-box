@@ -13,7 +13,6 @@ import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsD
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 import { setTodayDate } from '../../../store/entryDateState/entryDateState';
 import { addTomatoForLongBreak, resetTomatoForLongBreak } from '../../../store/longBreakState/longBreakState';
-
 const defaultDayObj = {
   day: 'ЧТ',
   workTime: 4444,
@@ -97,6 +96,7 @@ export function Timer() {
   useEffect(() => {
     isCountDowning && dispatch(setDayStatistics('workTime'));
     isCountDowning && !isBreaking && dispatch(setDayStatistics('doneTime'))
+
     // setDayObject(prevState => ({...prevState, workTime: prevState['workTime'] + 1}));
   }, [timer])
 

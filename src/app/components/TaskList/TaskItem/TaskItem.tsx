@@ -4,6 +4,7 @@ import { Text } from '../../Text'
 import { ButtonMenu } from './ButtonMenu';
 import { useDispatch } from 'react-redux';
 import { editTaskTitle } from '../../../store/postTask/postTask';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface ITaskItem {
   taskTitle: string;
@@ -45,13 +46,20 @@ export function TaskItem({ taskTitle, countTomato, taskId }: ITaskItem) {
 
 
   return (
-    <li className={styles.taskItem}>
-      <div className={styles.countTomatoes}>
-        {countTomato}
-      </div>
-      <input ref={ref} className={styles.input} type="text" value={taskTitle} onChange={onChangeTaskTitle} onBlur={onBlur} disabled={isInputDisabled}/>
-      <ButtonMenu onClickActiveInput={activeInput} taskId={taskId}/>
-    </li>
+
+      <motion.li
+        className={styles.taskItem}
+        initial={{ opacity: 0, x: 400}}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6}}
+        exit={{opacity: 0, x: -400}}
+      >
+        <div className={styles.countTomatoes}>
+          {countTomato}
+        </div>
+        <input ref={ref} className={styles.input} type="text" value={taskTitle} onChange={onChangeTaskTitle} onBlur={onBlur} disabled={isInputDisabled}/>
+        <ButtonMenu onClickActiveInput={activeInput} taskId={taskId}/>
+      </motion.li>
   );
 }
 
