@@ -131,6 +131,7 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  background-color: url(../assets/img/settings.png);
 }
 
 input {

@@ -10,7 +10,7 @@ export * from './DecreaseMenuIcon';
 export * from './EditMenuIcon';
 export * from './DeleteMenuIcon';
 export * from './ArrowDownIcon';
-
+export * from './SettingsIcon';
 
 
 

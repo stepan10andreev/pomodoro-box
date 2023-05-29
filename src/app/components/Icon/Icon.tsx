@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './icon.css';
 import { AddBtnIcon, ArrowDownIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon, EditMenuIcon, EqualizerIcon, FocusIcon, IncreaseMenuIcon, LogoIcon, MenuIcon, StopIcon } from './Icons';
 import { TomatoIcon } from './Icons/TomatoIcon';
+import { SettingsIcon } from './Icons/SettingsIcon';
 
 
 type TSizes = 130 | 115 | 81 | 50 | 40 | 30 | 24 | 18 | 14;
@@ -20,7 +21,7 @@ let iconList = {
   EditMenuIcon: <EditMenuIcon />,
   DeleteMenuIcon: <DeleteMenuIcon />,
   ArrowDownIcon: <ArrowDownIcon />,
-  // IconName: null,
+  SettingsIcon: <SettingsIcon />,
 };
 
 export enum EIcons {
@@ -37,7 +38,7 @@ export enum EIcons {
   edit = 'EditMenuIcon',
   delete = 'DeleteMenuIcon',
   arrowDown = 'ArrowDownIcon',
-  // iconName = 'IconName',
+  settings = 'SettingsIcon',
 }
 
 interface IIconProps {

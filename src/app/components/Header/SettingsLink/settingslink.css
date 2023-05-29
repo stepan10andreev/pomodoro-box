@@ -1,0 +1,40 @@
+.image {
+  width: 20xp;
+  height: 20px;
+  filter: invert(1);
+  background-color: red;
+}
+
+.linkActive,
+.settingsLink {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.settingsLink svg{
+  fill: var(--red);
+}
+
+.settingsLink svg,
+.settingsLink span {
+  transition: 0.3s;
+}
+
+.settingsLink:hover svg {
+  fill: var(--red-active);
+}
+
+
+.settingsLink:hover span{
+  color: var(--red-active);
+}
+
+
+.linkActive svg {
+  fill: var(--red-active);
+}
+
+.linkActive  span {
+  color: var(--red-active);
+}

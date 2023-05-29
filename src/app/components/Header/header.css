@@ -2,7 +2,12 @@
   padding: 15px 80px;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
+  /* justify-content: space-between; */
   background-color: var(--background-color);
   box-shadow: 0px 10px 63px rgba(0, 0, 0, 0.07);
+}
+
+.header > a:first-child {
+  margin-right: auto;
 }

@@ -17,6 +17,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { MainPage } from "./pages/MainPage";
 import { StatisticsPage } from "./pages/StatisticsPage";
 import { PersistGate } from "redux-persist/integration/react";
+import { SettingsPage } from "./pages/SettingsPage";
 
 
 
@@ -30,6 +31,7 @@ function AppComponent() {
             <Routes>
               <Route path="/" element={<MainPage />}/>
               <Route path="/statistics" element={<StatisticsPage />}/>
+              <Route path="/settings" element={<SettingsPage />}/>
             </Routes>
           </Layout>
         </PersistGate>
