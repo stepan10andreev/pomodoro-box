@@ -26,14 +26,15 @@
   border: 4px solid var(--black);
   border-radius: 10px;
   background-color: var(--background-color);
+  transition: 0.3s;
 }
 
-.input:focus,
-.input:hover {
+.inpute:enabled:focus,
+.input:enabled:hover {
   background-color: var(--grayDE);
 }
 
-.input:active {
+.input:enabled:active {
   background-color: var(--grey99);
 }
 
@@ -41,6 +42,10 @@
   display: flex;
   flex-direction: row;
   gap: 50px;
+}
+
+.input:disabled {
+  background-color: var(--grey99);
 }
 
 .btnChangeSettings,
@@ -56,21 +61,21 @@
   background-color: var(--grayC4);
 }
 
-.btnSaveSettings:focus-visible,
-.btnSaveSettings:hover {
+.btnSaveSettings:enabled:focus-visible,
+.btnSaveSettings:enabled:hover {
   background-color: #49c544;
 }
 
-.btnSaveSettings:active {
+.btnSaveSettings:enabled:active {
   background-color: #258822;
 }
 
-.btnChangeSettings:focus-visible,
-.btnChangeSettings:hover {
+.btnChangeSettings:enabled:focus-visible,
+.btnChangeSettings:enabled:hover {
   background-color: var(--grey99);
 }
 
-.btnChangeSettings:active {
+.btnChangeSettings:enabled:active {
   background-color: hsl(0, 0%, 40%);
 }
 

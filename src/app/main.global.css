@@ -135,8 +135,8 @@ button {
 }
 
 input {
-  -webkit-appearance: none;
-  appearance: none;
+  /* -webkit-appearance: none;
+  appearance: none; */
   border: none;
   border-radius: 0;
   background-color: #fff;
