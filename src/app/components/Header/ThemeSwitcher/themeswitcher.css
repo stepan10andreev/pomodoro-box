@@ -1,4 +1,4 @@
-.root {
+/* .root {
 	 position: relative;
 	 border-radius: 50%;
 	 display: block;
@@ -100,4 +100,140 @@
 		 top: -2px;
 		 width: 18px;
 	}
+} */
+
+
+.root {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 90px;
+	height: 45px;
+	transform: translate(-50%, -50%);
+}
+
+.root input {
+	display: none;
+}
+
+.root .slider {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+	background-color: #1e1e1e;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: all 1.4s;
+}
+
+.root .slider:before, .root .slider:after {
+	/* content: "";
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	border-radius: 30px; */
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+.root .slider:before {
+	transition: 0.4s;
+}
+
+.root .slider:after {
+	transition: 0.5s;
+}
+
+.root .wave {
+	/* position: absolute;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 50px;
+	border-radius: 40px;
+	transition: all 1.4s; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 45px;
+  border-radius: 40px;
+  transition: all 1.4s;
+}
+
+.root .wave:after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 20%;
+	width: 60px;
+	height: 3px;
+	background: #ffffff;
+	border-radius: 100%;
+	opacity: 0.4;
+}
+
+.root .wave:before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: 30%;
+	width: 35px;
+	height: 2px;
+	background: #ffffff;
+	border-radius: 100%;
+	opacity: 0.3;
+}
+
+.root input:checked + .slider {
+	background-color: transparent;
+}
+
+.root input:checked + .slider:before, .root input:checked + .slider:after {
+	transform: translateX(45px);
+}
+
+.root input:checked ~ .wave {
+	display: block;
+	background-color: #ffff2a;
+}
+
+.lightThemeIcon {
+     /* width: 20px; */
+     display: inline-block;
+     /* height: 20px; */
+     /* transform: scale(2); */
+     position: absolute;
+     left: 12px;
+     top: 20px;
+     transform: translateY(-50%) scale(1.5);
+}
+
+.darkThemeIcon {
+    /* width: 20px; */
+    display: inline-block;
+    /* height: 20px; */
+    /* transform: scale(2); */
+    position: absolute;
+    right: 12px;
+    top: 20px;
+    transform: translateY(-50%) scale(1.5);
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
