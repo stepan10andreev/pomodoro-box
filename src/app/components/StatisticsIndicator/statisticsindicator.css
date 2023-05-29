@@ -13,6 +13,10 @@
   /* background: rgba(255, 221, 169, 1); */
 }
 
+.statisticsIndicators.dark {
+  background-color: #262626;
+}
+
 .backgroundFF {
   background: rgba(255, 221, 169, 1);
 }

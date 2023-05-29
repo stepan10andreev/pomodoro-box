@@ -12,6 +12,10 @@ button:disabled {
   background-color: var(--grayF4);
 }
 
+.timer.dark {
+  background-color: #262626;
+}
+
 .timer > div:first-child {
   position: relative;
 }
@@ -62,6 +66,10 @@ button:disabled {
   justify-items: center;
   background-color: var(--green);
   transition: 0.3s;
+}
+
+.startButton.dark {
+  background-color: #40451a;
 }
 
 .stopButton {

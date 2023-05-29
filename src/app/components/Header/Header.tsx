@@ -8,6 +8,7 @@ import { setTodayDate } from '../../store/entryDateState/entryDateState';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { addDayStatistic } from '../../store/statisticsData/statisticsData';
 import { resetDayStatistics } from '../../store/statisticsData/dayStatistics';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 
 export function Header() {
@@ -32,6 +33,7 @@ export function Header() {
     <header className={styles.header}>
       <Logo />
       <StatisticsLink />
+      <ThemeSwitcher />
       {/* <button onClick={() => dispatch(addDayStatistic(dayStatistics))}>Check addDayStatistic</button>
       <button onClick={() => dispatch(resetDayStatistics())}>Check resetDayStatistics</button> */}
     </header>

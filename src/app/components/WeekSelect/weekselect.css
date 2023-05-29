@@ -8,6 +8,10 @@
   background-color: var(--grayF4);
 }
 
+.button.dark {
+  background-color: #262626;
+}
+
 .weekSelectOpen,
 .weekSelect {
   max-width: 370px;

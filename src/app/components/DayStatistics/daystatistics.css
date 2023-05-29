@@ -2,3 +2,7 @@
   padding: 25px 25px 90px;
   background-color: var(--grayF4);
 }
+
+.dayStatistics.dark {
+  background-color: #262626;
+}

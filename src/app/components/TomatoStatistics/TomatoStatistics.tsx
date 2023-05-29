@@ -5,14 +5,19 @@ import { EColor, Text } from '../Text';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { useWeeks } from '../Hooks/useWeeks';
 import { getSumWeeksStatParameters } from '../../utils/getFullWeeksStatParameters';
+import classNames from 'classnames';
 
 export function TomatoStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
   const {clickedBar, futureClickedBar } = useAppSelector(state => state.numberClickedBar)
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
+  const theme = useAppSelector(state => state.theme);
 
   return (
-    <div className={styles.tomatoStatistics}>
+    <div className={classNames(
+      styles.tomatoStatistics,
+      {[styles.dark]: theme === 'dark'},
+      )}>
       {futureClickedBar ? (
         <div className={styles.wrapperTomato}>
           <Icon name={EIcons.tomato}/>

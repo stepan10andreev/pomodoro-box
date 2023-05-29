@@ -1,3 +1,8 @@
 .bar {
   width: 100%;
 }
+
+
+.bar.dark > canvas {
+  background-color: #262626;
+}

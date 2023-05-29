@@ -7,6 +7,10 @@
   background-color: var(--grayF4);
 }
 
+.tomatoStatistics.dark {
+  background-color: #262626;
+}
+
 .tomatoCount {
   display: flex;
   padding: 9px 0px;

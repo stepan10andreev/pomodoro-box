@@ -6,14 +6,18 @@ import { useWeeks } from '../Hooks/useWeeks';
 import { getTimeFromMs } from '../../utils/getTimeFromMs';
 import { getSumWeeksStatParameters } from '../../utils/getFullWeeksStatParameters';
 import { getWeekDayNameByIndex } from '../../utils/getWeekDay';
+import classNames from 'classnames';
 
 export function DayStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   const {clickedBar, futureClickedBar} = useAppSelector(state => state.numberClickedBar);
-
+  const theme = useAppSelector(state => state.theme);
   return (
-    <div className={styles.dayStatistics}>
+    <div className={classNames(
+      styles.dayStatistics,
+      {[styles.dark]: theme === 'dark'},
+      )}>
       <Text As={'h2'} weight={700} size={2433}>
         {
           (clickedBar != null && getWeekDayNameByIndex(clickedBar)) ||

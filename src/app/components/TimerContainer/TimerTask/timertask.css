@@ -7,6 +7,10 @@
   background-color: var(--grayC4);
 }
 
+.timerTask.dark {
+  background-color: hsl(0deg 0% 24.1%);
+}
+
 .bgRed {
   background-color: var(--red);
 }

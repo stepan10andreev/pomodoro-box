@@ -13,6 +13,9 @@ import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsD
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 import { setTodayDate } from '../../../store/entryDateState/entryDateState';
 import { addTomatoForLongBreak, resetTomatoForLongBreak } from '../../../store/longBreakState/longBreakState';
+import classNames from 'classnames';
+
+
 const defaultDayObj = {
   day: 'ЧТ',
   workTime: 4444,
@@ -31,6 +34,7 @@ export function Timer() {
   const dayStatistics = useAppSelector(state => state.dayStatistics);
   const allStats = useAppSelector(state => state.statisticsData);
   const tomatoForLongBreak = useAppSelector(state => state.tomatoLongBreak.tomatoForLongBreak);
+  const theme = useAppSelector(state => state.theme);
   const currentTask = tasks[0];
   // console.log(allStats)
   const dispatch = useDispatch();
@@ -199,7 +203,10 @@ export function Timer() {
 
 
   return (
-    <div className={styles.timer}>
+    <div className={classNames(
+      styles.timer,
+      { [styles.dark]: theme === 'dark'})}
+    >
 
       <div className={styles.wrapper + ' ' + (isHoveredStop ? styles.stopClicked : '')}>
         <Text As={'div'} size={150} weight={200}>
@@ -226,14 +233,20 @@ export function Timer() {
         {isCountDowning ? (
           <button
             onClick={handlePause}
-            className={styles.startButton}
+            className={classNames(
+              styles.startButton,
+              {[styles.dark]: theme === 'dark'},
+            )}
           >
             <Text size={16} weight={500} color={EColor.white}>Пауза</Text>
           </button>
         ) : (
           <button
             onClick={handleStart}
-            className={styles.startButton}
+            className={classNames(
+              styles.startButton,
+              {[styles.dark]: theme === 'dark'},
+            )}
             disabled={currentTask ? false : true}
           >
             <Text size={16} weight={500} color={EColor.white}>{isPausing && currentTask ? 'Продолжить' : 'Старт'}</Text>

@@ -8,11 +8,14 @@ import { useWeeks } from '../Hooks/useWeeks';
 import { changeWeekSelectMenuClickedState } from '../../store/buttonStates/buttonStates';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppSelector } from '../Hooks/useAppDispatch';
+import classNames from 'classnames';
 
 export function WeekSelect() {
   const [isClicked, setIsClicked] = useState(false);
   const { isCurrentWeek, isLastWeek} = useWeeks();
-  const isSelectClicked = useAppSelector((state) => state.buttonStates.isWeekSelectMenuClicked)
+  const isSelectClicked = useAppSelector((state) => state.buttonStates.isWeekSelectMenuClicked);
+  const theme = useAppSelector(state => state.theme);
+
   const dispatch = useDispatch();
 
 
@@ -21,7 +24,13 @@ export function WeekSelect() {
     <div className={isSelectClicked ? styles.weekSelectOpen : styles.weekSelect}>
       <Dropdown
         button={
-          <button className={styles.button} onClick={() => {setIsClicked(!isClicked), dispatch(changeWeekSelectMenuClickedState(!isSelectClicked))}}>
+          <button
+            className={classNames(
+              styles.button,
+              {[styles.dark]: theme === 'dark'},
+            )}
+            onClick={() => {setIsClicked(!isClicked), dispatch(changeWeekSelectMenuClickedState(!isSelectClicked))}}
+          >
             <Text size={16}>
               {isCurrentWeek ? 'Эта неделя' : isLastWeek ? 'Прошедшая неделя' : '2 недели назад'}
             </Text>

@@ -15,6 +15,10 @@
   transition: 0.3s;
 }
 
+.button.dark {
+  background-color: #40451a;
+}
+
 .button:focus-visible {
   background-color: var(--green-dark);
 }
@@ -35,6 +39,10 @@
   line-height: 17px;
   background-color: var(--grayF4);
   color: var(--black);
+}
+
+.input.dark {
+  background-color: #262626;
 }
 
 .input::placeholder {

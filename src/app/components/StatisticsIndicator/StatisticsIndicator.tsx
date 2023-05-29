@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './statisticsindicator.css';
 import { EColor, Text } from '../Text';
 import { EIcons, Icon } from '../Icon';
+import classNames from 'classnames';
+import { useAppSelector } from '../Hooks/useAppDispatch';
 
 
 export interface IindicatorIcons {
@@ -18,14 +20,17 @@ interface IStatisticsIndicator {
 
 
 export function StatisticsIndicator({ statName, indicatorValue, indicatorIcons }: IStatisticsIndicator) {
-  // const
+  const theme = useAppSelector(state => state.theme);
+
+  const classes = classNames(
+    styles.statisticsIndicators,
+    {[styles.dark]: theme === 'dark'},
+    {[styles.backgroundFF]: indicatorIcons.focus},
+    {[styles.backgroundDF]: indicatorIcons.pause},
+    {[styles.backgroundC5]: indicatorIcons.stop},
+  )
   return (
-      <div className={styles.statisticsIndicators + ' ' +
-        (indicatorIcons.focus ? styles.backgroundFF :
-        indicatorIcons.pause ? styles.backgroundDF :
-        indicatorIcons.stop ? styles.backgroundC5 :
-        '')
-      }>
+      <div className={classes}>
         <div className={styles.wrapper}>
           <Text As={'div'} weight={700} size={2433}>{statName}</Text>
           {indicatorIcons.focus && <Text As={'div'} size={64}>{indicatorValue}%</Text>}

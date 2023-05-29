@@ -67,6 +67,19 @@
   font-display: swap;
 }
 
+:root[data-theme="light"] {
+  --background-color: #ffffff;
+  --black: #1C1E21;
+}
+
+:root[data-theme="dark"] {
+  --background-color: #18191a;
+  --black: #f5f6f7;
+}
+
+/* hsl(0deg 6.66% 24.45%) tasktimer*/
+/* hsl(0deg 3.97% 11.82%); timer */
+/* #2d3111 button green */
 html {
 	box-sizing: border-box;
   /* height: 100%;
@@ -80,8 +93,8 @@ body {
   min-width: 320px;
   font-family: var(--font-family), sans-serif;
   font-weight: 400;
+  background: var(--background-color);
   color: var(--black);
-  background-color: var(--white);
   /* overflow: hidden; */
 }
 
@@ -92,6 +105,7 @@ body {
   /* box-sizing: border-box; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
 }
 
 a {

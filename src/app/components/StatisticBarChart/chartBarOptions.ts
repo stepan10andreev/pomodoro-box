@@ -48,7 +48,7 @@ export const options = {
     },
 
     x: {
-      backgroundColor: "rgba(236, 236, 236, 1)",
+      // backgroundColor: "rgba(236, 236, 236, 1)",
       grid: {
         display: false,
         // color: 'transparent',

@@ -20,6 +20,7 @@ import { resetClickedBarNum, setClickedBarNum, setFutureClickedBar } from '../..
 import { useOnClickOutside } from '../Hooks/useOnClickOutside';
 import { getBarBackground } from '../../utils/getBarBackground';
 import { getWeekDay, getWeekDayIndexByName } from '../../utils/getWeekDay';
+import classNames from 'classnames';
 
 ChartJS.register(
   CategoryScale,
@@ -171,6 +172,7 @@ export function StatisticBarChart() {
   const [ indexClickedBar, setIndexClickedBar] = useState<number | null>(null);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar)
+  const theme = useAppSelector(state => state.theme);
 
   const statisticsData = useAppSelector(state => state.statisticsData)
   const dispatch = useDispatch();
@@ -217,7 +219,13 @@ export function StatisticBarChart() {
   }
 
   return (
-    <div className={styles.bar} ref={ref}>
+    <div
+      ref={ref}
+      className={classNames(
+      styles.bar,
+      {[styles.dark]: theme === 'dark'},
+      )}
+    >
       <Bar
         options={options}
         data={data}

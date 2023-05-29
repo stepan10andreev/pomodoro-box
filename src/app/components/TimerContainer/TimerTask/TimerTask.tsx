@@ -5,6 +5,7 @@ import { useAppSelector } from '../../Hooks/useAppDispatch';
 import { Itask } from '../../../store/postTask/postTask';
 import { changeChangedByTimerState } from '../../../store/buttonStates/buttonStates';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 
 
 export function TimerTask() {
@@ -12,6 +13,7 @@ export function TimerTask() {
   const currentTask = tasks[0];
   const decrementByMenu = useAppSelector((state) => state.buttonStates.isChangedTomatoCountByMenu);
   const decrementByTimer = useAppSelector((state) => state.buttonStates.isChangedTomatoCountByTimer);
+  const theme = useAppSelector(state => state.theme);
 
   const stopHoverState = useAppSelector((state) => state.buttonStates.isStopButtonHovered);
   const readyHoverState = useAppSelector((state) => state.buttonStates.isReadyButtonHovered);
@@ -49,7 +51,11 @@ export function TimerTask() {
   }, [currentTask?.taskId])
 
   return (
-    <div className={styles.timerTask + ' ' + (stopHoverState || readyHoverState ? styles.bgRed : '')}>
+    <div className={classNames(
+      styles.timerTask,
+      {[styles.bgRed]: stopHoverState || readyHoverState},
+      {[styles.dark]: theme === 'dark'},
+    )}>
       <Text As={'div'} size={16} weight={700} color={EColor.white}>{currentTask ? currentTask.taskTitle : 'Название текущей задачи'}</Text>
       <Text  As={'div'} size={16} weight={700} color={EColor.white}>Помидор {(currentTask) ? (initialTomatoNumber - (currentCountTomato - 1)) : 1}</Text>
     </div>

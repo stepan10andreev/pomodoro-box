@@ -28,6 +28,7 @@
   color: var(--black);
   border: none;
   outline: none;
+  background-color: var(--background-color);
 }
 
 .input:focus {
