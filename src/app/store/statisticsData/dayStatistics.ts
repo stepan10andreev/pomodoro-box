@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IDays } from "./statisticsData";
+import { getWeekDay } from "../../utils/getWeekDay";
 
 interface IPayloadDayStatistic {
   propsName: string;
@@ -7,7 +8,7 @@ interface IPayloadDayStatistic {
 }
 
 const initialState: IDays = {
-  day: '',
+  day: getWeekDay(new Date()),
   workTime: 0,
   doneTime:  0,
   pauseTime: 0,

@@ -16,7 +16,6 @@ import classNames from 'classnames';
 import useSound from 'use-sound';
 import sound from '../../../../assets/sounds/sound_timer-is-off.mp3';
 import doneSound from '../../../../assets/sounds/done-sound.mp3';
-import { Title } from 'chart.js/dist/plugins/plugin.title';
 
 export function Timer() {
   const settings = useAppSelector((state) => state.settings)

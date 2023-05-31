@@ -16,9 +16,6 @@ export function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEn
   const todayWeekNumber = getNumberWeek(NOW);
   const lastWeekNumber = getNumberWeek(new Date(lastEntryDate));
   const difference = todayWeekNumber - lastWeekNumber;
-  console.log(todayWeekNumber);
-  console.log(lastWeekNumber);
-  console.log(difference);
   if (difference === 0) {
     // console.log('Эта неделя')
     return state;

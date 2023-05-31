@@ -30,24 +30,10 @@ module.exports = {
   module: {
     rules: [
       {
-        // регулярное выражения с форматами каких файлов будет работать лоадер (перерабатывает  файлы одного типа  в другие)
-        // все файлы этих форматов будут обрабатьваться ts-loader
-        // необходим tsconfig для ts-loader
         test: /\.[tj]sx?$/,
         use: ['ts-loader'],
         exclude: /node_modules/,
       },
-      // вариант с единым файлом CSS на выходе, не МОДУЛИ! тогда нужен MiniCssExtractPlugin
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     IS_PROD ? MiniCssExtractPlugin.loader : "style-loader",
-      //     {
-      //         loader: "css-loader",
-      //     },
-      //   ],
-      // },
-      // вариант с CSS модулями, то есть импорт стилей непосредственно в компонент шде они используются, и затем стили записываются в файл index.js на выходе, а не файл css
       {
         test: /\.css$/,
         use: [
@@ -165,39 +151,10 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     open: true,
-    // будет работать только в режиме dev: релоад страницы когда происходят изменения
     hot: IS_DEV,
   },
   devtool: setupDevtool(),
 }
 
-// если не используем модули css а хотим чтобы формировался единый сss файл в папке dist надо использовать npm install --save-dev mini-css-extract-plugin
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-// module.exports = {
-    // настрйока плагина, файл в конце будет иметь имя с хэшом
-//     plugins: [new MiniCssExtractPlugin({
-        // filename: 'main.[contenthash].css',
-// })],
-//     module: {
-//         rules: [
-//             {
-//                 test: /\.css$/,
-//                 use: [
-//                     IS_PROD ? MiniCssExtractPlugin.loader : "style-loader",
-//                     {
-//                         loader: "css-loader",
-//                         options: {
-//                             modules: {
-//                                 mode: "local",
-//                                 localIdentName: "[name]__[local]--[hash:base64:5]",
-//                             },
-//                         },
-//                     },
-//                 ],
-//             },
-//         ]
-//     },
-// };
 
 

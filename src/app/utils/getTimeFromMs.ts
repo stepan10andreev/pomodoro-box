@@ -5,10 +5,11 @@ export function getTimeFromMs(timeInMs: number, abbreviated = false): string {
   if (timeInMs < 60)  {
     return result = abbreviated ? `${timeInMs}с` : `${timeInMs} секунд`;
   } else if (timeInMs < 3600) {
-    return result = abbreviated ? `${timeInMs / 60}м` : `${timeInMs / 60} мин`;
+    return result = abbreviated ? `${minutes}м` : `${minutes} минут`;
   } else if (timeInMs >= 3600) {
     return result = abbreviated ? `${hours}ч ${minutes}м` : `${hours} часов ${minutes} минут`;
   }  else {
     return `${timeInMs}с`;
   }
 }
+
