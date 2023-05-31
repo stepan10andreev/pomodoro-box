@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styles from './weekselect.css';
 import { Dropdown } from '../Dropdown';
 import { Icon, EIcons } from '../Icon';
-import { EColor, Text } from '../../components/Text';
+import { Text } from '../../components/Text';
 import { MenuWeekList } from './MenuWeekList';
 import { useWeeks } from '../Hooks/useWeeks';
 import { changeWeekSelectMenuClickedState } from '../../store/buttonStates/buttonStates';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import classNames from 'classnames';
 
@@ -18,8 +18,6 @@ export function WeekSelect() {
 
   const dispatch = useDispatch();
 
-
-  //Диспатч не нужен setClicked можноп ередать внутрь MenuWeekList и там его обновлять!!!!
   return (
     <div className={isSelectClicked ? styles.weekSelectOpen : styles.weekSelect}>
       <Dropdown

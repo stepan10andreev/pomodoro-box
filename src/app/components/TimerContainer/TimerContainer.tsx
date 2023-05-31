@@ -4,10 +4,6 @@ import { TimerTask } from './TimerTask';
 import { Timer } from './Timer/Timer';
 import { motion } from 'framer-motion';
 
-// interface ITimerContainerProps {
-//   children?: React.ReactNode;
-// }
-
 export function TimerContainer() {
   return (
     <motion.div

@@ -1,11 +1,10 @@
+/* eslint-disable */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const FileManagerPlugin = require('filemanager-webpack-plugin');
-// если не вводить переменные окружения можно передовать флаг --mode в скрипты packageJson
-// "build": "webpack --mode=production --config webpack.config.js",
-// "dev": "webpack serve --mode=development --config webpack.config.js",
+
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development';
 const IS_PROD = NODE_ENV === 'production';

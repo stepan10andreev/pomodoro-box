@@ -7,14 +7,13 @@ import classNames from 'classnames';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 
 export function TaskForm() {
-  // устанавливаем с помощью хука знаечние ввода инпута (потому что клик на кнопку нельзя передать event.target.value (у кнопки его нет)
   const [taskTitle, setTaskTitle] = useState('');
   const theme = useAppSelector(state => state.theme);
 
   const dispatch = useDispatch();
 
   const changeTasTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTaskTitle(event.target.value)
+    setTaskTitle(event.target.value);
   }
 
   const handleSubmit = (event: FormEvent) => {
@@ -26,8 +25,8 @@ export function TaskForm() {
   }
 
   const inputClasses = classNames(
-      styles.input,
-      {[styles.dark]: theme === 'dark'},
+    styles.input,
+    {[styles.dark]: theme === 'dark'},
   )
 
   const buttonClasses = classNames(

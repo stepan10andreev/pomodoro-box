@@ -13,7 +13,7 @@ interface IMenuItemList {
 
 export function MenuItemList({ onClickActiveInput, taskId }: IMenuItemList) {
   const dispatch = useDispatch();
-  //
+
   return (
       <ul className={styles.menuItemsList}>
 

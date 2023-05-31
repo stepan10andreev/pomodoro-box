@@ -1,109 +1,4 @@
-/* .root {
-	 position: relative;
-	 border-radius: 50%;
-	 display: block;
-	 height: 24px;
-	 overflow: hidden;
-	 width: 24px;
-	 transition: 0.5s all ease;
-}
- .root input {
-	 display: none;
-}
- .root:hover {
-	 cursor: pointer;
-}
- .root:before {
-	 content: "";
-	 display: block;
-	 position: absolute;
-}
- .root.light:before {
-	 animation-duration: 0.5s;
-	 animation-name: sun;
-	 background-color: red;
-	 border-radius: 50%;
-	 box-shadow: 10px 0 0 -3.5px red, -10px 0 0 -3.5px red, 0 -10px 0 -3.5px red, 0 10px 0 -3.5px red, 7px -7px 0 -3.5px red, 7px 7px 0 -3.5px red, -7px 7px 0 -3.5px red, -7px -7px 0 -3.5px red;
-	 height: 10px;
-	 left: 7px;
-	 top: 7px;
-	 width: 10px;
-}
- .root.light:before:hover {
-	 background-color: blue;
-	 box-shadow: 10px 0 0 -3.5px blue, -10px 0 0 -3.5px blue, 0 -10px 0 -3.5px blue, 0 10px 0 -3.5px blue, 7px -7px 0 -3.5px blue, 7px 7px 0 -3.5px blue, -7px 7px 0 -3.5px blue, -7px -7px 0 -3.5px blue;
-}
- .root.dark:before {
-	 animation-duration: 0.5s;
-	 animation-name: moon;
-	 background-color: red;
-	 border-radius: 50%;
-	 height: 20px;
-	 left: 2px;
-	 top: 2px;
-	 width: 20px;
-	 z-index: 1;
-}
- .root.dark:before:hover {
-	 background-color: blue;
-}
- .root.dark:after {
-	 animation-duration: 0.5s;
-	 animation-name: moon-shadow;
-	 background: blue;
-	 border-radius: 50%;
-	 content: "";
-	 display: block;
-	 height: 18px;
-	 position: absolute;
-	 right: -2px;
-	 top: -2px;
-	 width: 18px;
-	 z-index: 2;
-}
- @keyframes sun {
-	 from {
-		 background-color: blue;
-		 box-shadow: 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue, 0 0 0 -5px blue;
-	}
-	 to {
-		 background-color: red;
-		 box-shadow: 10px 0 0 -3.5px red, -10px 0 0 -3.5px red, 0 -10px 0 -3.5px red, 0 10px 0 -3.5px red, 7px -7px 0 -3.5px red, 7px 7px 0 -3.5px red, -7px 7px 0 -3.5px red, -7px -7px 0 -3.5px red;
-	}
-}
- @keyframes moon {
-	 from {
-		 height: 0;
-		 left: 12px;
-		 top: 12px;
-		 width: 0;
-	}
-	 to {
-		 height: 20px;
-		 left: 2px;
-		 top: 2px;
-		 width: 20px;
-	}
-}
- @keyframes moon-shadow {
-	 from {
-		 background-color: blue;
-		 height: 0;
-		 right: 7px;
-		 top: 7px;
-		 width: 0;
-	}
-	 to {
-		 background-color: blue;
-		 height: 18px;
-		 right: -2px;
-		 top: -2px;
-		 width: 18px;
-	}
-} */
-
-
-.root {
+.switcher {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -112,11 +7,11 @@
 	transform: translate(-50%, -50%);
 }
 
-.root input {
+.switcher input {
 	display: none;
 }
 
-.root .slider {
+.switcher .slider {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -130,7 +25,7 @@
 	transition: all 1.4s;
 }
 
-.root .slider:before, .root .slider:after {
+.switcher .slider:before, .switcher .slider:after {
 	/* content: "";
 	position: absolute;
 	bottom: 5px;
@@ -149,15 +44,15 @@
   border-radius: 30px;
 }
 
-.root .slider:before {
+.switcher .slider:before {
 	transition: 0.4s;
 }
 
-.root .slider:after {
+.switcher .slider:after {
 	transition: 0.5s;
 }
 
-.root .wave {
+.switcher .wave {
 	/* position: absolute;
 	top: 0;
 	left: 0;
@@ -174,7 +69,7 @@
   transition: all 1.4s;
 }
 
-.root .wave:after {
+.switcher .wave:after {
 	content: "";
 	position: absolute;
 	top: 3px;
@@ -186,7 +81,7 @@
 	opacity: 0.4;
 }
 
-.root .wave:before {
+.switcher .wave:before {
 	content: "";
 	position: absolute;
 	top: 10px;
@@ -198,15 +93,15 @@
 	opacity: 0.3;
 }
 
-.root input:checked + .slider {
+.switcher input:checked + .slider {
 	background-color: transparent;
 }
 
-.root input:checked + .slider:before, .root input:checked + .slider:after {
+.switcher input:checked + .slider:before, .switcher input:checked + .slider:after {
 	transform: translateX(45px);
 }
 
-.root input:checked ~ .wave {
+.switcher input:checked ~ .wave {
 	display: block;
 	background-color: #ffff2a;
 }

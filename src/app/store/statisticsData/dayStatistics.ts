@@ -1,5 +1,4 @@
-import { Action, PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
-import { useAppSelector } from "../../components/Hooks/useAppDispatch";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IDays } from "./statisticsData";
 
 interface IPayloadDayStatistic {
@@ -8,7 +7,7 @@ interface IPayloadDayStatistic {
 }
 
 const initialState: IDays = {
-  day: 'ЧТ',
+  day: '',
   workTime: 0,
   doneTime:  0,
   pauseTime: 0,
@@ -39,8 +38,8 @@ const dayStatisticsSlice = createSlice({
       },
     },
     resetDayStatistics: {
-      reducer (state) {
-        return state = {...initialState}
+      reducer (state: IDays) {
+        return state = {...initialState};
       },
       prepare () {
         return {
@@ -51,8 +50,6 @@ const dayStatisticsSlice = createSlice({
   }
 })
 
-
 export const { setDayStatistics, resetDayStatistics } = dayStatisticsSlice.actions;
-
 
 export default dayStatisticsSlice.reducer;

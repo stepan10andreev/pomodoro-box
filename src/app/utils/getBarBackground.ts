@@ -9,7 +9,7 @@ export function getBarBackground(i: number | null) {
     'rgba(234, 137, 121, 1)',
     'rgba(234, 137, 121, 1)',
   ]
-  if (i === null) return initialArray
-  initialArray[i] = activeBg
+  if (i === null) return initialArray;
+  initialArray[i] = activeBg;
   return initialArray
 }

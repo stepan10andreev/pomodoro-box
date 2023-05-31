@@ -24,7 +24,6 @@
   color: var(--red-active);
 }
 
-
 .linkActive path:first-child {
   fill: var(--red-active);
 }

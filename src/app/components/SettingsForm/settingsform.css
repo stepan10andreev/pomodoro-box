@@ -51,7 +51,6 @@
 .btnChangeSettings,
 .btnSaveSettings {
   padding: 15px;
-  /* border: 1px solid red; */
   border-radius: 10px;
   background-color: #56ff51;
   transition: 0.3s;

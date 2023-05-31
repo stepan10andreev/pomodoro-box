@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './statisticslink.css';
 import { EIcons, Icon } from '../../Icon';
 import { EColor, Text } from '../../Text';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 export function StatisticsLink() {

@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useMemo, useState } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import styles from './timer.css';
 import { EColor, Text } from '../../Text';
 import { EIcons, Icon } from '../../Icon';
@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { decrementTomatoCount, deleteTask } from '../../../store/postTask/postTask';
 import { changeChangedByMenuState, changeChangedByTimerState, changeReadyBtnHoverState, changeStopBtnHoverState } from '../../../store/buttonStates/buttonStates';
 import { getWeekDay } from '../../../utils/getWeekDay';
-import { IDays } from '../../StatisticBarChart/statisticsData';
 import { resetDayStatistics, setDayStatistics } from '../../../store/statisticsData/dayStatistics';
 import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 import { setTodayDate } from '../../../store/entryDateState/entryDateState';
@@ -17,32 +16,19 @@ import classNames from 'classnames';
 import useSound from 'use-sound';
 import sound from '../../../../assets/sounds/sound_timer-is-off.mp3';
 import doneSound from '../../../../assets/sounds/done-sound.mp3';
-
-const defaultDayObj = {
-  day: 'ЧТ',
-  workTime: 4444,
-  doneTime: 4444,
-  pauseTime: 3333,
-  focusProcent: 1111,
-  countStops: 2,
-  countTomato: 0
-}
+import { Title } from 'chart.js/dist/plugins/plugin.title';
 
 export function Timer() {
-
   const settings = useAppSelector((state) => state.settings)
-  const timerValueSec = 5/*settings.tomatoDuration * 60;*/
+  const timerValueSec = settings.tomatoDuration * 60;
+
   const tasks = useAppSelector((state) => state.tasks);
+  const currentTask = tasks[0];
+
   const lastEntry = useAppSelector(state => state.entryDate);
   const dayStatistics = useAppSelector(state => state.dayStatistics);
-  const allStats = useAppSelector(state => state.statisticsData);
   const tomatoForLongBreak = useAppSelector(state => state.tomatoLongBreak.tomatoForLongBreak);
   const theme = useAppSelector(state => state.theme);
-  const currentTask = tasks[0];
-  // console.log(allStats)
-  const dispatch = useDispatch();
-
-  // const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
 
   const [timer, setTimer] = useState(timerValueSec);
   const [isCountDowning, setIsCountDowning] = useState(false);
@@ -52,11 +38,10 @@ export function Timer() {
   const [play] = useSound(sound);
   const [playReady] = useSound(doneSound);
 
+  const dispatch = useDispatch();
 
-  console.log(timerValueSec)
-  console.log(timer)
   // используем утилиту для того чтобы добавить 0 если секунды или минуты меньше 10
-  // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычислениежд
+  // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычисление
   const minutesValue = Math.floor(timer / 60);
   const minutes = getPadTime(Math.floor(timer / 60));
   const seconds = getPadTime(timer - minutesValue * 60);
@@ -71,9 +56,9 @@ export function Timer() {
     if (!currentTask) setTimer(timerValueSec);
     if (tomatoForLongBreak === settings.longBreakFrequency) {
       setIsBreaking(true);
-      setTimer(10)
-      // setTimer(settings.longBreakDuration * 60);
-      dispatch(resetTomatoForLongBreak())
+      // setTimer(10)
+      setTimer(settings.longBreakDuration * 60);
+      dispatch(resetTomatoForLongBreak());
     }
     return (() => {
       clearInterval(interval);
@@ -84,14 +69,13 @@ export function Timer() {
   useEffect(() => {
     if (timer === 0 && !isBreaking) {
       setIsCountDowning(false);
-      // setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}));
-      dispatch(setDayStatistics('countTomato'))
+      dispatch(setDayStatistics('countTomato'));
       dispatch(decrementTomatoCount(currentTask?.taskId));
-      dispatch(changeChangedByMenuState(false))
-      dispatch(addTomatoForLongBreak())
+      dispatch(changeChangedByMenuState(false));
+      dispatch(addTomatoForLongBreak());
       setIsBreaking(true);
-      // setTimer(settings.shortBreakDuration * 60);
-      setTimer(3)
+      setTimer(settings.shortBreakDuration * 60);
+      // setTimer(3)
     }
     if (timer === 0 && isBreaking) {
       setIsCountDowning(false);
@@ -106,18 +90,17 @@ export function Timer() {
     setIsBreaking(false);
   }, [currentTask?.taskId])
 
+  // только при изменении таймера
   useEffect(() => {
     isCountDowning && dispatch(setDayStatistics('workTime'));
     isCountDowning && !isBreaking && dispatch(setDayStatistics('doneTime'))
     if (timer === 0) play();
-    // setDayObject(prevState => ({...prevState, workTime: prevState['workTime'] + 1}));
   }, [timer])
 
   useEffect(() => {
     const interval = setInterval(() =>{
       isPausing && !isBreaking &&
         dispatch(setDayStatistics('pauseTime'));
-        // setDayObject(prevState => ({...prevState, pauseTime: prevState['pauseTime'] + 1}))
     }, 1000)
     return (() => {
       clearInterval(interval);
@@ -128,12 +111,10 @@ export function Timer() {
     if (lastEntry.dayName) {
       const NOW = new Date();
       if (NOW.getDate() != lastEntry.day || NOW.getMonth() != lastEntry.month || NOW.getFullYear() != lastEntry.year) {
-        console.log('День сменился')
         dispatch(addDayStatistic(dayStatistics));
         dispatch(resetDayStatistics());
-        // console.log(allStats)
         // диспатч нового дня
-        dispatch(setTodayDate(getWeekDay(NOW), NOW.getDate(), NOW.getTime(), NOW.getMonth(), NOW.getFullYear()))
+        dispatch(setTodayDate(getWeekDay(NOW), NOW.getDate(), NOW.getTime(), NOW.getMonth(), NOW.getFullYear()));
       }
     }
   }, [])
@@ -146,18 +127,17 @@ export function Timer() {
     setIsHoveredStop(false);
     dispatch(changeStopBtnHoverState(false));
     dispatch(changeReadyBtnHoverState(false));
-    dispatch(changeChangedByTimerState(true))
-    // console.log(todayDay)
+    dispatch(changeChangedByTimerState(true));
   };
 
   const handleStop = () => {
     if (isBreaking) {
       setIsBreaking(false);
-      setTimer(timerValueSec); //// можно ли убрать?
+      setTimer(timerValueSec);
     }
+
     !isBreaking && dispatch(setDayStatistics('countStops'));
-      // setDayObject(prevState => ({...prevState, countStops: prevState['countStops'] + 1})) :
-      // setDayObject(prevState => ({...prevState, countStops: prevState['countStops']}));
+
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(timerValueSec);
@@ -172,17 +152,18 @@ export function Timer() {
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(timerValueSec);
+
     if(!isBreaking) {
       setIsBreaking(true);
-      setTimer(3)
+      setTimer(settings.shortBreakDuration * 60);
+      // setTimer(3)
     }
-    // setCountTomato(countTomato => countTomato + 1)
-    // setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}))
+
     dispatch(setDayStatistics('countTomato'));
     dispatch(decrementTomatoCount(currentTask.taskId));
     dispatch(changeChangedByMenuState(false));
     dispatch(addTomatoForLongBreak());
-    playReady(doneSound)
+    playReady(doneSound);
   };
 
   const handleAddTime = () => {
@@ -190,27 +171,26 @@ export function Timer() {
   }
 
   const onMouseEnter = (e: MouseEvent<HTMLButtonElement>) => {
-    const button = e.target as HTMLButtonElement
+    const button = e.target as HTMLButtonElement;
     const typeButton = button.firstChild?.textContent;
     if (typeButton === 'Сделано') {
-      dispatch(changeReadyBtnHoverState(true))
+      dispatch(changeReadyBtnHoverState(true));
     }
     if (typeButton === 'Стоп') {
       setIsHoveredStop(true);
-      dispatch(changeStopBtnHoverState(true))
+      dispatch(changeStopBtnHoverState(true));
     }
   }
 
   const onMouseLeave = (e: MouseEvent<HTMLButtonElement>) => {
-    const button = e.target as HTMLButtonElement
+    const button = e.target as HTMLButtonElement;
     const typeButton = button.firstChild?.textContent;
-    console.log(typeButton)
     if (typeButton === 'Сделано') {
-      dispatch(changeReadyBtnHoverState(false))
+      dispatch(changeReadyBtnHoverState(false));
     }
     if (typeButton === 'Стоп') {
       setIsHoveredStop(false);
-      dispatch(changeStopBtnHoverState(false))
+      dispatch(changeStopBtnHoverState(false));
     }
   }
 

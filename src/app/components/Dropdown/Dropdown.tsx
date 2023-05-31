@@ -1,4 +1,4 @@
-import React, { useRef, MouseEvent } from 'react';
+import React, { useRef } from 'react';
 import styles from './dropdown.css';
 import { useOnClickOutside } from '../Hooks/useOnClickOutside';
 
@@ -10,6 +10,7 @@ interface IDropdownProps {
   onClose?: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {};
 
 export function Dropdown({ button, children, isOpen, onClose = NOOP, onOpen = NOOP }: IDropdownProps) {

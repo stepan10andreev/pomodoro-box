@@ -9,7 +9,7 @@ import classNames from 'classnames';
 
 export function TomatoStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
-  const {clickedBar, futureClickedBar } = useAppSelector(state => state.numberClickedBar)
+  const {clickedBar, futureClickedBar } = useAppSelector(state => state.numberClickedBar);
   const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   const theme = useAppSelector(state => state.theme);
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './statisticsindicatorcontainer.css';
 import { StatisticsIndicator } from '../StatisticsIndicator';
 import { useWeeks } from '../../Hooks/useWeeks';
 import { useAppSelector } from '../../Hooks/useAppDispatch';
@@ -7,9 +6,8 @@ import { getTimeFromMs } from '../../../utils/getTimeFromMs';
 
 export function StatisticsIndicatorContainer() {
   const statData = useAppSelector(state => state.statisticsData);
-  const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
   const clickedBar = useAppSelector(state => state.numberClickedBar.clickedBar);
-
+  const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
 
   return (
     <>

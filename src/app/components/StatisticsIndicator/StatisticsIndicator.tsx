@@ -1,23 +1,21 @@
 import React from 'react';
 import styles from './statisticsindicator.css';
-import { EColor, Text } from '../Text';
+import { Text } from '../Text';
 import { EIcons, Icon } from '../Icon';
 import classNames from 'classnames';
 import { useAppSelector } from '../Hooks/useAppDispatch';
-
 
 export interface IindicatorIcons {
   focus?: boolean;
   pause?: boolean;
   stop?: boolean;
-};
+}
 
 interface IStatisticsIndicator {
   statName: string;
   indicatorValue: number | string;
   indicatorIcons: IindicatorIcons
 }
-
 
 export function StatisticsIndicator({ statName, indicatorValue, indicatorIcons }: IStatisticsIndicator) {
   const theme = useAppSelector(state => state.theme);
@@ -29,6 +27,7 @@ export function StatisticsIndicator({ statName, indicatorValue, indicatorIcons }
     {[styles.backgroundDF]: indicatorIcons.pause},
     {[styles.backgroundC5]: indicatorIcons.stop},
   )
+
   return (
       <div className={classes}>
         <div className={styles.wrapper}>

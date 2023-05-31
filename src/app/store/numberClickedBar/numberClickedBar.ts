@@ -10,8 +10,6 @@ const initialState: IClickedBar = {
   futureClickedBar: false,
 }
 
-// const initialState: null | number = null;
-
 const numberClickedBarSlice = createSlice({
   name: 'numberClickedBar',
   initialState,
@@ -37,7 +35,7 @@ const numberClickedBarSlice = createSlice({
       }
     },
     resetClickedBarNum: {
-      reducer (state, action: PayloadAction<string>) {
+      reducer (state) {
         state.clickedBar = null;
       },
       prepare () {

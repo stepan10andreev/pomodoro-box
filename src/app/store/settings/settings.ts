@@ -1,9 +1,4 @@
-import { Action, PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
-
-interface IPayloadSettings {
-  propsName: string;
-  propsValue: number | boolean;
-}
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ISettings {
   [K: string]: number | boolean;
@@ -26,29 +21,12 @@ const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    // setSettingsByProps: {
-    //   reducer (state, action: PayloadAction<IPayloadSettings>) {
-    //     // 2 варианта записи
-    //     state[action.payload.propsName] = action.payload.propsValue
-    //     // return state = {...state, [action.payload.propsName]: action.payload.propsValue};
-    //   },
-    //   prepare (propsName: string, propsValue: number | boolean) {
-    //     return {
-    //       payload: {
-    //         propsName,
-    //         propsValue,
-    //       }
-    //     }
-    //   },
-    // },
     setSettings: (state, action: PayloadAction<ISettings>) => {
-        return state = {...action.payload}
+        return state = {...action.payload};
     },
   }
 })
 
-
 export const { setSettings } = settingsSlice.actions;
-
 
 export default settingsSlice.reducer;

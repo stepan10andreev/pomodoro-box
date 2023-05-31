@@ -2,8 +2,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IEntryDate {
   dayName: string;
-  // numberDay: number;
-  // numberMonth: number;
   msDate: number;
   day: number;
   month: number;
@@ -16,11 +14,7 @@ const initialState: IEntryDate = {
   month: 0,
   year: 0,
   dayName: '',
-  // numberDay: 0,
-  // numberMonth: 0,
 }
-
-
 
 const entryDateSlice = createSlice({
   name: 'entryDate',
@@ -32,7 +26,7 @@ const entryDateSlice = createSlice({
         state.dayName = action.payload.dayName;
         state.day = action.payload.day;
         state.month = action.payload.month;
-        state.year = action.payload.year
+        state.year = action.payload.year;
       },
       prepare (dayName: string, day: number, msDate: number, month: number, year: number) {
         return {

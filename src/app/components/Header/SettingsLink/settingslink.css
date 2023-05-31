@@ -25,11 +25,9 @@
   fill: var(--red-active);
 }
 
-
 .settingsLink:hover span{
   color: var(--red-active);
 }
-
 
 .linkActive svg {
   fill: var(--red-active);

@@ -4,10 +4,9 @@ import { AddBtnIcon, ArrowDownIcon, ClockIcon, DecreaseMenuIcon, DeleteMenuIcon,
 import { TomatoIcon } from './Icons/TomatoIcon';
 import { SettingsIcon } from './Icons/SettingsIcon';
 
-
 type TSizes = 130 | 115 | 81 | 50 | 40 | 30 | 24 | 18 | 14;
 
-let iconList = {
+const iconList = {
   LogoIcon: <LogoIcon />,
   AddBtnIcon: <AddBtnIcon />,
   EqualizerIcon: <EqualizerIcon />,
@@ -45,8 +44,6 @@ interface IIconProps {
   name: EIcons;
   size?: TSizes;
 }
-
-
 
 export function Icon({ name, size }: IIconProps) {
   return (

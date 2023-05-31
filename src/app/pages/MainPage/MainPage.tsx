@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './mainpage.css';
 import { Content } from '../../components/Content';
 import { LeftContentWrapper } from '../../components/Content/LeftContentWrapper';
 import { AppInstruction } from '../../components/AppInstruction';

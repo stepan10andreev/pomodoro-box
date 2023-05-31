@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './appinstruction.css';
-import { EColor, Text } from '../../components/Text';
+import { Text } from '../../components/Text';
 
 export function AppInstruction() {
   return (
@@ -21,10 +21,11 @@ export function AppInstruction() {
         <li>
           <Text size={1633}>Сделайте короткий перерыв (3-5 минут)</Text>
         </li>
-        <li>
-          <Text size={1633}>Продолжайте работать «помидор» за «помидором», пока задача не будут выполнена. Каждые 4 «помидора» делайте длинный перерыв (15-30 минут).</Text>
+         <li>
+          <Text size={1633}>Продолжайте работать «помидор» за «помидором», пока задача не будут выполнена. Каждые 4 «помидора» делайте длинный перерыв (15-30 минут).</Text>
         </li>
       </ul>
     </div>
   );
 }
+

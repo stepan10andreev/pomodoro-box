@@ -57,10 +57,10 @@ export const store = configureStore({
     }),
 })
 
-export let persistor = persistStore(store)
+export const persistor = persistStore(store)
 
 
-// // redux-toolkit
+// // only redux-toolkit
 // export const store = configureStore({
 //   reducer: {
 //     tasks: tasksReducer,
@@ -76,14 +76,7 @@ export let persistor = persistStore(store)
 // //   }
 // // })
 
-// // экспорт типа корневого редьюсера для использования в useSelector в других компонентах или для создания хука useAppSelector
-// // Если в configureStore одна функция, она будет напрямую использоваться как корневой редьюсер для хранилища.
-// // Если это объект редьюсеров слайсов, например {users : usersReducer, posts : postsReducer}, configureStore автоматически создаст корневой редьюсер,
-// // передав этот объект утилите ReduxcombineReducers.
 export type RootState = ReturnType<typeof store.getState>
 
 
-// // // экспорт типа dispatch такжде для создания хука для использования thunk
-// export type AppDispatch = typeof store.dispatch
-// export default store
 

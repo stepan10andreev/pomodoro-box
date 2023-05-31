@@ -16,14 +16,14 @@ export const options = {
       beginAtZero: true,
       position: 'right' as const,
       ticks: {
-        callback: (value: any, index: any, values: any) => {
-          if (value <= 1.5) return 'время'
-          if (value < 3600) {
-            return `${Math.round(value / 60)} мин`;
+        callback: (value: string | number) => {
+          if (+value <= 1.5) return 'время'
+          if (+value < 3600) {
+            return `${Math.round(+value / 60)} мин`;
           }
-          if (value >= 3600) {
-            const hours = Math.floor(value / 3600);
-            const minutes = Math.round((value - (hours * 3600)) / 60);
+          if (+value >= 3600) {
+            const hours = Math.floor(+value / 3600);
+            const minutes = Math.round((+value - (hours * 3600)) / 60);
             return `${hours} ч ${minutes} м`;
           }
         },

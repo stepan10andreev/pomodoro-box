@@ -1,7 +1,6 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
-
 // // позволяет не писать везде RootState
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 

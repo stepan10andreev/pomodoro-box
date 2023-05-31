@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './menuweeklist.css';
-import { EColor, Text } from '../../Text';
-import { useDispatch, useSelector } from 'react-redux';
+import { Text } from '../../Text';
+import { useDispatch } from 'react-redux';
 import { chooseWeek } from '../../../store/weeks/weeks';
 import { useAppSelector } from '../../Hooks/useAppDispatch';
 import { changeWeekSelectMenuClickedState } from '../../../store/buttonStates/buttonStates';

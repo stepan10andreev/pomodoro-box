@@ -1,8 +1,5 @@
-import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
-import { useAppSelector } from "../../components/Hooks/useAppDispatch";
-import entryDateState from "../entryDateState/entryDateState";
-import { getNumberWeek } from "../../utils/getNumberWeek";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { shiftWeeksWIthStatsDependsOnDate } from "../../utils/shiftWeeksWIthStatsDependsOnDate";
 
 export interface IDays {
   [K: string]: string | number;
@@ -21,16 +18,6 @@ export interface IStatisticsData {
   lastWeek: IDays[],
   twoWeeksAgo:  IDays[]
 }
-
-const initialWeek = [
-  { day: 'ПН', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'ВТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'СР', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'ЧТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'ПТ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'СБ', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-  { day: 'ВС', workTime: 0, doneTime: 0, pauseTime: 0, focusProcent: 0, countStops: 0, countTomato: 0 },
-]
 
 const initialState: IStatisticsData = {
   currentWeek: [
@@ -69,65 +56,27 @@ function getStatisticsDataState(fullStats: IStatisticsData, dayStats: IDays) {
   };
 }
 
-function shiftWeeksWIthStatsDependsOnDate (state: IStatisticsData, lastEntryDate: number) {
-  const NOW = new Date();
-  const todayWeekNumber = getNumberWeek(NOW);
-  const lastWeekNumber = getNumberWeek(new Date(lastEntryDate))
-  const difference = todayWeekNumber - lastWeekNumber;
-  console.log(todayWeekNumber)
-  console.log(lastWeekNumber)
-  console.log(difference)
-  if (difference === 0) {
-    console.log('Эта неделя')
-    return state;
-  } else if (difference < 0) {
-    return {
-      ...state,
-      twoWeeksAgo: initialWeek,
-      lastWeek: initialWeek,
-      currentWeek: initialWeek
-    };
-  } else if (difference === 1) {
-    console.log('Прошла неделя')
-    return {
-      ...state,
-      twoWeeksAgo: state.lastWeek,
-      lastWeek: state.currentWeek,
-      currentWeek: initialWeek
-    };
-  } else if (difference >= 2) {
-    console.log('Прошло 2 недели')
-    return {
-      ...state,
-      twoWeeksAgo: state.currentWeek,
-      lastWeek: initialWeek,
-      currentWeek: initialWeek
-    };
-  } else return state;
-}
-
 const statisticsSlice = createSlice({
   name: 'statisticsData',
   initialState,
   reducers: {
     addDayStatistic: {
       reducer (state, action: PayloadAction<IDays>) {
-
+        // создаем обьект и добавляем еще одно свойство которое вычисляется из 2 других свойств
         const statsObject = {
           ...action.payload,
           focusProcent: Math.abs(Math.round(action.payload.doneTime / action.payload.workTime * 100))
         }
         // вынести в отдельную функцию
-        let lastEntryDate
-        const localStorageData = localStorage.getItem('persist:root')
+        let lastEntryDate;
+        const localStorageData = localStorage.getItem('persist:root');
         if (localStorageData) {
-          let entryDate = JSON.parse(localStorageData).entryDate;
-          lastEntryDate = JSON.parse(entryDate).msDate
-          console.log(lastEntryDate)
+          const entryDate = JSON.parse(localStorageData).entryDate;
+          lastEntryDate = JSON.parse(entryDate).msDate;
         }
-        let newState = shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate)
+        const newState = shiftWeeksWIthStatsDependsOnDate(state, lastEntryDate);
 
-        return getStatisticsDataState(newState, statsObject)
+        return getStatisticsDataState(newState, statsObject);
       },
       prepare ({day, workTime, doneTime, pauseTime, countStops, countTomato, focusProcent}: IDays) {
         return {
@@ -146,16 +95,9 @@ const statisticsSlice = createSlice({
   }
 })
 
-// createSlice автоматически создается функция «создатель действия» с тем же именем
-// Экспортируем этого создателя действия и используем его в наших компонентах пользовательского интерфейса для отправки действия,
 export const { addDayStatistic } = statisticsSlice.actions;
 
-// // экспортируем редьюсер
 export default statisticsSlice.reducer;
 
-// // экспортируем экшены (для метода dispatch в разным компонентах)
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
-// // экспортируем по умолчанию редьюсер
-// export default counterSlice.reducer
 
 

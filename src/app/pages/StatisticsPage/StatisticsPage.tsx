@@ -1,15 +1,11 @@
 import React from 'react';
 import styles from './statisticspage.css';
 import { Content } from '../../components/Content';
-import { EColor, Text } from '../../components/Text';
-import { EIcons, Icon } from '../../components/Icon';
-import { Dropdown } from '../../components/Dropdown';
-import { ButtonMenu } from '../../components/TaskList/TaskItem/ButtonMenu';
+import { Text } from '../../components/Text';
 import { WeekSelect } from '../../components/WeekSelect';
 import { DayStatistics } from '../../components/DayStatistics';
 import { TomatoStatistics } from '../../components/TomatoStatistics';
 import { StatisticBarChart } from '../../components/StatisticBarChart';
-import { StatisticsIndicator } from '../../components/StatisticsIndicator';
 import { StatisticsTopWrapper } from '../../components/Content/StatisticsTopWrapper';
 import { StatisticsMiddleWrapper } from '../../components/Content/StatisticsMiddleWrapper';
 import { StatisticsBottomWrapper } from '../../components/Content/StatisticsBottomWrapper';

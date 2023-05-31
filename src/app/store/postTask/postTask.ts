@@ -15,7 +15,7 @@ const taskSlice = createSlice({
   reducers: {
     taskAdded: {
       reducer (state, action: PayloadAction<Itask>) {
-        state.push(action.payload)
+        state.push(action.payload);
       },
       prepare (taskTitle: string) {
         return {
@@ -58,8 +58,8 @@ const taskSlice = createSlice({
 
     editTaskTitle: {
       reducer (state, action: PayloadAction<{taskTitle: string, taskId: string}>) {
-        const { taskTitle, taskId } = action.payload
-        const task = state.find((task) => task.taskId === taskId)
+        const { taskTitle, taskId } = action.payload;
+        const task = state.find((task) => task.taskId === taskId);
         if (task) {
           task.taskTitle = taskTitle;
         }
@@ -76,7 +76,7 @@ const taskSlice = createSlice({
 
     deleteTask: {
       reducer (state, action: PayloadAction<string>) {
-        return state.filter((task) => task.taskId !== action.payload)
+        return state.filter((task) => task.taskId !== action.payload);
       },
       prepare (taskId: string) {
         return {
@@ -93,8 +93,3 @@ export const { taskAdded, incrementTomatoCount, decrementTomatoCount, editTaskTi
 
 // // экспортируем редьюсер
 export default taskSlice.reducer;
-
-// // экспортируем экшены (для метода dispatch в разным компонентах)
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
-// // экспортируем по умолчанию редьюсер
-// export default counterSlice.reducer

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './daystatistics.css';
 import { EColor, Text } from '../Text';
 import { useAppSelector } from '../Hooks/useAppDispatch';
@@ -10,14 +10,16 @@ import classNames from 'classnames';
 
 export function DayStatistics() {
   const statData = useAppSelector(state => state.statisticsData);
-  const { isCurrentWeek, isLastWeek, isTwoWeekAgo} = useWeeks();
-  const {clickedBar, futureClickedBar} = useAppSelector(state => state.numberClickedBar);
+  const { clickedBar, futureClickedBar } = useAppSelector(state => state.numberClickedBar);
   const theme = useAppSelector(state => state.theme);
+  const { isCurrentWeek, isLastWeek, isTwoWeekAgo } = useWeeks();
+
   return (
     <div className={classNames(
-      styles.dayStatistics,
-      {[styles.dark]: theme === 'dark'},
-      )}>
+        styles.dayStatistics,
+        {[styles.dark]: theme === 'dark'},
+      )}
+    >
       <Text As={'h2'} weight={700} size={2433}>
         {
           (clickedBar != null && getWeekDayNameByIndex(clickedBar)) ||
@@ -29,7 +31,7 @@ export function DayStatistics() {
           <Text size={1628} >Нет данных</Text>
           ) : (
             <>
-              <Text size={1628} >Вы работали над задачами в течение </Text>
+              <Text size={1628} >Вы работали над задачами в течение </Text>
               <Text size={1628} color={EColor.red}>
                 {
                   (clickedBar != null  && isCurrentWeek ? getTimeFromMs(statData.currentWeek[clickedBar].workTime) : 0) ||
@@ -42,7 +44,6 @@ export function DayStatistics() {
               </Text>
             </>
           )}
-
       </div>
     </div>
   );
