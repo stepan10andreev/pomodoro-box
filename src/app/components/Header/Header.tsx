@@ -11,7 +11,6 @@ import { resetDayStatistics } from '../../store/statisticsData/dayStatistics';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { SettingsLink } from './SettingsLink';
 import useSound from 'use-sound';
-import sound from '../../../assets/sounds/notification.mp3';
 
 export function Header() {
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ export function Header() {
   // const lastEntryYear = useAppSelector(state => state.entryDate.year);
   // const dayStatistics = useAppSelector(state => state.dayStatistics)
   const dayStatistics = useAppSelector(state => state.dayStatistics);
-  const [play] = useSound(sound);
   useEffect(() => {
     if (isLastEntry) return;
     const NOW = new Date();
@@ -29,13 +27,9 @@ export function Header() {
     console.log('here')
   }, [])
 
-  const onClick = () => {
-    play()
-  }
 
   return (
     <header className={styles.header}>
-      <button onClick={onClick}>vvvvvvvvvvvvvvvvvv</button>
       <Logo />
       <StatisticsLink />
       <SettingsLink />

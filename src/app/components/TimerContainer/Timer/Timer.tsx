@@ -14,7 +14,9 @@ import { addDayStatistic } from '../../../store/statisticsData/statisticsData';
 import { setTodayDate } from '../../../store/entryDateState/entryDateState';
 import { addTomatoForLongBreak, resetTomatoForLongBreak } from '../../../store/longBreakState/longBreakState';
 import classNames from 'classnames';
-
+import useSound from 'use-sound';
+import sound from '../../../../assets/sounds/sound_timer-is-off.mp3';
+import doneSound from '../../../../assets/sounds/done-sound.mp3';
 
 const defaultDayObj = {
   day: 'ЧТ',
@@ -29,7 +31,7 @@ const defaultDayObj = {
 export function Timer() {
 
   const settings = useAppSelector((state) => state.settings)
-  const timerValueSec = settings.tomatoDuration * 60;
+  const timerValueSec = 5/*settings.tomatoDuration * 60;*/
   const tasks = useAppSelector((state) => state.tasks);
   const lastEntry = useAppSelector(state => state.entryDate);
   const dayStatistics = useAppSelector(state => state.dayStatistics);
@@ -47,6 +49,9 @@ export function Timer() {
   const [isPausing, setIsPausing] = useState(false);
   const [isBreaking, setIsBreaking] = useState(false);
   const [isHoveredStop, setIsHoveredStop] = useState(false);
+  const [play] = useSound(sound);
+  const [playReady] = useSound(doneSound);
+
 
   console.log(timerValueSec)
   console.log(timer)
@@ -66,7 +71,8 @@ export function Timer() {
     if (!currentTask) setTimer(timerValueSec);
     if (tomatoForLongBreak === settings.longBreakFrequency) {
       setIsBreaking(true);
-      setTimer(settings.longBreakDuration * 60);
+      setTimer(10)
+      // setTimer(settings.longBreakDuration * 60);
       dispatch(resetTomatoForLongBreak())
     }
     return (() => {
@@ -84,7 +90,8 @@ export function Timer() {
       dispatch(changeChangedByMenuState(false))
       dispatch(addTomatoForLongBreak())
       setIsBreaking(true);
-      setTimer(settings.shortBreakDuration * 60);
+      // setTimer(settings.shortBreakDuration * 60);
+      setTimer(3)
     }
     if (timer === 0 && isBreaking) {
       setIsCountDowning(false);
@@ -102,7 +109,7 @@ export function Timer() {
   useEffect(() => {
     isCountDowning && dispatch(setDayStatistics('workTime'));
     isCountDowning && !isBreaking && dispatch(setDayStatistics('doneTime'))
-
+    if (timer === 0) play();
     // setDayObject(prevState => ({...prevState, workTime: prevState['workTime'] + 1}));
   }, [timer])
 
@@ -165,13 +172,17 @@ export function Timer() {
     setIsCountDowning(false);
     setIsPausing(false);
     setTimer(timerValueSec);
+    if(!isBreaking) {
+      setIsBreaking(true);
+      setTimer(3)
+    }
     // setCountTomato(countTomato => countTomato + 1)
     // setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}))
     dispatch(setDayStatistics('countTomato'));
     dispatch(decrementTomatoCount(currentTask.taskId));
     dispatch(changeChangedByMenuState(false));
     dispatch(addTomatoForLongBreak());
-
+    playReady(doneSound)
   };
 
   const handleAddTime = () => {
