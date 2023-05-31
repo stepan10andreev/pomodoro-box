@@ -4,6 +4,7 @@ import { EColor, Text } from '../../components/Text';
 import { useAppSelector } from '../Hooks/useAppDispatch';
 import { useDispatch } from 'react-redux';
 import { ISettings, setSettings } from '../../store/settings/settings';
+import { motion } from 'framer-motion';
 
 // interface ISettingsData {
 //   [K: string]: string | File | boolean;
@@ -66,7 +67,12 @@ export function SettingsForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} >
+    <motion.form
+      initial={{opacity: 0, y: 400}}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6}}
+      className={styles.form}
+      onSubmit={handleSubmit} >
       <label className={styles.label}>
         <Text As={'span'} size={24} weight={700}>Продолжительность 1 "Помидора" (введите количество минут)</Text>
         <input name='tomatoDuration' type="number"  min={1} className={styles.input} disabled={isSettingsSaved} onChange={handleChange} value={settingsValues.tomatoDuration}/>
@@ -96,6 +102,6 @@ export function SettingsForm() {
         <Text As={'span'} size={24} weight={700}>Изменить настройки</Text>
       </button>
       </div>
-    </form>
+    </motion.form>
   );
 }
