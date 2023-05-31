@@ -80,6 +80,13 @@ module.exports = {
         }
       },
       {
+        test: /\.(mp3)$/i,
+        type: 'asset/resource',
+        generator: {
+            filename: 'sounds/[hash][ext][query]'
+        }
+      },
+      {
         test: /\.svg$/,
         type: 'asset/resource',
         generator: {

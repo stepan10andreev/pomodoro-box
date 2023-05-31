@@ -1,38 +1,36 @@
-import React, { ChangeEvent, FormEvent, MouseEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import styles from './settingsform.css';
 import { EColor, Text } from '../../components/Text';
+import { useAppSelector } from '../Hooks/useAppDispatch';
+import { useDispatch } from 'react-redux';
+import { ISettings, setSettings } from '../../store/settings/settings';
 
-interface ISettingsData {
-  [K: string]: string | File | boolean;
-}
+// interface ISettingsData {
+//   [K: string]: string | File | boolean;
+// }
 
-interface ISettingsValues {
-  [K: string]: string | boolean;
-  tomatoDuration: string;
-  shortBreakDuration: string;
-  longBreakDuration: string;
-  longBreakFrequency: string;
-  notifications: boolean;
-}
 
-const initialInputValues: ISettingsValues = {
-  tomatoDuration: '',
-  shortBreakDuration: '',
-  longBreakDuration: '',
-  longBreakFrequency: '',
-  notifications: false,
-}
+// const initialInputValues: ISettings = {
+//   tomatoDuration: 5,
+//   shortBreakDuration: 3,
+//   longBreakDuration: 10,
+//   longBreakFrequency: 4,
+//   notifications: false,
+// }
 
 
 export function SettingsForm() {
+  const settings = useAppSelector((state) => state.settings)
   const [isSettingsSaved, setIsSettingsSaved] = useState(true);
-  // const [dataSettings, setDataSettings] = useState<ISettings>({});
-  const [settingsValues, setSettingsValues] = useState<ISettingsValues>(initialInputValues);
+  const [settingsValues, setSettingsValues] = useState<ISettings>(settings);
   const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSettingsSaved(true);
+
+    dispatch(setSettings(settingsValues));
     // const form = event.target as HTMLFormElement;
     // console.log(form.children.namedItem('settigs-input'))
     // const formData = new FormData(form);
@@ -45,17 +43,20 @@ export function SettingsForm() {
   }
 
   // function validateValue() {
-  //     if (value.length <= 3) return 'Введите больше 3-х символов';
-  //     return '';
-  //   }
+  //   if (value.length <= 3) return 'Введите больше 3-х символов';
+  //   return '';
+  // }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input =  event.target as HTMLInputElement;
     if (input.type === 'checkbox') {
       setIsChecked(!isChecked)
       setSettingsValues(prevState => ({...prevState, [input.name]: input.checked}));
+      // dispatch(setSettings(input.name, input.checked));
     } else {
-      setSettingsValues(prevState => ({...prevState, [input.name]: input.value}))
+      setSettingsValues(prevState => ({...prevState, [input.name]: +input.value}))
+      // dispatch(setSettings(input.name, +input.value));
+      // console.log(input.value);
     }
   }
 

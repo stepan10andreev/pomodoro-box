@@ -63,7 +63,6 @@ const taskSlice = createSlice({
         if (task) {
           task.taskTitle = taskTitle;
         }
-
       },
       prepare (taskTitle: string, taskId:string) {
         return {

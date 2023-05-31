@@ -8,6 +8,7 @@ import dayStatisticsReducer from './statisticsData/dayStatistics';
 import longBreakReducer from './longBreakState/longBreakState';
 import numberClickedBarReducer from './numberClickedBar/numberClickedBar';
 import themeReducer from './theme/theme';
+import settingsReducer from './settings/settings';
 
 
 import {
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   tomatoLongBreak: longBreakReducer,
   numberClickedBar: numberClickedBarReducer,
   theme: themeReducer,
+  settings: settingsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

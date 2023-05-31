@@ -28,7 +28,8 @@ const defaultDayObj = {
 
 export function Timer() {
 
-
+  const settings = useAppSelector((state) => state.settings)
+  const timerValueSec = settings.tomatoDuration * 60;
   const tasks = useAppSelector((state) => state.tasks);
   const lastEntry = useAppSelector(state => state.entryDate);
   const dayStatistics = useAppSelector(state => state.dayStatistics);
@@ -41,13 +42,14 @@ export function Timer() {
 
   // const [dayObject, setDayObject] = useState<IDays>(defaultDayObj);
 
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(timerValueSec);
   const [isCountDowning, setIsCountDowning] = useState(false);
   const [isPausing, setIsPausing] = useState(false);
   const [isBreaking, setIsBreaking] = useState(false);
   const [isHoveredStop, setIsHoveredStop] = useState(false);
 
-
+  console.log(timerValueSec)
+  console.log(timer)
   // используем утилиту для того чтобы добавить 0 если секунды или минуты меньше 10
   // minutesValue нужна для вычисления seconds, так как minutes уже является строкой и будет ошибка в вычислениежд
   const minutesValue = Math.floor(timer / 60);
@@ -61,10 +63,10 @@ export function Timer() {
     }, 1000)
 
     if (currentTask?.countTomato === 0) dispatch(deleteTask(currentTask.taskId));
-    if (!currentTask) setTimer(5);
-    if (tomatoForLongBreak === 4) {
+    if (!currentTask) setTimer(timerValueSec);
+    if (tomatoForLongBreak === settings.longBreakFrequency) {
       setIsBreaking(true);
-      setTimer(15)
+      setTimer(settings.longBreakDuration * 60);
       dispatch(resetTomatoForLongBreak())
     }
     return (() => {
@@ -82,18 +84,18 @@ export function Timer() {
       dispatch(changeChangedByMenuState(false))
       dispatch(addTomatoForLongBreak())
       setIsBreaking(true);
-      setTimer(3);
+      setTimer(settings.shortBreakDuration * 60);
     }
     if (timer === 0 && isBreaking) {
       setIsCountDowning(false);
       setIsBreaking(false);
-      setTimer(5);
+      setTimer(timerValueSec);
     }
   }, [timer, isBreaking])
 
   // после смены теущей задачи - устаналиваем таймер и возвращаем isBreaking false
   useEffect(() => {
-    setTimer(5);
+    setTimer(timerValueSec);
     setIsBreaking(false);
   }, [currentTask?.taskId])
 
@@ -144,14 +146,14 @@ export function Timer() {
   const handleStop = () => {
     if (isBreaking) {
       setIsBreaking(false);
-      setTimer(5); //// можно ли убрать?
+      setTimer(timerValueSec); //// можно ли убрать?
     }
     !isBreaking && dispatch(setDayStatistics('countStops'));
       // setDayObject(prevState => ({...prevState, countStops: prevState['countStops'] + 1})) :
       // setDayObject(prevState => ({...prevState, countStops: prevState['countStops']}));
     setIsCountDowning(false);
     setIsPausing(false);
-    setTimer(5);
+    setTimer(timerValueSec);
   };
 
   const handlePause = () => {
@@ -162,7 +164,7 @@ export function Timer() {
   const handleReady = () => {
     setIsCountDowning(false);
     setIsPausing(false);
-    setTimer(5);
+    setTimer(timerValueSec);
     // setCountTomato(countTomato => countTomato + 1)
     // setDayObject(prevState => ({...prevState, countTomato: prevState['countTomato'] + 1}))
     dispatch(setDayStatistics('countTomato'));

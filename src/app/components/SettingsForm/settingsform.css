@@ -79,4 +79,6 @@
   background-color: hsl(0, 0%, 40%);
 }
 
-
+.checkbox {
+  transform: scale(2.5);
+}
