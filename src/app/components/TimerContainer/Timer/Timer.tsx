@@ -129,7 +129,7 @@ export function Timer() {
       const NOW = new Date();
       if (NOW.getDate() != lastEntry.day || NOW.getMonth() != lastEntry.month || NOW.getFullYear() != lastEntry.year) {
         console.log('День сменился')
-        dispatch(addDayStatistic(defaultDayObj));
+        dispatch(addDayStatistic(dayStatistics));
         dispatch(resetDayStatistics());
         // console.log(allStats)
         // диспатч нового дня

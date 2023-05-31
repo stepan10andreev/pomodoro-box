@@ -19,7 +19,7 @@ export const options = {
         callback: (value: any, index: any, values: any) => {
           if (value <= 1.5) return 'время'
           if (value < 3600) {
-            return `${value / 60} мин`;
+            return `${Math.round(value / 60)} мин`;
           }
           if (value >= 3600) {
             const hours = Math.floor(value / 3600);

@@ -21,6 +21,7 @@ import { useOnClickOutside } from '../Hooks/useOnClickOutside';
 import { getBarBackground } from '../../utils/getBarBackground';
 import { getWeekDay, getWeekDayIndexByName } from '../../utils/getWeekDay';
 import classNames from 'classnames';
+import { addDayStatistic } from '../../store/statisticsData/statisticsData';
 
 ChartJS.register(
   CategoryScale,
@@ -175,11 +176,16 @@ export function StatisticBarChart() {
   const theme = useAppSelector(state => state.theme);
 
   const statisticsData = useAppSelector(state => state.statisticsData)
+  const dayStatisticsData = useAppSelector(state => state.dayStatistics)
   const dispatch = useDispatch();
   const ref = useRef(null);
   const chartRef = useRef(null);
 
   useOnClickOutside(ref, () => {dispatch(resetClickedBarNum()), dispatch(setFutureClickedBar(false))})
+
+  useEffect(() => {
+    dispatch(addDayStatistic(dayStatisticsData));
+  }, [dayStatisticsData])
 
   const data = {
     labels,
@@ -207,8 +213,8 @@ export function StatisticBarChart() {
       if (isCurrentWeek) {
         const currentDayName = getWeekDay(new Date())
         const currentDayIndex = getWeekDayIndexByName(currentDayName)
-        // console.log(currentDayIndex)
-        // console.log(indexClickedBar)
+        console.log(currentDayIndex)
+        console.log(indexClickedBar)
         if (indexClickedBar > currentDayIndex) {
           dispatch(setFutureClickedBar(true))
         } else {

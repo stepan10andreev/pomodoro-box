@@ -19,7 +19,7 @@ export function getWeekDayNameByIndex(index: number) {
 
 
 export function getWeekDayIndexByName(dayName: string): number {
-  let days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+  let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
   for (let i = 0; i < days.length; i++) {
     if (days[i].includes(dayName)) {
       return i;

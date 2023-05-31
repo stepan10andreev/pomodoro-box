@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   max-width: 370px;
-  border-top: 1px solid var(--grayE4);
-  border-bottom: 1px solid var(--grayE4);
+  border-top: 1px solid var(--grayC4);
+  border-bottom: 1px solid var(--grayC4);
 }
 
 .countTomatoes {
@@ -15,7 +15,7 @@
   justify-items: center;
   width: 25px;
   height: 25px;
-  border: 1px solid #C4C4C4;
+  border: 1px solid var(--grayC4);
   border-radius: 20px;
 }
 

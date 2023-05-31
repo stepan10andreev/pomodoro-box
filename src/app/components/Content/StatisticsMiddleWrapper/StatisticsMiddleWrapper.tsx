@@ -12,7 +12,7 @@ export function StatisticsMiddleWrapper({ children }: IStatisticsMiddleWrapper) 
       className={styles.middle}
       initial={{ opacity: 0}}
       animate={{ opacity: 1}}
-      transition={{ duration: 0.7}}
+      transition={{ duration: 1}}
     >
       {children}
     </motion.div>
