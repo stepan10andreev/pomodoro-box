@@ -216,8 +216,14 @@ export function Timer() {
       </div>
 
       <div className={styles.title}>
-        <Text size={16} color={EColor.grey99}>Задача 1 - </Text>
-        <Text size={16}>{currentTask ? currentTask.taskTitle : 'Текущая задача не добавлена'}</Text>
+        {isBreaking ? (
+          <Text size={24} color={EColor.green}>Перерыв</Text>
+        ) : (
+          <>
+            <Text size={16} color={EColor.grey99}>Задача 1 - </Text>
+            <Text size={16}>{currentTask ? currentTask.taskTitle : 'Текущая задача не добавлена'}</Text>
+          </>
+        )}
       </div>
 
       <div className={styles.timerButtonsWrapper}>
