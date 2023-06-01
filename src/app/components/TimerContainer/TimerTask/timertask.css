@@ -1,9 +1,9 @@
 .timerTask {
+  padding: 19px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   justify-items: center;
-  padding: 19px 40px;
   background-color: var(--grayC4);
 }
 
@@ -13,4 +13,15 @@
 
 .bgRed {
   background-color: var(--red);
+}
+
+.timerTask > div:first-child {
+  word-wrap: break-word;
+  max-width: 60%;
+}
+
+@media (max-width: 756px) {
+  .timerTask {
+	  padding: 10px 20px;
+  }
 }

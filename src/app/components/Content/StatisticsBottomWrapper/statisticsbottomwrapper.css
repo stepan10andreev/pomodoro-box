@@ -1,9 +1,21 @@
 .bottom {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .bottom > div {
   max-width: 405px;
   width: 100%;
+}
+
+
+@media (max-width: 1200px) {
+  .bottom {
+    flex-direction: column;
+  }
+
+  .bottom > div {
+    max-width: 100%;
+  }
 }

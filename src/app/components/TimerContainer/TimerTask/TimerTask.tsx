@@ -58,8 +58,8 @@ export function TimerTask() {
       {[styles.bgRed]: stopHoverState || readyHoverState},
       {[styles.dark]: theme === 'dark'},
     )}>
-      <Text As={'div'} size={16} weight={700} color={EColor.white}>{currentTask ? currentTask.taskTitle : 'Название текущей задачи'}</Text>
-      <Text  As={'div'} size={16} weight={700} color={EColor.white}>Помидор {(currentTask) ? (initialTomatoNumber - (currentCountTomato - 1)) : 1}</Text>
+      <Text As={'div'} size={16} mobileSize={12} weight={700} color={EColor.white}>{currentTask ? currentTask.taskTitle : 'Название текущей задачи'}</Text>
+      <Text  As={'div'} size={16} mobileSize={12} weight={700} color={EColor.white}>Помидор {(currentTask) ? (initialTomatoNumber - (currentCountTomato - 1)) : 1}</Text>
     </div>
   );
 }

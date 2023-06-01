@@ -101,7 +101,7 @@
   text-transform: uppercase;
 } */
 
-/* @media all and (min-width: 320px) and (max-width: 1023px) {
+@media all and (min-width: 0px) and (max-width: 756px) {
   .m28 {
     font-size: 28px;
     line-height: 33px;
@@ -112,7 +112,7 @@
   }
   .m16 {
     font-size: 16px;
-    line-height: 19px;
+    line-height: 17px;
   }
   .m14 {
     font-size: 14px;
@@ -120,11 +120,11 @@
   }
   .m12 {
     font-size: 12px;
-    line-height: 14px;
+    line-height: 33px;
   }
-  .m10 {
-    font-size: 10px;
-    line-height: 12px;
+  .m72 {
+    font-size: 72px;
+    line-height: 86px;
   }
 }
 
@@ -132,7 +132,7 @@
   font-weight: 500;
 }
 
-@media all and (min-width: 1024px) and (max-width: 1539px) {
+@media all and (min-width: 756px) and (max-width: 992px) {
   .t28 {
     font-size: 28px;
     line-height: 33px;
@@ -153,13 +153,10 @@
     font-size: 12px;
     line-height: 14px;
   }
-  .t10 {
-    font-size: 10px;
-    line-height: 12px;
-  }
+
 }
 
-@media all and (min-width: 1540px) {
+@media all and (min-width: 757px) and (max-width: 1200px) {
   .d28 {
     font-size: 28px;
     line-height: 33px;
@@ -170,18 +167,18 @@
   }
   .d16 {
     font-size: 16px;
-    line-height: 19px;
+    line-height: 33px;
   }
   .d14 {
     font-size: 14px;
     line-height: 16px;
   }
-  .d12 {
-    font-size: 12px;
-    line-height: 14px;
+  .d24 {
+    font-size: 24px;
+    line-height: 24px;
   }
-  .d10 {
-    font-size: 10px;
-    line-height: 12px;
+  .d110 {
+    font-size: 110px;
+    line-height: 179px;
   }
-} */
+}

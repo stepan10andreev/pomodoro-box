@@ -2,3 +2,18 @@
   max-width: 730px;
   width: 100%;
 }
+
+
+@media (max-width: 1200px) {
+  .timerContainer {
+    max-width: 530px;
+  }
+}
+
+@media (max-width: 992px) {
+  .timerContainer {
+    max-width: 100%;
+  }
+}
+
+

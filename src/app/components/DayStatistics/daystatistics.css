@@ -6,3 +6,11 @@
 .dayStatistics.dark {
   background-color: #262626;
 }
+
+@media (max-width: 1366px) {
+  .dayStatistics {
+    padding: 25px 25px;
+    max-width: 500px;
+    width: 100%;
+  }
+}

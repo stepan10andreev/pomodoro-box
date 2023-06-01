@@ -9,3 +9,10 @@
   max-width: 952px;
   background-color: var(--grayF4);
 }
+
+
+@media (max-width: 1366px) {
+  .middle {
+    flex-direction: column;
+  }
+}

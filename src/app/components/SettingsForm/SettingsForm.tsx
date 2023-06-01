@@ -43,7 +43,7 @@ export function SettingsForm() {
       className={styles.form}
       onSubmit={handleSubmit} >
       <label className={styles.label}>
-        <Text As={'span'} size={24} weight={700}>Продолжительность 1 &quot;Помидора&ldquo; (введите количество минут)</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Продолжительность 1 &quot;Помидора&ldquo; (введите количество минут)</Text>
         <input
           name='tomatoDuration'
           type="number"
@@ -55,7 +55,7 @@ export function SettingsForm() {
         />
       </label>
       <label className={styles.label}>
-        <Text As={'span'} size={24} weight={700}>Продолжительность короткого перерыва (введите количество минут)</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Продолжительность короткого перерыва (введите количество минут)</Text>
         <input
           name='shortBreakDuration'
           type="number"
@@ -66,7 +66,7 @@ export function SettingsForm() {
         />
       </label>
       <label className={styles.label}>
-        <Text As={'span'} size={24} weight={700}>Продолжительность длинного перерыва (введите количество минут)</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Продолжительность длинного перерыва (введите количество минут)</Text>
         <input
           name='longBreakDuration'
           type="number"
@@ -78,7 +78,7 @@ export function SettingsForm() {
         />
       </label>
       <label className={styles.label}>
-        <Text As={'span'} size={24} weight={700}>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>
           Частота длинного перерыва: каждые
           <input
             name='longBreakFrequency'
@@ -93,7 +93,7 @@ export function SettingsForm() {
         </Text>
       </label>
       <label className={styles.label}>
-        <Text As={'span'} size={24} weight={700}>Уведомления</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Уведомления</Text>
         <input
           name='notifications'
           type="checkbox" className={styles.checkbox}
@@ -105,11 +105,11 @@ export function SettingsForm() {
 
       <div className={styles.wrapper}>
       <button type='submit' className={styles.btnSaveSettings} disabled={isSettingsSaved}>
-        <Text As={'span'} size={24} weight={700}>Сохранить настройки</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Сохранить настройки</Text>
       </button>
 
       <button type='reset' className={styles.btnChangeSettings} onClick={changeSettings} disabled={!isSettingsSaved}>
-        <Text As={'span'} size={24} weight={700}>Изменить настройки</Text>
+        <Text As={'span'} size={24} mobileSize={16} weight={700}>Изменить настройки</Text>
       </button>
       </div>
     </motion.form>

@@ -9,7 +9,7 @@ export function Logo() {
   return (
     <NavLink to='/'className={({isActive}) => isActive ? styles.linkActive : styles.logo}>
       <Icon name={EIcons.logo} size={40}/>
-      <Text As={'h1'} size={24} color={EColor.red} weight={300}>
+      <Text As={'h1'} size={24} mobileSize={16} color={EColor.red} weight={300}>
         pomodoro_box
       </Text>
     </NavLink>

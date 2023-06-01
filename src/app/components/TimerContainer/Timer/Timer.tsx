@@ -201,13 +201,13 @@ export function Timer() {
     >
 
       <div className={styles.wrapper + ' ' + (isHoveredStop ? styles.stopClicked : '')}>
-        <Text As={'div'} size={150} weight={200}>
+        <Text As={'div'} size={150} desktopSize={110} mobileSize={72} weight={200}>
           {minutes}
         </Text>
-        <Text As={'div'} size={150} weight={200}>
+        <Text As={'div'} size={150} desktopSize={110} mobileSize={72} weight={200}>
           :
         </Text>
-        <Text As={'div'} size={150} weight={200}>
+        <Text As={'div'} size={150} desktopSize={110} mobileSize={72} weight={200}>
           {seconds}
         </Text>
         <button onClick={handleAddTime} className={styles.addTimeBtn}>

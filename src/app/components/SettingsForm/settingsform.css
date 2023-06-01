@@ -81,3 +81,22 @@
 .checkbox {
   transform: scale(2.5);
 }
+
+
+
+@media (max-width: 576px) {
+  .input {
+   width: 40px;
+   height: 40px;
+  }
+
+  .form {
+    padding: 20px 5px;
+    border: none;
+    outline: 1px solid var(--black);
+  }
+
+  .wrapper {
+    gap: 30px;
+  }
+ }

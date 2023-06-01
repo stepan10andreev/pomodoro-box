@@ -1,4 +1,27 @@
 .top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.top > h1 {
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .statisticsIndicators {
+    padding: 20px;
+  }
+
+  .statisticsIndicators svg {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 576px) {
+ .top {
+  flex-direction: column;
+ }
 }
