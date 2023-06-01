@@ -1,5 +1,6 @@
 # Трекер задач с таймером по методу «Помодоро»
 React-приложение c использованием одной из методик повышения продуктивности.
+
 [The Pomodoro Technique](https://todoist.com/ru/productivity-methods/pomodoro-technique) - описание техники Помодоро
 
 
