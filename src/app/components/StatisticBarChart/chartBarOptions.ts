@@ -33,9 +33,9 @@ export const options = {
         stepSize: 1500,
         includeBounds: false,
         maxTicksLimit: 5,
-        padding: 30,
+        padding: window.innerWidth > 576 ? 50 : 10,
         font: {
-          size: 12
+          size: window.innerWidth > 576 ? 12 : 10
         }
       },
       border: {
@@ -60,7 +60,7 @@ export const options = {
         color: '#999999',
         padding: 11,
          font: {
-          size: 24
+          size: window.innerWidth > 576 ? 24 : 12,
         }
       }
     }

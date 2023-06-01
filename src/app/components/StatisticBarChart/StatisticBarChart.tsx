@@ -98,7 +98,10 @@ export function StatisticBarChart() {
         data={data}
         onClick={onClick}
         ref={chartRef}
+        height={window.innerWidth > 576 ? 150 : 250}
       />
     </div>
   );
 }
+
+

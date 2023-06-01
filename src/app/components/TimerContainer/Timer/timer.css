@@ -140,9 +140,13 @@ button:disabled {
     padding: 10px 20px;
   }
 
-  .addTimeBtn,
-  .addTimeBtn svg {
+  .addTimeBtn {
     padding: 0;
+    width: fit-content;
+    height: 30px;
+  }
+
+  .addTimeBtn svg {
     width: 30px;
     height: 30px;
   }
