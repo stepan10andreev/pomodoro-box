@@ -58,7 +58,7 @@ module.exports = {
       },
       // все что ниже не требуют загрузок каких то плагинов отдельно
       {
-        test: /\.(png|jpg|jpeg|gif|webp)$/i,
+        test: /\.(png|jpg|jpeg|gif|webp|ico)$/i,
         type: 'asset/resource',
         generator: {
             filename: 'images/[hash][ext][query]'
@@ -84,6 +84,10 @@ module.exports = {
         generator: {
             filename: 'fonts/[hash][ext][query]'
         }
+      },
+      {
+        test: /\.(ico)$/i,
+        type: 'asset/resource',
       },
     ]
   },
