@@ -85,10 +85,6 @@ module.exports = {
             filename: 'fonts/[hash][ext][query]'
         }
       },
-      {
-        test: /\.(ico)$/i,
-        type: 'asset/resource',
-      },
     ]
   },
   plugins: IS_DEV ? [
@@ -100,9 +96,6 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin( {template: path.resolve(__dirname, 'index.html')} ),
-    // new MiniCssExtractPlugin({
-    //   filename: 'main.[contenthash].css',
-    // })
   ] : [
       new FileManagerPlugin({
         events: {
@@ -111,10 +104,7 @@ module.exports = {
         },
         },
       }),
-      new HtmlWebpackPlugin( {title: 'Форма оплаты', template: path.resolve(__dirname, 'index.html')} ),
-      // new MiniCssExtractPlugin({
-      //   filename: 'main.[contenthash].css',
-      // }),
+      new HtmlWebpackPlugin( {template: path.resolve(__dirname, 'index.html'), favicon: './src/assets/favicon.ico'} ),
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
