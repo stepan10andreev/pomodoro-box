@@ -18,7 +18,7 @@ function AppComponent() {
           <Layout>
             <Header />
             <Routes>
-              <Route path="/" element={<MainPage />}/>
+              <Route path="/pomodoro-box" element={<MainPage />}/>
               <Route path="/statistics" element={<StatisticsPage />}/>
               <Route path="/settings" element={<SettingsPage />}/>
             </Routes>
