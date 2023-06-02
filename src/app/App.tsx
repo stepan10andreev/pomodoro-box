@@ -12,13 +12,13 @@ import { SettingsPage } from "./pages/SettingsPage";
 
 function AppComponent() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/pomodoro-box">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Layout>
             <Header />
             <Routes>
-              <Route path="/pomodoro-box" element={<MainPage />}/>
+              <Route path="/" element={<MainPage />}/>
               <Route path="/statistics" element={<StatisticsPage />}/>
               <Route path="/settings" element={<SettingsPage />}/>
             </Routes>
