@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "start": "cross-env NODE_ENV=development webpack serve",
