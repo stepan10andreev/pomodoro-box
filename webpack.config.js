@@ -141,10 +141,11 @@ module.exports = {
       }),
     ],
   devServer: {
+    open: ['/pomodoro-box'],
+    // open: true,
     // contentBase: './dist',
     historyApiFallback: true,
     port: 3000,
-    open: true,
     hot: IS_DEV,
   },
   devtool: setupDevtool(),
